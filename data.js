@@ -125,6 +125,15 @@ const PLATFORMS = [
     blurb: "SNK's fierce 16-bit handheld (TLCS-900/H), with a proprietary Toshiba toolchain held together by decades-old links — and a link cable no emulator had ever spoken, on either side.",
   },
   {
+    id: "jaguar",
+    name: "Atari Jaguar",
+    maker: "Atari",
+    year: 1993,
+    gen: 5,
+    rarity: "epic",
+    blurb: "Atari's last stand: 'do the math', five processors that barely speak to each other, and a 68000 that was only ever meant to be the janitor — yet ends up doing most of the work.",
+  },
+  {
     id: "3do",
     name: "Panasonic 3DO",
     maker: "The 3DO Company · Panasonic",
@@ -416,6 +425,28 @@ const PROJECTS = [
       { label: "▶ First working bridge (homebrew)", url: "https://www.youtube.com/watch?v=x2IV3T3Z0oM" },
       { label: "▶ Retail-software bridge test", url: "https://www.youtube.com/watch?v=mmxnnkZzu-s" },
     ],
+  },
+
+  /* ---- Atari Jaguar ---- */
+  {
+    id: "jag-ff4",
+    title: "Final Fantasy IV — Atari Jaguar",
+    platform: "jaguar",
+    type: "porting",
+    status: "ongoing",
+    progress: 15,
+    summary: "The maddest route in the codex: FF4 brought to the Jaguar not by rewriting it, but by transpiling the entire SNES disassembly — a custom-built 65c816→68k transpiler (all six modules green, 4.78 MB of generated assembly), a byte-perfect SNES build as the oracle, and a software SNES-PPU bridge feeding the Jaguar. The AKAO sound engine has been rebuilt to SNES fidelity: the Prelude and Edward's harp validated by ear as 'practically identical'. Current front line: the opening Red Wings flight, where Mode 7 meets a console that never had one. The tiny progress bar is honest — this is the tears-and-blood pipeline, fought one hard-won session at a time.",
+    milestones: [
+      { label: "Custom 65c816→68k transpiler — six modules, 4.78 MB of asm", done: true },
+      { label: "Boots on Jaguar: trampoline dispatch, title screen passes", done: true },
+      { label: "Full sync pipeline: NMI dispatch, pad input arriving", done: true },
+      { label: "AKAO audio at SNES fidelity — validated by a musician's ear", done: true },
+      { label: "Red Wings opening: Mode 7 + sprites (4 root causes fixed, validating)", done: false },
+      { label: "Field, menus, battles… the mountain", done: false },
+    ],
+    badges: ["toolchain", "disasm", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Panasonic 3DO ---- */
