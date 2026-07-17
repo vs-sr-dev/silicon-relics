@@ -480,6 +480,27 @@ const PROJECTS = [
     repo: "https://github.com/vs-sr-dev/pippin-homebrew",
   },
 
+  {
+    id: "pippin-dangerous-creatures",
+    title: "Dangerous Creatures — Bandai Pippin",
+    platform: "pippin",
+    type: "porting",
+    status: "ongoing",
+    progress: 40,
+    summary: "Microsoft's 1994 multimedia encyclopedia, take two — the sibling of the VIS quest, and an even stranger transplant: a Windows x86 title reborn on Apple and Bandai's PowerPC console. The original engine can't be ported, so the road is asset extraction plus a from-scratch C viewer (Retro68), grown out of the thin-client browser shell from the Pippin networking quest next door. The Lion vertical slice runs verified on the emulated Pippin: main page pixel-perfect on the first attempt (SZDD decompression → RGB555 → GWorld), clickable hotspots with five popups and the factbox, clean ADPCM voiceover narration — and the 'Fixing dinner' film playing with perfect sound, no codec on the console: Indeo 3.2 is pre-decoded offline into a raw frame stream the Pippin merely blits. Two memory walls fell along the way to a custom paged data-file format. What remains: taming video sync against an emulator clock that runs fast, scaling to all 66 animals via the navigation database cracked in the VIS sibling quest, and a bring-your-own-assets release.",
+    milestones: [
+      { label: "Recon: 3,346 bitmaps, 2,183 ADPCM WAVs, 109 Indeo AVIs — all extractable", done: true },
+      { label: "Lion main page pixel-perfect on the Pippin, first attempt", done: true },
+      { label: "Full Lion navigation: hotspots, 5 popups, factbox — memory walls beaten", done: true },
+      { label: "Audio end-to-end: ADPCM narration clean through the Sound Manager", done: true },
+      { label: "Video: Indeo film plays with perfect audio via codec-free frame streaming", done: true },
+      { label: "Video sync, 66-animal scaling (VIS database crack), BYOA release", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Bandai Playdia ---- */
   {
     id: "playdia-ak8000",
