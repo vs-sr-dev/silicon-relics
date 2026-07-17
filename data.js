@@ -664,6 +664,9 @@ const PROJECTS = [
     badges: ["toolchain", "first-boot", "audio-unlocked", "disasm"],
     screenshots: [],
     repo: null,
+    links: [
+      { label: "▶ The µPD937 synth, heard", url: "https://www.youtube.com/watch?v=IFznxIknyBg" },
+    ],
   },
 
   /* ---- Atari Jaguar ---- */
