@@ -491,6 +491,28 @@ const PROJECTS = [
     repo: "https://github.com/vs-sr-dev/dc-lba2",
   },
 
+  {
+    id: "dc-ff8",
+    title: "Final Fantasy VIII — Dreamcast",
+    platform: "dreamcast",
+    type: "porting",
+    status: "ongoing",
+    progress: 40,
+    summary: "The game the Dreamcast never got, rebuilt the honest way: a C++ reimplementation on KallistiOS that executes FF8's own data — the field scenes run their authentic script bytecode (the Balamb infirmary plays out its real 1,960-op program), stats come from kernel.bin, and the physical damage formula is transcribed from byte-matching decompiled code. Triple Triad is fully playable and 'unsettlingly identical'; the whole party walks in 3D at 60 fps inside the real painted backdrops with depth occlusion; battle monsters animate on real 3D stages with authentic UI art. Includes an original RE contribution: the field bone-rotation decode, verified against the PS1 assembly nobody had decompiled. Bring-your-own-assets throughout. And parked in a drawer: Chocobo World running its original ARM ROM on the VMU via a home-made PocketStation emulator.",
+    milestones: [
+      { label: "Triple Triad 1:1 — all rules, authentic art, SFX and BGM", done: true },
+      { label: "Field: party in 3D at 60 fps inside real backdrops, depth-occluded", done: true },
+      { label: "Field VM: authentic JSM bytecode executed (infirmary scene live)", done: true },
+      { label: "Battle slice: real formulas, monster stats, stages, authentic UI", done: true },
+      { label: "FMV pipeline proven (RoQ streaming with audio)", done: true },
+      { label: "Magic/GF effect compositor — the frontier nobody has decompiled", done: false },
+      { label: "Enemy-AI bytecode interpreter, main menu, VMU saves", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "disasm", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo Wii U ---- */
   {
     id: "wiiu-lba2",
