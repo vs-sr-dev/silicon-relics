@@ -62,6 +62,15 @@ const GENERATIONS = {
 
 const PLATFORMS = [
   {
+    id: "7800",
+    name: "Atari 7800",
+    maker: "Atari",
+    year: 1986,
+    gen: 3,
+    rarity: "rare",
+    blurb: "Atari's what-if console: no tilemaps, no sprite limits — just MARIA and her display lists, a 6502 heart, and a POKEY on the cartridge when you need real music.",
+  },
+  {
     id: "vis",
     name: "Tandy / Memorex VIS",
     maker: "Tandy · Memorex",
@@ -201,6 +210,28 @@ const PLATFORMS = [
 /* ---------- Projects (the Quests) ---------- */
 
 const PROJECTS = [
+
+  /* ---- Atari 7800 ---- */
+  {
+    id: "7800-ff1",
+    title: "Final Fantasy — Atari 7800",
+    platform: "7800",
+    type: "porting",
+    status: "ongoing",
+    progress: 50,
+    summary: "The 1987 NES original rebuilt on Atari's forgotten console, working straight from the FF1 disassembly with a strict NES-parity policy — Square's original bugs cataloged, and fixable by choice. MARIA display lists replace the NES tilemaps, the toroidal overworld smooth-scrolls, Coneria has its real NPC dialogs and shops, and 4-character battles run with authentic stats, magic and enemy data — up to a playable Garland fight with his true sprite. The soundtrack pipeline runs through ChipRoll to POKEY: the Forge serving the quest. Target: a combat demo to the Pravoka bridge, on real hardware via modern flash carts.",
+    milestones: [
+      { label: "MARIA rendering foundation: display lists, metatiles, smooth scroll", done: true },
+      { label: "Toroidal overworld with tile-locked movement and player sprite", done: true },
+      { label: "Coneria: town maps, disasm-faithful NPC dialogs, shop data", done: true },
+      { label: "Battle engine: 4-character rounds, magic, items, party targeting", done: true },
+      { label: "Garland fight playable — real stats, real sprite", done: true },
+      { label: "Demo-with-combat to the Pravoka bridge · full POKEY soundtrack", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "disasm", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
 
   /* ---- Tandy VIS ---- */
   {
