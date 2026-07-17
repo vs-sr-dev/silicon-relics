@@ -449,6 +449,27 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "jag-lba1",
+    title: "Little Big Adventure — Atari Jaguar",
+    platform: "jaguar",
+    type: "porting",
+    status: "ongoing",
+    progress: 20,
+    summary: "The tenth life of LBA in this codex, and among the hardest-won: LBA1 on a 6 MB Jaguar cartridge with bank switching, rendered by a polygon rasterizer written instruction by instruction in GPU TOM assembly — four-edge clipping, Gouraud shading, spheres — until Twinsen stands correctly shaded in the Citadel and walks through multi-room scrolling at 60 fps. The crown jewel: the Jaguar's 480i interlaced mode, which no retail game ever shipped, switched on to chase 1:1 parity with the PC DOS original at 640×480. Local-only until the rights holders say yes.",
+    milestones: [
+      { label: "Citadel scene rendered; 134-scene cart; multi-room scroll at 60 fps", done: true },
+      { label: "GPU TOM rasterizer from scratch: clipping, fill, Gouraud, spheres", done: true },
+      { label: "Twinsen walkable, sprite-based body — bus contention defeated", done: true },
+      { label: "640×480i interlace — a mode no retail Jaguar game ever used", done: true },
+      { label: "Animations, collisions, script engine from the community fork", done: false },
+      { label: "The mountain, again", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Panasonic 3DO ---- */
   {
     id: "3do-omf2097",
