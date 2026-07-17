@@ -530,6 +530,26 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "pc-tle-re",
+    title: "The Last Express (1997) — Clockwork of the Orient Express",
+    platform: "pc",
+    type: "re",
+    status: "ongoing",
+    progress: 60,
+    summary: "Digging into Jordan Mechner's real-time masterpiece through its modern re-release — a cocos2d-x shell around the nearly intact 1997 game. All major formats decoded: backgrounds, audio, the subtitle system with its custom bitmap font (perfect text in five languages), actor-sprite RLE, and the NIS cutscene containers — whose engine turned out to be byte-identical to the 1997 original. The character-AI virtual machine was mapped in the exe, down to reversing the exact trigger of the infamous 'August finds the corpse' game over, cross-confirmed against ScummVM at three matching call sites. Documentation and tooling only — the game is still on sale.",
+    milestones: [
+      { label: "Backgrounds, audio, subtitles + custom font fully decoded", done: true },
+      { label: "SEQ actor sprites decoded (all RLE packing variants)", done: true },
+      { label: "NIS cutscene containers + sprite decode solved", done: true },
+      { label: "Entity VM mapped; the 1009 game-over trigger reversed", done: true },
+      { label: "Fade sprites, NIS playback timing, train scene graph", done: false },
+    ],
+    badges: ["disasm", "toolchain"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- The Chip Forge ---- */
   {
     id: "chiproll",
