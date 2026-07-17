@@ -55,6 +55,7 @@ const GENERATIONS = {
   7: { num: "VII",  era: "2005 – 2012" },
   8: { num: "VIII", era: "2012 – 2020" },
   90: { num: "PC", title: "The Home Turf", era: "IBM PC & compatibles, 1981 → today" },
+  91: { num: "✦",  title: "The Wunderkammer", era: "machines from stranger timelines" },
   99: { num: "∞",  title: "The Timeless Forge", era: "tools that serve the relics" },
 };
 
@@ -231,6 +232,15 @@ const PLATFORMS = [
     gen: 90,
     rarity: "common",
     blurb: "Not obscure hardware — the childhood machine itself. Here the relics are the games: late-90s engines with debug symbols left inside, ciphers to crack, and party systems waiting to become something more.",
+  },
+  {
+    id: "smaky",
+    name: "Smaky 100",
+    maker: "Epsitec · Lausanne",
+    year: 1984,
+    gen: 91,
+    rarity: "legendary",
+    blurb: "The Swiss school computer: a 68000 with green-phosphor 640×400, multitasking PSos in 1983, roughly 1,500 units ever built — for classrooms of French-speaking Switzerland. Yes, really.",
   },
   {
     id: "forge",
@@ -773,6 +783,27 @@ const PROJECTS = [
       { label: "M4: true flat-3D hero rendered by the GSU · M5: SPC700 audio", done: false },
     ],
     badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
+  /* ---- Smaky ---- */
+  {
+    id: "smaky-ff1",
+    title: "Final Fantasy — Smaky (The Anachronistic Remake)",
+    platform: "smaky",
+    type: "porting",
+    status: "accepted",
+    progress: 10,
+    summary: "The codex's most gloriously improbable quest: what if Square had owned a Smaky instead of a Famicom? FF1 remade for the Swiss school computer — hardware released three years before the game, yet mightier than a NES: a 68000, a full megabyte of RAM, a real keyboard, and 640×400 of green phosphor. No bank switching, no text compression — the challenge is making tiles readable in pure monochrome dithering. The Smaky 100's innards were never publicly documented, so the port targets a 'fantasy console' faithful to every authentic spec. Toolchain proven, the FF1 font already glows green. An informal race is on against the ColecoVision and 7800 siblings for the first shippable demo — and this machine from a stranger timeline may yet play a larger role in tales to come.",
+    milestones: [
+      { label: "Spec sprint: authentic Smaky 100 specs triangulated from Swiss sources", done: true },
+      { label: "Toolchain + green-phosphor harness proven (68000 hello)", done: true },
+      { label: "FF1 font pipeline rendering on the mono display", done: true },
+      { label: "Party generation, 80×60 overworld, dithered tile art", done: false },
+      { label: "First shippable demo — the FF1 sibling race", done: false },
+    ],
+    badges: ["toolchain"],
     screenshots: [],
     repo: null,
   },
