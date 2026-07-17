@@ -126,6 +126,15 @@ const PLATFORMS = [
     blurb: "Bandai's Japan-only anime-FMV machine: an 8-bit NEC CPU, an infrared controller, 42 titles — and every pixel routed through one custom chip nobody ever documented, the Asahi Kasei AK8000. No BIOS handshake, no disc auth: it boots whatever CD-R you burn.",
   },
   {
+    id: "lynx",
+    name: "Atari Lynx",
+    maker: "Atari · Epyx",
+    year: 1989,
+    gen: 4,
+    rarity: "uncommon",
+    blurb: "The first color handheld — Epyx-designed, Atari-sold: a 65C02 flanked by Suzy and Mikey, hardware sprite scaling in 1989, ambidextrous by design. Crushed in the market by a Game Boy it outclassed on paper.",
+  },
+  {
     id: "gamecom",
     name: "Tiger Game.com",
     maker: "Tiger Electronics",
@@ -142,6 +151,15 @@ const PLATFORMS = [
     gen: 5,
     rarity: "rare",
     blurb: "SNK's fierce 16-bit handheld (TLCS-900/H), with a proprietary Toshiba toolchain held together by decades-old links — and a link cable no emulator had ever spoken, on either side.",
+  },
+  {
+    id: "wsc",
+    name: "WonderSwan Color",
+    maker: "Bandai",
+    year: 2000,
+    gen: 6,
+    rarity: "rare",
+    blurb: "Gunpei Yokoi's final console design: a Japan-only handheld with an x86-compatible V30MZ heart, a screen meant to be played horizontal or rotated vertical, and 20 hours on a single AA battery. Bandai's third relic in this codex.",
   },
   {
     id: "jaguar",
@@ -574,6 +592,44 @@ const PROJECTS = [
       { label: "Stylus input (13×10 grid, protocol documented) — toward a real app", done: false },
     ],
     badges: ["toolchain", "disasm", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
+  /* ---- Atari Lynx ---- */
+  {
+    id: "lynx-bringup",
+    title: "Lynx Homebrew Bring-Up",
+    platform: "lynx",
+    type: "homebrew",
+    status: "accepted",
+    progress: 10,
+    summary: "The quest is young, but the road is open: the cc65 toolchain proven end-to-end on Atari's ambidextrous pioneer, with a graphics hello world running under the Handy emulator and a reproducible Makefile pipeline standing ready. The classic first-timer traps are already documented for posterity — starting with the discovery that conio.h silently does nothing here: the Lynx speaks only TGI. Next on the horizon: sprites, the thing Suzy was born to scale.",
+    milestones: [
+      { label: "cc65 toolchain proven: TGI hello world runs under Handy", done: true },
+      { label: "Reproducible build: Makefile, project layout, gotchas documented", done: true },
+      { label: "Sprites and scaling — what this hardware was made for", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
+  /* ---- WonderSwan Color ---- */
+  {
+    id: "wsc-bringup",
+    title: "WonderSwan Color Homebrew Bring-Up",
+    platform: "wsc",
+    type: "homebrew",
+    status: "accepted",
+    progress: 10,
+    summary: "Yokoi's swan gets its bring-up — the hard-won way: the modern Wonderful Toolchain (GCC targeting the V30MZ) fought back with five distinct traps before first light, from a package manager that self-upgrades mid-sync and exits without installing, through deprecated-header renames and a C-preprocessor stringification snare, to a build cache that ignores Makefile edits. All five documented and beaten. The reward on the other side: a hello world glowing in Mesen 2 — rendered vertical, of course, the way this rotating handheld always wanted to be held. Hardware header authored before the first line of C, as tradition demands.",
+    milestones: [
+      { label: "Wonderful Toolchain installed and proven — five build traps beaten", done: true },
+      { label: "Hardware header + vertical hello world, first pixel in Mesen 2", done: true },
+      { label: "Beyond hello: graphics, input, the real climb", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
     screenshots: [],
     repo: null,
   },
