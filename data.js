@@ -1049,6 +1049,27 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "cd32-workbench-anthology",
+    title: "The Workbench Anthology — Amiga CD32",
+    platform: "cd32",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 60,
+    summary: "A bootable Amiga Workbench packed with original CD32 homebrew, built on the Bartman m68k GCC toolchain — no libgcc, no floats, pure integer and fixed-point. The centrepiece is a genuine hardware showcase: a 256-colour AGA plasma demo driving the CD32's signature Akiko chunky-to-planar register at $B80038, its 8-longword write-then-read protocol reverse-engineered from WinUAE's akiko.cpp — proof that the real bottleneck is 68020 fill rate, not the C2P silicon. Around it sit several playable programs: a circular Breakout with paddle physics and level progression, a sprite-based mini-RPG, and a pseudo-3D skeet-shooting game with polygon rendering — plus CDXL video, IFF imagery through MultiView, and CDDA streamed asynchronously through cd.device. The low-level Amiga lore is all here: copper-list writes that bus-error on real hardware unless cast just so, a WBStartup handshake for launching from the desktop, a seven-button CD32 pad read through ReadJoyPort with its first-call priming quirk, and an input handler dropped down to m68k assembly where the C path wouldn't reach. What all these programs are quietly part of is a tale for another day.",
+    milestones: [
+      { label: "Bartman m68k GCC pipeline: bootable Workbench CD, WBStartup app launch", done: true },
+      { label: "Akiko C2P demo: 256-colour AGA plasma via $B80038, protocol RE'd from WinUAE", done: true },
+      { label: "Playable programs: circular Breakout, sprite mini-RPG, pseudo-3D skeet shooting", done: true },
+      { label: "Media stack: CDXL video, IFF imagery, async CDDA through cd.device", done: true },
+      { label: "CD32 seven-button pad via ReadJoyPort + m68k-asm input handler", done: true },
+      { label: "Tying the anthology together — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked", "disasm"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo DS ---- */
   {
     id: "ds-lba1",
