@@ -445,6 +445,27 @@ const PROJECTS = [
     repo: "https://github.com/vs-sr-dev/snes-rudranohihou-re",
   },
 
+  {
+    id: "snes-lba1-poc",
+    title: "Little Big Adventure — SNES + SuperFX (PoC)",
+    platform: "snes",
+    type: "porting",
+    status: "ongoing",
+    progress: 55,
+    summary: "The real LBA1 engine on a 65816, with a SuperFX GSU composing the isometric scene straight into SNES bitplane format — driven by hand-written GSU assembly built with a from-scratch Python mini-assembler. The prison's upper floor is alive: 23 actors, LIFE/TRACK scripts and zones running, the hover platform flying to the hero on cue, pixel-exact sprite occlusion behind the cell fence.",
+    milestones: [
+      { label: "Feasibility study + M0: prison scene in Mode 3, budgets validated", done: true },
+      { label: "M1: SuperFX compositor pixel-perfect vs reference + camera pan", done: true },
+      { label: "M2: engine alive in C — Twinsen walks and collides (~30 fps hero-only)", done: true },
+      { label: "M3: full scene — 23 actors, scripts, zones, GSU sprite-clip occlusion", done: true },
+      { label: "Dialog textbox + performance pass (11–25 fps with NPCs today)", done: false },
+      { label: "M4: true flat-3D hero rendered by the GSU · M5: SPC700 audio", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- The Chip Forge ---- */
   {
     id: "chiproll",
