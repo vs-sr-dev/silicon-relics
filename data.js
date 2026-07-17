@@ -732,6 +732,26 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "jag-relics-arg",
+    title: "Taming All Five — Atari Jaguar",
+    platform: "jaguar",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 55,
+    summary: "The deepest pipeline in the whole codex, and the one that started it: forty-five sessions of pure 68000 assembly spent making the Jaguar's five processors cooperate, one hardware quirk at a time. At its heart is a from-scratch DDA raycaster — textured first-person rooms and a corridor, four-way movement, interactive terminals — running on BigPEmu and on a real Atari Jaguar via flashcart. Around it, a technical showcase that puts every chip to work: the GPU RISC drawing a rotating wireframe hypercube from local RAM, the Blitter doing pattern fills, line work and Gouraud-shaded meshes, the Object Processor layering double-buffered sprites without a flicker, and the DSP carrying the sound — with an LPC-10 vocoder voice, a Jaguar homebrew first, in the pipeline. The real trophy is the scar tissue: OLP word-swaps, GPU code that only runs from local RAM, unsigned multiplies that return garbage on real silicon, write-posting NOPs before divides, double-buffer races against the Object Processor — the accumulated hardware lore of a machine famous for fighting back, written down lever by lever. Where these rooms ultimately lead is a tale for another day.",
+    milestones: [
+      { label: "Pure 68000 + RMAC pipeline; boots on BigPEmu and a real Jaguar via flashcart", done: true },
+      { label: "DDA raycaster: textured first-person rooms + corridor, four-way movement, terminals", done: true },
+      { label: "GPU RISC wireframe 3D from local RAM (rotating hypercube), flicker-free double-buffer", done: true },
+      { label: "Object Processor sprite layers + DSP audio; 45 sessions of hardware quirks tamed", done: true },
+      { label: "Blitter Gouraud finale + LPC-10 vocoder voice (a Jaguar homebrew first) — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked", "real-hardware"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Panasonic 3DO ---- */
   {
     id: "3do-omf2097",
