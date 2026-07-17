@@ -7,7 +7,20 @@
 const SITE = {
   tagline: "A living codex of homebrew, reverse engineering and porting quests across retro consoles — from the famous to the forgotten. A human + LLM collaboration, named openly.",
   updated: "2026-07-17",
+  /* Support links — kept deliberately understated in the footer.
+     Fill these with the real URLs; leave "" to hide a button. */
+  support: {
+    kofi:   "https://ko-fi.com/samuelevoltan",
+    paypal: "",   // TODO: PayPal.me URL (button hidden until set)
+  },
 };
+
+/* Languages offered by the top-right switcher. English is the base;
+   others are authored over time (next: Italian). Adding a language =
+   append here + provide its translation table (see app.js i18n hook). */
+const LANGUAGES = [
+  { code: "en", label: "English" },
+];
 
 /* Rarity reflects how obscure / undocumented the platform is.
    common → well-trodden ground … legendary → almost nobody has walked here. */

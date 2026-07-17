@@ -7,7 +7,7 @@
 (function () {
   "use strict";
 
-  const state = { sort: "gen", type: "all", query: "" };
+  const state = { sort: "gen", type: "all", query: "", lang: "en" };
 
   const $ = (sel, root) => (root || document).querySelector(sel);
 
@@ -34,6 +34,42 @@
     ].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
 
     $("#footer-updated").textContent = "Codex last inscribed on " + SITE.updated;
+    renderSupport();
+  }
+
+  /* ---------- Support links (understated, footer) ---------- */
+
+  function renderSupport() {
+    const el = $("#footer-support");
+    if (!el || !SITE.support) return;
+    const s = SITE.support;
+    const btns = [];
+    if (s.kofi)   btns.push(`<a class="support-btn" href="${esc(s.kofi)}" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>`);
+    if (s.paypal) btns.push(`<a class="support-btn" href="${esc(s.paypal)}" target="_blank" rel="noopener noreferrer">PayPal</a>`);
+    el.innerHTML = btns.length
+      ? `<span class="support-label">If a tale here was worth a coin</span>${btns.join("")}`
+      : "";
+  }
+
+  /* ---------- Language switcher ----------
+     Scaffolding only: the control persists a choice and re-renders.
+     Translation tables plug into render() here once authored (next: Italian). */
+
+  function renderLangSwitch() {
+    const sel = $("#lang-select");
+    if (!sel || typeof LANGUAGES === "undefined") return;
+    const saved = localStorage.getItem("sr-lang");
+    if (saved && LANGUAGES.some(l => l.code === saved)) state.lang = saved;
+    sel.innerHTML = LANGUAGES.map(l =>
+      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(l.label)}</option>`
+    ).join("");
+    document.documentElement.lang = state.lang;
+    sel.addEventListener("change", () => {
+      state.lang = sel.value;
+      localStorage.setItem("sr-lang", state.lang);
+      document.documentElement.lang = state.lang;
+      render();
+    });
   }
 
   /* ---------- Filters ---------- */
@@ -226,6 +262,7 @@
     });
   }
 
+  renderLangSwitch();
   renderHero();
   renderTypeChips();
   wireEvents();
