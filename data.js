@@ -198,6 +198,15 @@ const PLATFORMS = [
     blurb: "The 16-bit king — common as relics go, but its Japanese text engines and sound drivers still guard secrets worth deciphering.",
   },
   {
+    id: "cdi",
+    name: "Philips CD-i",
+    maker: "Philips",
+    year: 1991,
+    gen: 4,
+    rarity: "epic",
+    blurb: "Philips' interactive television that wasn't: a 68070 running OS-9's CDRTOS — no bare-metal soul here, but a real-time OS demanding properly-formed modules. Remembered for all the wrong games.",
+  },
+  {
     id: "cd32",
     name: "Amiga CD32",
     maker: "Commodore",
@@ -716,6 +725,27 @@ const PROJECTS = [
     badges: ["released", "real-hardware", "first-boot", "toolchain"],
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/wiiu-lba2",
+  },
+
+  /* ---- Philips CD-i ---- */
+  {
+    id: "cdi-bringup",
+    title: "CD-i Homebrew Bring-Up",
+    platform: "cdi",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 25,
+    summary: "First steps on Philips' great curiosity. The Microware OS-9 toolchain — xcc compiler, l68 linker, fixmod, and a 16-bit DOS disc-mastering tool — resurrected inside Docker with 25-second builds; boot confirmed under emulation; and a hello world painting CLUT7 colour bands through the MCD212 video chip, delivered as properly-formed OS-9 modules rather than bare-metal tricks. TwBurn's open-source Nobelia serves as the end-to-end oracle proving the road exists. Where this road leads is a tale for another day.",
+    milestones: [
+      { label: "Feasibility recon: toolchain, emulators, asset pipeline mapped", done: true },
+      { label: "Docker toolchain: xcc + l68 + fixmod + DOS mastering, 25 s builds", done: true },
+      { label: "Boot confirmed under CD-i emulation", done: true },
+      { label: "Hello world on screen: CLUT7 bands via the MCD212", done: true },
+      { label: "A real application — and where it leads is another story", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Amiga CD32 ---- */
