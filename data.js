@@ -513,6 +513,28 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "dc-mi3",
+    title: "The Curse of Monkey Island — Dreamcast",
+    platform: "dreamcast",
+    type: "porting",
+    status: "bossfight",
+    progress: 70,
+    summary: "ScummVM bug #6008: SCUMM v8 games have never run on the Dreamcast — a wall standing for some twenty years. This quest broke it. Built on the alternate KallistiOS backend, the memory war was won lever by lever: 3.5 MB of GUI TrueType fonts evicted, a 600 KB buffer upstream allocates by mistake removed, costumes flushed before cutscenes — while a concurrent CD-I/O race and a 32 KB thread-stack overflow (masquerading as a dozen different corruptions) were root-caused and fixed. Result: The Curse of Monkey Island boots, plays its intro FMV with sound, and renders real gameplay — Guybrush and Wally in the ship hold — at 52 fps on a stock 16 MB Dreamcast, the deepest CMI has ever run on the console. The boss: a main-thread hang right before the first spoken line.",
+    milestones: [
+      { label: "dcalt/KOS ScummVM built from source with SCUMM v8 enabled", done: true },
+      { label: "Boots in 16 MB: theme-font diet, intro, difficulty select, audio", done: true },
+      { label: "Intro FMV with sound in sync + chapter card with music", done: true },
+      { label: "CD-I/O race and thread-stack corruption root-caused and fixed", done: true },
+      { label: "Real gameplay rendered at 52 fps — past the historic wall", done: true },
+      { label: "BOSS: main-thread hang before the first dialogue line", done: false },
+      { label: "Full playability pass, upstreamable fixes, real hardware", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo Wii U ---- */
   {
     id: "wiiu-lba2",
