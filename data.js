@@ -126,6 +126,15 @@ const PLATFORMS = [
     blurb: "Bandai's Japan-only anime-FMV machine: an 8-bit NEC CPU, an infrared controller, 42 titles — and every pixel routed through one custom chip nobody ever documented, the Asahi Kasei AK8000. No BIOS handshake, no disc auth: it boots whatever CD-R you burn.",
   },
   {
+    id: "gamecom",
+    name: "Tiger Game.com",
+    maker: "Tiger Electronics",
+    year: 1997,
+    gen: 5,
+    rarity: "epic",
+    blurb: "Tiger's folly ahead of its time: the first touchscreen game console — stylus, 14.4k modem cartridge, Internet dreams — driven by a Sharp SM8521 and a ghosting monochrome LCD. Remembered as a punchline; it deserved better.",
+  },
+  {
     id: "ngpc",
     name: "Neo Geo Pocket Color",
     maker: "SNK",
@@ -545,6 +554,28 @@ const PROJECTS = [
       { label: "▶ First working bridge (homebrew)", url: "https://www.youtube.com/watch?v=x2IV3T3Z0oM" },
       { label: "▶ Retail-software bridge test", url: "https://www.youtube.com/watch?v=mmxnnkZzu-s" },
     ],
+  },
+
+  /* ---- Tiger Game.com ---- */
+  {
+    id: "gamecom-bringup",
+    title: "Game.com Homebrew Bring-Up",
+    platform: "gamecom",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 35,
+    summary: "Tiger's mocked touchscreen handheld gets the modern toolchain it never had: with Sharp's DOS-era SDK lost to time, a from-scratch Python assembler for the SM8521 was built by inverting MAME's disassembler opcode table — flanked by a matching disassembler and a round-trip verifier to keep it honest. The BIOS turned out never to auto-launch cartridges: the launch protocol was reverse-engineered down to a BIOS vtable holding the cart-entry RAM pointer, then validated end-to-end. From there the climb: first pixel, a first interactive cart (D-pad pixel mover with erase-draw double buffering), the HALT-gated graphics-DMA protocol with its palette-forced fill trick, and readable text on screen via a VRAM-native 2bpp font atlas encoded offline in Python. Next up: the stylus — a 13×10 discrete touch grid, protocol already documented from static analysis. Where those gestures lead is a tale for another day.",
+    milestones: [
+      { label: "Custom SM8521 assembler + disassembler + round-trip verifier", done: true },
+      { label: "BIOS cart-launch protocol cracked (vtable cart-entry pointer)", done: true },
+      { label: "First pixel, then first interactive cart: D-pad + double buffering", done: true },
+      { label: "Graphics DMA protocol + sprite primitives + include library", done: true },
+      { label: "Readable text: VRAM-native 2bpp font atlas pipeline", done: true },
+      { label: "Stylus input (13×10 grid, protocol documented) — toward a real app", done: false },
+    ],
+    badges: ["toolchain", "disasm", "first-boot"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Atari Jaguar ---- */
