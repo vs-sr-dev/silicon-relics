@@ -18,8 +18,11 @@
 
   <div class="vignette" aria-hidden="true"></div>
 
-  <div class="lang-switch">
-    <select id="lang-select" aria-label="Language / Lingua"></select>
+  <div class="lang-switch" id="lang-switch">
+    <button type="button" class="lang-current" id="lang-btn"
+            aria-haspopup="listbox" aria-expanded="false"
+            aria-label="Language / Lingua / 言語"></button>
+    <ul class="lang-menu" id="lang-menu" role="listbox" hidden></ul>
   </div>
 
   <header class="hero">

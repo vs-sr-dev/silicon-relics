@@ -84,6 +84,15 @@
      The control persists a choice and re-renders the whole codex. Language
      names are themselves localized (English → "Inglese" when Italian is on). */
 
+  /* Little inline SVG flags — self-contained so they render everywhere,
+     including Windows (which does not draw flag emoji). */
+  const FLAGS = {
+    en: `<svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg>`,
+    it: `<svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><rect width="20" height="30" fill="#009246"/><rect x="20" width="20" height="30" fill="#fff"/><rect x="40" width="20" height="30" fill="#CE2B37"/></svg>`,
+    ja: `<svg class="flag" viewBox="0 0 60 30" aria-hidden="true"><rect width="60" height="30" fill="#fff"/><circle cx="30" cy="15" r="9" fill="#BC002D"/></svg>`,
+  };
+  const flag = code => FLAGS[code] || "";
+
   function langLabel(l) {
     if (l.label && typeof l.label === "object") {
       return l.label[state.lang] || l.label.en || l.code;
@@ -91,19 +100,60 @@
     return l.label || l.code;
   }
 
+  function langByCode(code) {
+    return LANGUAGES.find(l => l.code === code);
+  }
+
+  function buildLangButton() {
+    const btn = $("#lang-btn");
+    if (!btn) return;
+    const cur = langByCode(state.lang) || LANGUAGES[0];
+    btn.innerHTML =
+      `${flag(cur.code)}<span class="lang-name">${esc(langLabel(cur))}</span><span class="caret" aria-hidden="true">▾</span>`;
+  }
+
+  function buildLangMenu() {
+    const menu = $("#lang-menu");
+    if (!menu) return;
+    menu.innerHTML = LANGUAGES.map(l =>
+      `<li role="option" data-code="${esc(l.code)}" aria-selected="${l.code === state.lang}">` +
+      `${flag(l.code)}<span class="lang-name">${esc(langLabel(l))}</span></li>`
+    ).join("");
+  }
+
+  function closeLangMenu() {
+    const menu = $("#lang-menu"), btn = $("#lang-btn");
+    if (menu) menu.hidden = true;
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  }
+
   function renderLangSwitch() {
-    const sel = $("#lang-select");
-    if (!sel || typeof LANGUAGES === "undefined") return;
+    const btn = $("#lang-btn"), menu = $("#lang-menu");
+    if (!btn || !menu || typeof LANGUAGES === "undefined") return;
     const saved = localStorage.getItem("sr-lang");
     if (saved && LANGUAGES.some(l => l.code === saved)) state.lang = saved;
-    sel.innerHTML = LANGUAGES.map(l =>
-      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(langLabel(l))}</option>`
-    ).join("");
     document.documentElement.lang = state.lang;
-    sel.addEventListener("change", () => {
-      state.lang = sel.value;
+    buildLangButton();
+    buildLangMenu();
+
+    btn.addEventListener("click", () => {
+      const open = menu.hidden;
+      menu.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    menu.addEventListener("click", e => {
+      const li = e.target.closest("li[data-code]");
+      if (!li) return;
+      state.lang = li.getAttribute("data-code");
       localStorage.setItem("sr-lang", state.lang);
+      closeLangMenu();
       renderAll();
+    });
+    document.addEventListener("click", e => {
+      if (!e.target.closest("#lang-switch")) closeLangMenu();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeLangMenu();
     });
   }
 
@@ -128,13 +178,11 @@
     render();
   }
 
-  /* Refresh only the option labels in the switcher (not the listener). */
+  /* Refresh the switcher's button + option labels (not the listeners). */
   function renderLangSwitchLabels() {
-    const sel = $("#lang-select");
-    if (!sel || typeof LANGUAGES === "undefined") return;
-    sel.innerHTML = LANGUAGES.map(l =>
-      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(langLabel(l))}</option>`
-    ).join("");
+    if (typeof LANGUAGES === "undefined") return;
+    buildLangButton();
+    buildLangMenu();
   }
 
   /* ---------- Filters ---------- */
