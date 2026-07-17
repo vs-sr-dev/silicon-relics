@@ -680,6 +680,28 @@ const PROJECTS = [
     repo: null,
   },
 
+  /* ---- Sega Game Gear ---- */
+  {
+    id: "gg-pokered",
+    title: "Pokémon Red — Sega Game Gear",
+    platform: "gamegear",
+    type: "porting",
+    status: "ongoing",
+    progress: 30,
+    summary: "The Game Boy's defining RPG carried onto Sega's colour handheld — not by rewriting it, but by transpiling the open-source pokered disassembly through a from-scratch Python transpiler (a full RGBDS front-end) into WLA-DX Z80. Around it sits a hand-written HAL bridging every hardware gulf between the two machines: the VDP driven through ports instead of memory-mapped VRAM, the Sega mapper standing in for the Game Boy's MBC, shadow-OAM rebuilt into the Sega SAT, HRAM relocated, and the subtle traps handled one by one — a reti that must not re-enable interrupts, swap's exact flags, SRAM windows that shift. All 50 banks transpile, assemble and link clean into a 1 MB .gg — which boots and runs: the Game Freak intro plays, palette fades work, the falling-star sprites twinkle through the HAL. The current wall is a white screen after the splash, before the title, under diagnosis (the sprite-decompression buffers living in Sega cartridge RAM). No sound yet — a PSG SN76489 driver is a milestone all its own. A technical study built on the open pokered disassembly: documentation only, nothing distributed, bring your own game.",
+    milestones: [
+      { label: "WLA-DX toolchain + graphics converters + hello world in the pokered font on Game Gear", done: true },
+      { label: "From-scratch RGBDS→WLA-DX transpiler: macros, charmap, RAM/section layout, SM83→Z80 semantics", done: true },
+      { label: "Hardware abstraction layer: VDP port I/O, Sega mapper, shadow-OAM→SAT, HRAM / reti / swap fixes", done: true },
+      { label: "All 50 banks transpile, assemble and link clean into a 1 MB .gg", done: true },
+      { label: "The ROM boots and runs: Game Freak intro, palette fades, HAL-driven sprites", done: true },
+      { label: "Milestone 1 — the title screen (white-screen wall under diagnosis; PSG audio next)", done: false },
+    ],
+    badges: ["toolchain", "disasm", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- WonderSwan Color ---- */
   {
     id: "wsc-bringup",
@@ -1748,6 +1770,18 @@ const I18N = {
           "Sprite e scaling — ciò per cui questo hardware è stato creato",
         ],
       },
+      "gg-pokered": {
+        title: "Pokémon Rosso — Sega Game Gear",
+        summary: "L'RPG che ha definito il Game Boy portato sulla portatile a colori di Sega — non riscrivendolo, ma transpilando il disassemblaggio open source pokered attraverso un transpiler Python scritto da zero (un front-end RGBDS completo) verso il WLA-DX Z80. Attorno c'è un HAL scritto a mano che colma ogni abisso hardware fra le due macchine: il VDP pilotato tramite porte invece della VRAM mappata in memoria, il mapper Sega al posto dell'MBC del Game Boy, lo shadow-OAM ricostruito nel SAT di Sega, l'HRAM rilocata, e le trappole sottili gestite una a una — un reti che non deve riabilitare gli interrupt, i flag esatti di swap, le finestre SRAM che si spostano. Tutti i 50 banchi transpilano, assemblano e linkano puliti in un .gg da 1 MB — che si avvia e gira: l'intro Game Freak parte, i fade di palette funzionano, le scintille della stella cadente brillano attraverso l'HAL. Il muro attuale è uno schermo bianco dopo lo splash, prima del titolo, in diagnosi (i buffer di decompressione degli sprite che vivono nella RAM della cartuccia Sega). Ancora nessun suono — un driver PSG SN76489 è un traguardo a sé. Uno studio tecnico costruito sul disassemblaggio aperto pokered: solo documentazione, nulla di distribuito, porta il tuo gioco.",
+        milestones: [
+          "Toolchain WLA-DX + convertitori grafici + hello world nel font pokered su Game Gear",
+          "Transpiler RGBDS→WLA-DX da zero: macro, charmap, layout RAM/sezioni, semantica SM83→Z80",
+          "Hardware abstraction layer: I/O a porte del VDP, mapper Sega, shadow-OAM→SAT, fix HRAM / reti / swap",
+          "Tutti i 50 banchi transpilano, assemblano e linkano puliti in un .gg da 1 MB",
+          "La ROM si avvia e gira: intro Game Freak, fade di palette, sprite pilotati dall'HAL",
+          "Milestone 1 — la title screen (muro dello schermo bianco in diagnosi; poi audio PSG)",
+        ],
+      },
       "wsc-bringup": {
         title: "Bring-Up Homebrew del WonderSwan Color",
         summary: "Il cigno di Yokoi ottiene il suo bring-up — alla maniera sudata: la moderna Wonderful Toolchain (GCC che punta al V30MZ) ha reagito con cinque distinte trappole prima della prima luce, da un package manager che si auto-aggiorna a metà sincronizzazione ed esce senza installare, passando per rinomine di header deprecati e una trappola di stringificazione del preprocessore C, fino a una cache di build che ignora le modifiche al Makefile. Tutte e cinque documentate e battute. La ricompensa dall'altra parte: un hello world che brilla in Mesen 2 — reso in verticale, naturalmente, come questa portatile rotante ha sempre voluto essere impugnata. Header hardware scritto prima della prima riga di C, come vuole la tradizione.",
@@ -2450,6 +2484,18 @@ const I18N = {
           "cc65ツールチェーンを実証：TGIのhello worldがHandyで動く",
           "再現可能なビルド：Makefile、プロジェクト構成、落とし穴を文書化",
           "スプライトと拡大縮小 — このハードが作られた目的そのもの",
+        ],
+      },
+      "gg-pokered": {
+        title: "ポケットモンスター 赤 — Sega Game Gear",
+        summary: "Game Boyを象徴づけたRPGを、セガのカラー携帯機へ運ぶ — 書き直すのではなく、オープンソースの逆アセンブルpokeredを、ゼロから作ったPythonのトランスパイラ（完全なRGBDSフロントエンド）でWLA-DXのZ80へトランスパイルして。その周りには、二つのマシンの間のあらゆるハードウェアの隔たりを埋める手書きのHALがある：メモリマップされたVRAMではなくポート経由で駆動するVDP、Game BoyのMBCの代わりを務めるセガのマッパー、セガのSATへ作り直したシャドウOAM、再配置したHRAM、そして一つずつ手なずけた微妙な罠 — 割り込みを再有効化してはならないreti、swapの正確なフラグ、位置を変えるSRAMの窓。全50バンクがトランスパイル・アセンブル・リンクされ、1 MBの.ggへきれいにまとまる — そしてそれは起動して動く：Game Freakのイントロが流れ、パレットのフェードが効き、流れ星のスパークがHAL越しにきらめく。現在の壁は、スプラッシュのあと、タイトルの前の白い画面で、診断中だ（セガのカートリッジRAMに置かれたスプライト展開バッファ）。音はまだない — PSG SN76489のドライバはそれ自体が一つのマイルストーン。オープンなpokered逆アセンブルの上に築いた技術的な習作：ドキュメントのみ、配布物はなし、ゲームは持参のこと。",
+        milestones: [
+          "WLA-DXツールチェーン + グラフィック変換器 + Game Gear上のpokeredフォントでhello world",
+          "ゼロから作ったRGBDS→WLA-DXトランスパイラ：マクロ、charmap、RAM/セクション配置、SM83→Z80の意味論",
+          "ハードウェア抽象化層：VDPのポートI/O、セガのマッパー、シャドウOAM→SAT、HRAM / reti / swapの修正",
+          "全50バンクがトランスパイル・アセンブル・リンクされ、1 MBの.ggへきれいに",
+          "ROMが起動して動く：Game Freakのイントロ、パレットのフェード、HAL駆動のスプライト",
+          "マイルストーン1 — タイトル画面（白画面の壁を診断中；次はPSGオーディオ）",
         ],
       },
       "wsc-bringup": {
