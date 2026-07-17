@@ -752,6 +752,27 @@ const PROJECTS = [
     repo: "https://github.com/vs-sr-dev/3do-omf2097",
   },
 
+  {
+    id: "3do-terminal",
+    title: "Signal & Static — Panasonic 3DO",
+    platform: "3do",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 65,
+    summary: "An original interactive experience for the Panasonic 3DO in the shape of a green-phosphor computer terminal — and a deep tour of the machine's Portfolio SDK. It centres on an animated oscilloscope that tunes across frequencies, wrapped in a CRT boot sequence, a CEL-image slideshow archive, and a three-level arcade minigame — a reaction stage, a rhythm stage, and a wireframe-sphere target stage — each with its own streaming drone track and hit SFX. The engineering is where the sweat went: seven sessions of busy-wait flicker were cured the day WaitVBL was found hiding one uppercase letter away from the camelCase name the code had been searching for, unlocking the correct draw → DisplayScreen → WaitVBL → flip loop; SPORT DMA via CopyVRAMPages replaced CPU memcpy for the ~120 KB/frame background blit, dragging the minigame from unplayable to smooth; the EffectsHandler's mixer DSP only made sound once its gain knobs — silent at zero by default — were found and opened; and variable-pitch SFX were driven through sampler.dsp's 1.15 fixed-point frequency knob, which quietly demands mono samples. AIFF assets had to be padded to whole-second boundaries or the loader failed with a silent alignment error. All C89-strict, all validated on a real FZ-10 over NTSC — emulator-to-hardware FPS gap and all. What the terminal is really for is a tale for another day.",
+    milestones: [
+      { label: "Portfolio SDK bring-up: CEL images, terminal text, C89 pipeline, boots on a real FZ-10", done: true },
+      { label: "VBL double-buffering via WaitVBL — flicker eliminated after a seven-session hunt", done: true },
+      { label: "SPORT DMA background blit (CopyVRAMPages) — minigame from unplayable to smooth", done: true },
+      { label: "Full audio: EffectsHandler mixer, streaming drones, variable-pitch mono SFX", done: true },
+      { label: "Three-level arcade minigame with transitions; green-phosphor oscilloscope terminal", done: true },
+      { label: "Final content, and where the terminal leads — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked", "real-hardware"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Sega 32X ---- */
   {
     id: "32x-lba1",
