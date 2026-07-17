@@ -107,6 +107,15 @@ const PLATFORMS = [
     blurb: "The ambitious 1993 CD console of coded CELs, 32-colour PLUTs and no float runtime. A small modern devkit keeps the forge lit.",
   },
   {
+    id: "32x",
+    name: "Sega 32X",
+    maker: "Sega",
+    year: 1994,
+    gen: 5,
+    rarity: "rare",
+    blurb: "Sega's ill-fated mushroom: two SH-2s bolted on top of a Genesis that still has its 68000 and Z80 underneath. Four CPUs, 4 MB of cart, and a short, angry life — all four processors get put to work here.",
+  },
+  {
     id: "n64",
     name: "Nintendo 64",
     maker: "Nintendo",
@@ -334,6 +343,47 @@ const PROJECTS = [
     badges: ["first-boot", "toolchain"],
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/3do-omf2097",
+  },
+
+  /* ---- Sega 32X ---- */
+  {
+    id: "32x-lba1",
+    title: "Little Big Adventure — Sega 32X",
+    platform: "32x",
+    type: "porting",
+    status: "ongoing",
+    progress: 60,
+    summary: "Filed as '99% infeasible' at kickoff — 19 sessions later the real LBA1 engine runs from pure LIFE/TRACK bytecode on the mushroom. Along the way: isometric scene split across both SH-2s, a Gouraud-shaded 3D Twinsen, and an audio odyssey that ended with the 68000 driving the Genesis YM2612 directly — five empirical OPL2→FM translation rules squeezing all 33 music tracks into 55 KB instead of 10 MB of PCM. All four CPUs employed. 1.48 MB of the 4 MB cart used.",
+    milestones: [
+      { label: "Iso brick scene + interactive camera on dual SH-2", done: true },
+      { label: "Gouraud 3D Twinsen: animations, behaviors, collisions", done: true },
+      { label: "FM audio: 68000-driven YM2612, 33 tracks in 55 KB", done: true },
+      { label: "Intro slides, typewriter dialogs, inventory, pickups", done: true },
+      { label: "Engine pivot: real LIFE/TRACK bytecode, DoAnim/DoDir 1:1", done: true },
+      { label: "Combat damage, zone dialogs, full first-scene closure", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: ["assets/32x-lba/behavior-menu.png"],
+    repo: null,
+  },
+  {
+    id: "32x-lba2",
+    title: "Little Big Adventure 2 — Sega 32X",
+    platform: "32x",
+    type: "porting",
+    status: "ongoing",
+    progress: 35,
+    summary: "The sibling wager: LBA2's outdoor 3D is mostly static and flat, so how far can the LBA1/32X pipeline stretch? Interiors reuse the iso brick renderer; outdoors get a compact scene graph with frustum culling split across both SH-2s. The cube-0 opening runs from real LIFE bytecode — Twinsen and Zoe scripted, dialog on screen, hero controllable afterwards. Current front line: replacing the placeholder hero locomotion model with a faithful PERSO port.",
+    milestones: [
+      { label: "Interior iso scenes via the LBA1/32X pipeline", done: true },
+      { label: "Outdoor static 3D, frustum cull on dual SH-2", done: true },
+      { label: "Engine bring-up: LIFE bytecode + dialogs in cube 0", done: true },
+      { label: "Faithful hero animation / orientation (PERSO port)", done: false },
+      { label: "FM audio reuse, island selection under the 4 MB cart", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Nintendo 64 ---- */
