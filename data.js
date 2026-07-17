@@ -105,6 +105,15 @@ const PLATFORMS = [
     blurb: "The ambitious 1993 CD console of coded CELs, 32-colour PLUTs and no float runtime. A small modern devkit keeps the forge lit.",
   },
   {
+    id: "n64",
+    name: "Nintendo 64",
+    maker: "Nintendo",
+    year: 1996,
+    gen: 5,
+    rarity: "uncommon",
+    blurb: "93.75 MHz of big-endian MIPS, 8 KB of data cache, high-latency RDRAM — and libdragon, the open-source toolchain that made its homebrew scene bloom without a single leaked SDK.",
+  },
+  {
     id: "dreamcast",
     name: "Sega Dreamcast",
     maker: "Sega",
@@ -314,6 +323,28 @@ const PROJECTS = [
     badges: ["first-boot", "toolchain"],
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/3do-omf2097",
+  },
+
+  /* ---- Nintendo 64 ---- */
+  {
+    id: "n64-lba2",
+    title: "Little Big Adventure 2 — Nintendo 64",
+    platform: "n64",
+    type: "porting",
+    status: "ongoing",
+    progress: 65,
+    summary: "The Wii U port's big-endian twin: LBA2 on libdragon with no leaked SDK, the software renderer presented through the RDP as a palette blit, and a MIPS unaligned-access emulator written into the exception handler to tame the engine's packed data. The game runs — 58 VPS in Twinsen's house, exteriors working, 12-voice SFX on the RSP mixer and Opus music streaming from a 45 MB ROM.",
+    milestones: [
+      { label: "Docker toolchain — full engine compiles and boots on Ares", done: true },
+      { label: "Game runs: first scene, dialogs, scripts, input complete", done: true },
+      { label: "Unaligned-access emulator in the MIPS exception handler", done: true },
+      { label: "Audio: 12-voice RSP SFX + streamed Opus music, in-game", done: true },
+      { label: "RSP crash on scene change (double-buffered TLUT fix to verify)", done: false },
+      { label: "Voice-over repack under 64 MB, SRAM saves, FMV, polish", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Sega Dreamcast ---- */
