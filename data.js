@@ -363,7 +363,7 @@ const PROJECTS = [
       { label: "Combat damage, zone dialogs, full first-scene closure", done: false },
     ],
     badges: ["toolchain", "first-boot", "audio-unlocked"],
-    screenshots: ["assets/32x-lba/behavior-menu.png"],
+    screenshots: [],
     repo: null,
   },
   {
