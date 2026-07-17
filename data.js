@@ -152,6 +152,15 @@ const PLATFORMS = [
     blurb: "Sega's ill-fated mushroom: two SH-2s bolted on top of a Genesis that still has its 68000 and Z80 underneath. Four CPUs, 4 MB of cart, and a short, angry life — all four processors get put to work here.",
   },
   {
+    id: "ps1",
+    name: "Sony PlayStation",
+    maker: "Sony",
+    year: 1994,
+    gen: 5,
+    rarity: "common",
+    blurb: "The grey box that redefined everything — and the best-charted territory in all of romhacking. For a kid who only had a PC, this was the stuff of playground legend.",
+  },
+  {
     id: "n64",
     name: "Nintendo 64",
     maker: "Nintendo",
@@ -527,6 +536,27 @@ const PROJECTS = [
       { label: "FM audio reuse, island selection under the 4 MB cart", done: false },
     ],
     badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
+
+  /* ---- Sony PlayStation ---- */
+  {
+    id: "ps1-vampire-re",
+    title: "Vampire: Kyūketsuki Densetsu — Translation Quest",
+    platform: "ps1",
+    type: "re",
+    status: "ongoing",
+    progress: 15,
+    summary: "A quest born of friendship: a private English translation of Artdink's PS1 retelling of Dracula — Jonathan the lawyer, his fiancée Rose, Count Varaur, London — as a gift for a friend who loves vampires. Session two struck gold: the entire story turned out to be plaintext Shift-JIS, and all ~12,400 narrative characters are dumped and catalogued. The scene-script bytecode has been structurally cracked. Still embryonic, and carried out with its own etiquette: another fan translator is at work on the same game, so the plan is to reach out before going deep — and this stays personal, never a public release.",
+    milestones: [
+      { label: "Disc structure and containers parsed, assets classified", done: true },
+      { label: "All narrative text dumped: ~12,400 chars, 607 unique kanji", done: true },
+      { label: "Scene-script bytecode structurally cracked", done: true },
+      { label: "Text renderer RE + reinsertion pipeline", done: false },
+      { label: "The translation itself — a gift, not a release", done: false },
+    ],
+    badges: ["disasm"],
     screenshots: [],
     repo: null,
   },
