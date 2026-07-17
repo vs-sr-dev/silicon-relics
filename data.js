@@ -883,6 +883,27 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "dc-shmup",
+    title: "Squeezing the Dreamcast — a Music-Synced Shmup",
+    platform: "dreamcast",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 50,
+    summary: "An original beat-synced shoot-'em-up built to push the Dreamcast's PVR to the metal — and its engine has a two-act story. First a full port of the modern Simulant C++ engine to KallistiOS and GCC 15, running clean on real hardware; then, when commercial-game screenshots set a higher bar, a pivot to a custom mini-engine talking straight to the PVR through KOS, hitting a locked 60 fps across all three hardware lists. The road there was a masterclass in Dreamcast graphics: a discovery that parked bullets behind the camera were still being submitted every frame led to explicit frustum culling that cut scene traversal from 22 ms to 3 ms; a GLdc fast-path bypassing the normal submit for direct SH4 store-queue writes to the PVR (swap-buffers 22 ms → 12 ms); GLB models fed straight to the tile accelerator; and a real-hardware debugging saga chased over a serial cable, where a TA vertex-buffer overflow and a VRAM bank-boundary crash were root-caused with on-screen and dbgio probes, then tamed with mesh decimation and a VQ-texture fallback plan. Music drives all of it: tracks beat-analysed to the decimal BPM, boss beams pulsing capsule-shaped on the downbeat, per-element particle systems, fights that run until the song ends. A tutorial stage and an elemental boss stage already play — the remaining stages, and the reason behind them, are a tale for another day.",
+    milestones: [
+      { label: "Simulant C++ engine ported to KallistiOS / GCC 15, clean on real hardware", done: true },
+      { label: "Pivot to a custom PVR-direct mini-engine — locked 60 fps, all three TA lists", done: true },
+      { label: "Frustum culling + GLdc store-queue fast-path (22→12 ms swap, 22→3 ms traverse)", done: true },
+      { label: "Real-HW debug over serial: TA vbuf overflow + VRAM bank crash root-caused", done: true },
+      { label: "Beat-synced combat: decimal-BPM analysis, pulsing beams, elemental particles", done: true },
+      { label: "Remaining stages and a full real-hardware pass — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo Wii U ---- */
   {
     id: "wiiu-lba2",
