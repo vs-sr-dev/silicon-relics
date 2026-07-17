@@ -870,6 +870,27 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "pc-replay-vault",
+    title: "The Replay Vault — Childhood Titles Revived",
+    platform: "pc",
+    type: "tooling",
+    status: "ongoing",
+    progress: 80,
+    summary: "A gentler kind of quest: not forcing games onto impossible hardware, but bringing the titles of an Italian childhood back to life on modern machines — and actually replaying them, start to finish. Each one its own puzzle: Tip Top (Director 5 + QuickTime) solved through Mac OS 9 emulation after ScummVM fell short; RAI's Stellaris (16-bit ToolBook + Indeo video) coaxed onto Windows 11 through otvdm and codec archaeology; Coktel Vision's A.J.'s World running under ScummVM; QBasic Gorillas reborn in DOSBox-X — complete with a custom amber-monitor GLSL shader for full 1991 flavour; and AEnigmatica, a 1998 puzzle CD that turned out to be a Java 1.1 app with hardcoded JDK quirks, still resisting. Bonus escapade: Tip Top booted natively on an emulated Bandai Pippin, AppleJack pad and all.",
+    milestones: [
+      { label: "Tip Top — 100% playable via SheepShaver / Mac OS 9", done: true },
+      { label: "Stellaris: Sfida a StarCity — on Win11 via otvdm + Indeo codecs", done: true },
+      { label: "A.J.'s World of Discovery — running under ScummVM", done: true },
+      { label: "Gorillas + Battle Bugs — DOSBox-X, amber-phosphor shader included", done: true },
+      { label: "AEnigmatica — the Java 1.1 sphinx still guards her riddle", done: false },
+      { label: "Tip Top on the Pippin — boots natively; cutscene boss remains", done: false },
+    ],
+    badges: ["toolchain"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- The Chip Forge ---- */
   {
     id: "chiproll",
