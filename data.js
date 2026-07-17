@@ -819,6 +819,26 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "pc-risinglands-wrap",
+    title: "Rising Lands — Zero-Friction Compatibility Layer",
+    platform: "pc",
+    type: "tooling",
+    status: "ongoing",
+    progress: 85,
+    summary: "The codex's only time-reversed port: instead of carrying a game back to old silicon, this carries Microïds' 1997 RTS forward to Windows 11 — no drivers, no mounted ISO, no physical CD. A drop-in winmm.dll proxy, reverse-engineered from the game's own MCI command strings, replays the CD soundtrack from OGG files and fakes the disc's presence; DDrawCompat cures the palette; a tiny launcher pins the Pentium-era timing loop to one core. The deep cut: a savage in-game crash root-caused with a vectored-exception logger and trampoline hooks down to a mission file hard-wired to the CD path — fixed with a redirect-on-failure file hook that cures the whole class. Mission 1 confirmed fully playable, one-click installer built. Bring your own game.",
+    milestones: [
+      { label: "winmm proxy: MCI→OGG music + CD-presence faking", done: true },
+      { label: "Video and timing: DDrawCompat, single-core pinning, DPI manifest", done: true },
+      { label: "In-game crash root-caused (CD-hardwired path) and fixed", done: true },
+      { label: "v1.0 one-click installer; mission 1 fully playable", done: true },
+      { label: "Full 25-mission campaign validation", done: false },
+    ],
+    badges: ["toolchain", "disasm"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- The Chip Forge ---- */
   {
     id: "chiproll",
