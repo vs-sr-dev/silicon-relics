@@ -1090,6 +1090,26 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "cd32-first-draft",
+    title: "The First Draft — Amiga CD32",
+    platform: "cd32",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 25,
+    summary: "The oldest relic in this codex — the very first project, built before any of the tools that made the others: no Claude Code, no editor integration, every line hand-copied from a browser window. And for a cautious first step, it went low-level fast — a bare-metal JRPG skeleton for the Amiga CD32 that seizes the hardware with TakeSystem (Forbid, Disable, custom DMA and interrupts) and runs its own 8-bitplane 256-colour AGA display. Field maps and battle screens are converted from PNG through a hand-written Python chunky-to-bitplane pipeline that reserves fixed palette slots for player and NPC sprite colours, and the field-to-battle transition already works. The standout is an audio odyssey worthy of a veteran: ten documented attempts to coax CDDA music out of AmigaOS's cd.device after TakeSystem — every Enable/Permit combination waking OS tasks that trample the custom registers — ending in the right architectural answer, driving the CD drive bare-metal through the Akiko chip at $B80000, its DMA command protocol (PLAY, STOP, checksums) reverse-engineered from WinUAE's source. The music isn't wired in yet; the game runs, for now, in silence. Everyone starts somewhere — this is where it started.",
+    milestones: [
+      { label: "Bare-metal CD32 bring-up: TakeSystem, custom DMA/interrupts, 8-bitplane AGA display", done: true },
+      { label: "Python PNG→bitplane asset pipeline with reserved sprite palette slots", done: true },
+      { label: "JRPG skeleton: field maps, battle screens, field-to-battle transition", done: true },
+      { label: "CDDA dead-end diagnosed; Akiko $B80000 DMA command protocol reverse-engineered", done: true },
+      { label: "Wiring the Akiko CD audio into the game — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "disasm"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo DS ---- */
   {
     id: "ds-lba1",
