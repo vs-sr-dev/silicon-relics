@@ -62,6 +62,15 @@ const GENERATIONS = {
 
 const PLATFORMS = [
   {
+    id: "coleco",
+    name: "ColecoVision",
+    maker: "Coleco",
+    year: 1982,
+    gen: 2,
+    rarity: "uncommon",
+    blurb: "1982's arcade-at-home wonder: a TMS9918 VDP, a Z80, and 1 KB of RAM — until the Super Game Module bolts on and suddenly there's room to dream much bigger.",
+  },
+  {
     id: "7800",
     name: "Atari 7800",
     maker: "Atari",
@@ -210,6 +219,28 @@ const PLATFORMS = [
 /* ---------- Projects (the Quests) ---------- */
 
 const PROJECTS = [
+
+  /* ---- ColecoVision ---- */
+  {
+    id: "coleco-ff1",
+    title: "Final Fantasy — ColecoVision",
+    platform: "coleco",
+    type: "porting",
+    status: "ongoing",
+    progress: 45,
+    summary: "The 1987 NES RPG on 1982 hardware — a port nobody has ever attempted. Super Game Module and MegaCart banking make it possible; the TMS9918's color limits are beaten with per-row dominant colors plus sprite accent overlays, reaching visually NES-parity battle characters. All 24 songs extracted byte-exact from the disassembly onto the AY-3-8910. The twist versus the 7800 sibling: this port deliberately fixes Square's spell bugs — while preserving beloved quirks like the Finger Point peninsula, byte-exact. Overworld, Coneria and battle already loop under multi-bank.",
+    milestones: [
+      { label: "Toolchain + SGM bring-up — FF1 Fighter walks on Coleco", done: true },
+      { label: "Overworld at 60 Hz with discrete tile movement", done: true },
+      { label: "Audio: AY-3-8910 validated, 24 songs byte-exact", done: true },
+      { label: "Battle screen at visual NES-parity (per-row colors + OAM accents)", done: true },
+      { label: "MegaCart multi-bank architecture, OW+town+battle loop", done: true },
+      { label: "Full battle engine with intent-fixed spells; 3 banking bugs open", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
 
   /* ---- Atari 7800 ---- */
   {
