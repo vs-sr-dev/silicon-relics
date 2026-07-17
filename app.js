@@ -77,7 +77,12 @@
         `<img src="${esc(s)}" alt="Screenshot of ${esc(q.title)}" loading="lazy" data-lightbox>`
       ).join("")}</div>` : "";
 
-    const repo = q.repo ? `<div class="quest-links"><a href="${esc(q.repo)}" target="_blank" rel="noopener">⟡ View on GitHub</a></div>` : "";
+    const linkItems = [];
+    if (q.repo) linkItems.push(`<a href="${esc(q.repo)}" target="_blank" rel="noopener">⟡ View on GitHub</a>`);
+    (q.links || []).forEach(l => {
+      linkItems.push(`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`);
+    });
+    const repo = linkItems.length ? `<div class="quest-links">${linkItems.join(" &nbsp;·&nbsp; ")}</div>` : "";
 
     return `
       <article class="quest${q.status === "completed" ? " completed-glow" : ""}">
@@ -146,7 +151,7 @@
         const info = GENERATIONS[gen] || { num: gen, era: "" };
         html += `
           <div class="gen-header">
-            <h2>Generation ${esc(info.num)}</h2>
+            <h2>${esc(info.title || "Generation " + info.num)}</h2>
             <div class="rule"></div>
             ${info.era ? `<span class="era">${esc(info.era)}</span>` : ""}
           </div>`;
