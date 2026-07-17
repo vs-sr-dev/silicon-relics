@@ -44,9 +44,9 @@ const BADGES = {
 };
 
 /* Console generation labels for the "By Generation" view.
-   Gen 0 is the Timeless Forge — tools that serve the other relics. */
+   90+ are special timeless groups, rendered after the console generations:
+   90 = the PC (any era), 99 = the Forge (tools). */
 const GENERATIONS = {
-  0: { num: "0", title: "The Timeless Forge", era: "tools that serve the relics" },
   2: { num: "II",   era: "1976 – 1983" },
   3: { num: "III",  era: "1983 – 1987" },
   4: { num: "IV",   era: "1987 – 1993" },
@@ -54,6 +54,8 @@ const GENERATIONS = {
   6: { num: "VI",   era: "1998 – 2005" },
   7: { num: "VII",  era: "2005 – 2012" },
   8: { num: "VIII", era: "2012 – 2020" },
+  90: { num: "PC", title: "The Home Turf", era: "IBM PC & compatibles, 1981 → today" },
+  99: { num: "∞",  title: "The Timeless Forge", era: "tools that serve the relics" },
 };
 
 /* ---------- Platforms (the Relics) ---------- */
@@ -170,9 +172,9 @@ const PLATFORMS = [
   {
     id: "pc",
     name: "The PC",
-    maker: "Wintel · the home turf",
-    year: 1999,
-    gen: 6,
+    maker: "IBM PC & compatibles",
+    year: "1981 → today",
+    gen: 90,
     rarity: "common",
     blurb: "Not obscure hardware — the childhood machine itself. Here the relics are the games: late-90s engines with debug symbols left inside, ciphers to crack, and party systems waiting to become something more.",
   },
@@ -181,7 +183,7 @@ const PLATFORMS = [
     name: "The Chip Forge",
     maker: "Browser-based · no install",
     year: 2026,
-    gen: 0,
+    gen: 99,
     rarity: "common",
     blurb: "Not a console: the workbench. Tools forged in the browser to serve the other relics — and the musicians who write for them.",
   },
