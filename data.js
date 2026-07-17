@@ -1565,10 +1565,10 @@ const I18N = {
       cd32: { blurb: "L'ultima scommessa di Commodore: un cuore Amiga 1200 in una console CD, 2 MB di chip RAM in tutto e il chip Akiko che fa il chunky-to-planar. Ogni kilobyte è negoziato." },
       ds: { blurb: "Due schermi, due CPU ARM, 4 MB di RAM e un pannello touch che implora di diventare un HUD. Una delle case più amate dall'homebrew." },
       gba: { blurb: "Un ARM7TDMI a 16,78 MHz con 256 KB di work RAM — la console tascabile che continua a dire sì a cose che davvero non dovrebbe riuscire a far girare." },
-      pc: { blurb: "Non hardware oscuro — la macchina dell'infanzia in persona. Qui le reliquie sono i giochi: motori di fine anni '90 con i simboli di debug lasciati dentro, cifrari da violare e sistemi di party in attesa di diventare qualcosa di più." },
+      pc: { name: "Il PC", maker: "IBM PC e compatibili", blurb: "Non hardware oscuro — la macchina dell'infanzia in persona. Qui le reliquie sono i giochi: motori di fine anni '90 con i simboli di debug lasciati dentro, cifrari da violare e sistemi di party in attesa di diventare qualcosa di più." },
       smaky: { blurb: "Il computer scolastico svizzero: un 68000 con 640×400 al fosforo verde, PSos multitasking nel 1983, all'incirca 1.500 unità mai costruite — per le aule della Svizzera francese. Sì, davvero." },
-      forge: { blurb: "Non una console: il banco di lavoro. Strumenti forgiati nel browser al servizio delle altre reliquie — e dei musicisti che scrivono per loro." },
-      "great-work": { blurb: "Non una reliquia, e non una conversione: un action-RPG originale in tempo reale costruito in Godot 4.6 — l'impresa più grande di tutto questo codice di un ordine di grandezza. Circa 108.000 righe di GDScript su oltre 500 script e oltre 200 scene, cresciute in più di 170 sessioni di sviluppo. Tutto ciò che segue è un unico gioco." },
+      forge: { name: "La Fucina dei Chip", maker: "Basato su browser · nessuna installazione", blurb: "Non una console: il banco di lavoro. Strumenti forgiati nel browser al servizio delle altre reliquie — e dei musicisti che scrivono per loro." },
+      "great-work": { name: "Un Action-RPG Originale", maker: "Godot 4.6 · IP originale", blurb: "Non una reliquia, e non una conversione: un action-RPG originale in tempo reale costruito in Godot 4.6 — l'impresa più grande di tutto questo codice di un ordine di grandezza. Circa 108.000 righe di GDScript su oltre 500 script e oltre 200 scene, cresciute in più di 170 sessioni di sviluppo. Tutto ciò che segue è un unico gioco." },
       // PLATFORMS-IT-END
     },
     projects: {
@@ -2269,10 +2269,10 @@ const I18N = {
       cd32: { blurb: "コモドール最後の賭け：CDコンソールに収めたAmiga 1200の心臓、合計2 MBのチップRAM、そしてchunky-to-planarをこなすAkikoチップ。1キロバイトごとが交渉ずくだ。" },
       ds: { blurb: "二つの画面、二つのARM CPU、4 MBのRAM、そしてHUDになりたくてたまらないタッチパネル。自作ソフトが最も愛した住処の一つ。" },
       gba: { blurb: "256 KBのワークRAMを持つ16.78 MHzのARM7TDMI — 本来なら動かせるはずのないものに、次々と『イエス』と言い続けるポケットコンソール。" },
-      pc: { blurb: "無名のハードウェアではない — 子ども時代のマシンそのもの。ここでの遺物はゲームだ：デバッグシンボルが残された90年代末のエンジン、破るべき暗号、そしてもっと大きな何かになるのを待つパーティシステム。" },
+      pc: { name: "PC", maker: "IBM PC と互換機", blurb: "無名のハードウェアではない — 子ども時代のマシンそのもの。ここでの遺物はゲームだ：デバッグシンボルが残された90年代末のエンジン、破るべき暗号、そしてもっと大きな何かになるのを待つパーティシステム。" },
       smaky: { blurb: "スイスの学校用コンピュータ：640×400の緑リン光を持つ68000、1983年にしてマルチタスクのPSos、生産台数はおよそ1,500台きり — フランス語圏スイスの教室のために。ええ、本当に。" },
-      forge: { blurb: "コンソールではない：作業台だ。ほかの遺物たち — そしてそのために書く音楽家たち — に仕えるべく、ブラウザの中で鍛えられた道具たち。" },
-      "great-work": { blurb: "遺物でも移植でもない：Godot 4.6で作られたオリジナルのリアルタイム・アクションRPG — このコデックス全体で桁違いに最大の試み。500超のスクリプトと200超のシーンにまたがる約108,000行のGDScriptが、170を超える開発セッションを経て育った。以下のすべては一つのゲームだ。" },
+      forge: { name: "チップの鍛冶場", maker: "ブラウザ上 · インストール不要", blurb: "コンソールではない：作業台だ。ほかの遺物たち — そしてそのために書く音楽家たち — に仕えるべく、ブラウザの中で鍛えられた道具たち。" },
+      "great-work": { name: "オリジナルのアクションRPG", maker: "Godot 4.6 · オリジナルIP", blurb: "遺物でも移植でもない：Godot 4.6で作られたオリジナルのリアルタイム・アクションRPG — このコデックス全体で桁違いに最大の試み。500超のスクリプトと200超のシーンにまたがる約108,000行のGDScriptが、170を超える開発セッションを経て育った。以下のすべては一つのゲームだ。" },
       // PLATFORMS-JA-END
     },
     projects: {

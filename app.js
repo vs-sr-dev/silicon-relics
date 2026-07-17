@@ -199,8 +199,9 @@
   function matchesFilters(q, platform) {
     if (state.type !== "all" && q.type !== state.type) return false;
     if (state.query) {
-      const hay = [tProject(q, "title"), tProject(q, "summary"), platform.name,
-                   platform.maker, tr("types", q.type, TYPES[q.type] || "")]
+      const hay = [tProject(q, "title"), tProject(q, "summary"),
+                   tPlatform(platform, "name"), tPlatform(platform, "maker"),
+                   tr("types", q.type, TYPES[q.type] || "")]
         .join(" ").toLowerCase();
       if (!hay.includes(state.query)) return false;
     }
@@ -279,8 +280,8 @@
     return `
       <section class="platform" style="--rarity: var(--r-${esc(p.rarity)})">
         <header class="platform-crest">
-          <h3>${esc(p.name)}</h3>
-          <span class="platform-meta">${esc(p.maker)} · ${p.year}</span>
+          <h3>${esc(tPlatform(p, "name"))}</h3>
+          <span class="platform-meta">${esc(tPlatform(p, "maker"))} · ${p.year}</span>
           <span class="rarity-tag">${esc(rarLabel)}</span>
         </header>
         ${blurb ? `<div class="platform-blurb">${esc(blurb)}</div>` : ""}
