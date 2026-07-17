@@ -117,6 +117,15 @@ const PLATFORMS = [
     blurb: "A stripped-down Macintosh sold as a console — PowerPC 603, Mac OS 7.5 fork, a GeoPort modem as its only road to the Internet. Barely documented, barely emulated.",
   },
   {
+    id: "playdia",
+    name: "Bandai Playdia",
+    maker: "Bandai",
+    year: 1994,
+    gen: 5,
+    rarity: "legendary",
+    blurb: "Bandai's Japan-only anime-FMV machine: an 8-bit NEC CPU, an infrared controller, 42 titles — and every pixel routed through one custom chip nobody ever documented, the Asahi Kasei AK8000. No BIOS handshake, no disc auth: it boots whatever CD-R you burn.",
+  },
+  {
     id: "ngpc",
     name: "Neo Geo Pocket Color",
     maker: "SNK",
@@ -469,6 +478,28 @@ const PROJECTS = [
     badges: ["world-first", "disasm", "first-boot"],
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/pippin-homebrew",
+  },
+
+  /* ---- Bandai Playdia ---- */
+  {
+    id: "playdia-ak8000",
+    title: "The AK8000 Siege — Bandai Playdia",
+    platform: "playdia",
+    type: "re",
+    status: "bossfight",
+    progress: 50,
+    summary: "The codex's purest siege: every chip in the Playdia is documented except one — the Asahi Kasei AK8000, the custom decoder every frame of video must pass through, with zero public documentation and zero emulation. Thirty-five sessions have taken its outer walls apart layer by layer: the disc anatomy fell first (a CD-XA multiplex hiding ~7 hours of ADPCM audio across seven retail titles, extracted with a from-scratch decoder where every ripping tool silently fails); then the paper trail — a cluster of December-1992 Asahi Chemical patents that turned out to describe the chip's own design; then the entropy layer itself, a variable-length code table solved to a perfect Kraft sum that parses 100% of every bitstream tested. What remains is the innermost keep: the mapping from parsed symbols to pixels, proven unrecoverable from desk-side statistics alone — locked in mask ROM and silicon. The next weapon has a name: hardware. And should the wall ever fall, what rises on the Playdia afterwards is a tale for another day.",
+    milestones: [
+      { label: "Disc anatomy mapped: CD-XA multiplex, AJS container, boot-from-disc model", done: true },
+      { label: "~7 h of XA ADPCM audio decoded from scratch across 7 retail titles", done: true },
+      { label: "1992 Asahi Chemical patent cluster identified as the AK8000's design", done: true },
+      { label: "Entropy layer cracked: full VLC table, Kraft = 1.0, 100% parse cross-title", done: true },
+      { label: "4×4 block structure + hardcoded quant table + rate-control semantics", done: true },
+      { label: "BOSS: symbols → pixels. Geometry lives in the silicon; hardware trace next", done: false },
+    ],
+    badges: ["disasm", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
   },
 
   /* ---- Neo Geo Pocket Color ---- */
