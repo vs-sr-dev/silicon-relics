@@ -398,6 +398,26 @@ const PROJECTS = [
     repo: null,
   },
 
+  {
+    id: "vis-ff1",
+    title: "Final Fantasy — Tandy VIS",
+    platform: "vis",
+    type: "porting",
+    status: "ongoing",
+    progress: 40,
+    summary: "The fourth runner in the FF1 sibling race — and the only one whose hardware can keep the logic 1:1 from the disassembly, no NES-style compromises. The discoveries stack up: a 320×240 CRTC mode with NES-equal height, hardware scroll via CRTC start-address panning, and the crown jewel — FF1's own sound engine ported to drive the OPL3 directly with byte-exact score data, after MCI's stuck notes were exhaustively ruled out. The whole opening flow — intro legend, title screen, party creation with six-letter names, and the full 256×256 overworld with a class-dynamic hero sprite — is stitched into a single EXE, verified on MAME with the Prelude looping cleanly.",
+    milestones: [
+      { label: "320×240 engine base + faithful intro, title, class and name screens", done: true },
+      { label: "FF1's native sound engine on OPL3 — Prelude clean and looping", done: true },
+      { label: "Full 256×256 overworld, smooth scroll, class-dynamic mapman", done: true },
+      { label: "Opening flow stitched into one EXE, verified with music", done: true },
+      { label: "Walkability, towns, password save, battles — the RPG itself", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked", "disasm"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Mattel HyperScan ---- */
   {
     id: "hyperscan-homebrew",
