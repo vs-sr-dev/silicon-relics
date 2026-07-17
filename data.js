@@ -378,6 +378,26 @@ const PROJECTS = [
     repo: "https://github.com/vs-sr-dev/vis-fileviewer",
   },
 
+  {
+    id: "vis-dangerous-creatures",
+    title: "Dangerous Creatures — Tandy VIS",
+    platform: "vis",
+    type: "porting",
+    status: "ongoing",
+    progress: 45,
+    summary: "Microsoft's 1994 multimedia encyclopedia rebuilt as a native VIS title — arguably the software this edutainment console was born for and never received. The navigation database behind EXPLORE.EXE was fully reverse-engineered: 66 animals, 1,064 topics, all 719 referenced assets accounted for. The Lion vertical slice runs validated on the emulated VIS: legible hi-res 16-color pages, instant XOR hotspot cycling, popups with voiceover narration, and video playback — silent by hardware design, since the VIS's direct-video path mutes MCI audio; a PIT-paced direct-DAC path is the planned cure, borrowed from the Wolfenstein quest next door.",
+    milestones: [
+      { label: "MSDANGER.THE database cracked: 66 animals, 1,064 topics mapped", done: true },
+      { label: "Asset pipeline: 719/719 referenced assets resolved and converted", done: true },
+      { label: "Lion slice validated: hi-res pages, hotspots, voiceover popups, video", done: true },
+      { label: "Synced video + audio via direct DAC in the PIT loop", done: false },
+      { label: "Scale to the 25-animal subset on a single CD", done: false },
+    ],
+    badges: ["disasm", "toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Mattel HyperScan ---- */
   {
     id: "hyperscan-homebrew",
