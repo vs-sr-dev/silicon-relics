@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silicon Relics — Samuele Voltan</title>
+  <meta name="description" content="A living codex of retro console homebrew, reverse engineering and porting quests by Samuele Voltan — from the famous to the forgotten.">
+  <meta property="og:title" content="Silicon Relics">
+  <meta property="og:description" content="A living codex of retro console homebrew, reverse engineering and porting quests.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 90,35 75,95 25,95 10,35' fill='%23d4af37' stroke='%236b4f1d' stroke-width='4'/%3E%3Cpolygon points='50,22 74,40 65,80 35,80 26,40' fill='%232a1f38'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="hero-eyebrow">The Codex of</p>
+    <h1 class="hero-title">Silicon Relics</h1>
+    <p class="hero-tagline" id="tagline"></p>
+    <div class="hero-stats" id="hero-stats"></div>
+  </header>
+
+  <nav class="controls" aria-label="Codex filters">
+    <div class="controls-row">
+      <div class="control-group" id="sort-group" role="group" aria-label="Sort order">
+        <button class="chip chip-sort active" data-sort="gen">By Generation</button>
+        <button class="chip chip-sort" data-sort="alpha">Alphabetical</button>
+      </div>
+      <div class="control-group" id="type-group" role="group" aria-label="Quest type"></div>
+      <div class="control-group search-group">
+        <input type="search" id="search" placeholder="Search the codex…" aria-label="Search">
+      </div>
+    </div>
+  </nav>
+
+  <main id="codex" class="codex"></main>
+
+  <footer class="footer">
+    <div class="footer-rule" aria-hidden="true">⟡ ⟡ ⟡</div>
+    <p>Forged by <strong>Samuele Voltan</strong> — with LLM familiars at his side.</p>
+    <p class="footer-updated" id="footer-updated"></p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <img id="lightbox-img" alt="Screenshot enlarged">
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
