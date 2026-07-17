@@ -23,7 +23,7 @@
   </div>
 
   <header class="hero">
-    <p class="hero-eyebrow">The Codex of</p>
+    <p class="hero-eyebrow" data-i18n="The Codex of">The Codex of</p>
     <h1 class="hero-title">Silicon Relics</h1>
     <p class="hero-tagline" id="tagline"></p>
     <div class="hero-stats" id="hero-stats"></div>
@@ -32,12 +32,12 @@
   <nav class="controls" aria-label="Codex filters">
     <div class="controls-row">
       <div class="control-group" id="sort-group" role="group" aria-label="Sort order">
-        <button class="chip chip-sort active" data-sort="gen">By Generation</button>
-        <button class="chip chip-sort" data-sort="alpha">Alphabetical</button>
+        <button class="chip chip-sort active" data-sort="gen" data-i18n="By Generation">By Generation</button>
+        <button class="chip chip-sort" data-sort="alpha" data-i18n="Alphabetical">Alphabetical</button>
       </div>
       <div class="control-group" id="type-group" role="group" aria-label="Quest type"></div>
       <div class="control-group search-group">
-        <input type="search" id="search" placeholder="Search the codex…" aria-label="Search">
+        <input type="search" id="search" placeholder="Search the codex…" data-i18n-ph="Search the codex…" aria-label="Search">
       </div>
     </div>
   </nav>
@@ -46,7 +46,7 @@
 
   <footer class="footer">
     <div class="footer-rule" aria-hidden="true">⟡ ⟡ ⟡</div>
-    <p>Forged by <strong>Samuele Voltan</strong> — with LLM familiars at his side.</p>
+    <p><span data-i18n="Forged by">Forged by</span> <strong>Samuele Voltan</strong> <span data-i18n="— with LLM familiars at his side.">— with LLM familiars at his side.</span></p>
     <div class="footer-support" id="footer-support"></div>
     <p class="footer-updated" id="footer-updated"></p>
   </footer>

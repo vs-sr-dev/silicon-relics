@@ -15,11 +15,13 @@ const SITE = {
   },
 };
 
-/* Languages offered by the top-right switcher. English is the base;
-   others are authored over time (next: Italian). Adding a language =
-   append here + provide its translation table (see app.js i18n hook). */
+/* Languages offered by the top-right switcher. English is the base; others
+   are authored over time. Adding a language = append here + provide its
+   translation table in I18N below. Each label is itself localized, so the
+   menu reads "English / Italian" in English and "Inglese / Italiano" in Italian. */
 const LANGUAGES = [
-  { code: "en", label: "English" },
+  { code: "en", label: { en: "English", it: "Inglese" } },
+  { code: "it", label: { en: "Italian",  it: "Italiano" } },
 ];
 
 /* Rarity reflects how obscure / undocumented the platform is.
@@ -1464,3 +1466,712 @@ const PROJECTS = [
     repo: null,
   },
 ];
+
+/* ============================================================
+   I18N — translation tables. English is the base (the data above);
+   each language here overrides only what it provides, everything else
+   falls back to English. Chrome strings are keyed by their English text;
+   platform/project content is keyed by id, with milestones/links as
+   parallel arrays indexed exactly like the source.
+   To add a quest in a future sweep: add it in English above, then add
+   its Italian entry under projects below (same id).
+   ============================================================ */
+const I18N = {
+  it: {
+    ui: {
+      "Relics": "Reliquie",
+      "Quests": "Imprese",
+      "Completed": "Completate",
+      "Legendary": "Leggendarie",
+      "Codex last inscribed on": "Codice vergato l'ultima volta il",
+      "If a tale here was worth a coin": "Se una di queste storie valeva una moneta",
+      "All Quests": "Tutte le Imprese",
+      "Milestones": "Traguardi",
+      "Screenshot of": "Schermata di",
+      "View on GitHub": "Guarda su GitHub",
+      "No quests inscribed for this relic yet.": "Ancora nessuna impresa iscritta per questa reliquia.",
+      "The codex holds no such quest… try another incantation.": "Il codice non custodisce un'impresa simile… prova un'altra formula.",
+      "Generation": "Generazione",
+      "The Codex of": "Il Codice di",
+      "By Generation": "Per Generazione",
+      "Alphabetical": "Alfabetico",
+      "Search the codex…": "Cerca nel codice…",
+      "Forged by": "Forgiato da",
+      "— with LLM familiars at his side.": "— con i suoi famigli LLM al fianco.",
+    },
+    site: {
+      tagline: "Un codice vivente di homebrew, reverse engineering e conversioni attraverso le console retro — dalle più famose alle più dimenticate. Una collaborazione fra un umano e gli LLM, dichiarata apertamente.",
+    },
+    rarities: {
+      common: "Reliquia Comune",
+      uncommon: "Reliquia Non Comune",
+      rare: "Reliquia Rara",
+      epic: "Reliquia Epica",
+      legendary: "Reliquia Leggendaria",
+      opus: "Magnum Opus",
+    },
+    types: {
+      homebrew: "Homebrew",
+      porting: "Conversione",
+      re: "Ing. Inversa",
+      tooling: "Strumenti",
+    },
+    statuses: {
+      accepted: "Impresa Accettata",
+      ongoing: "In Corso",
+      bossfight: "Scontro col Boss",
+      completed: "Impresa Completa",
+    },
+    badges: {
+      "first-boot":     { label: "Primo Avvio",            desc: "La reliquia ha preso fiato: primo avvio riuscito di codice fatto in casa." },
+      "real-hardware":  { label: "Gira su Hardware Reale", desc: "Verificato sulla macchina fisica, non solo in emulazione." },
+      "audio-unlocked": { label: "Audio Sbloccato",        desc: "Il suono è vivo sulla piattaforma." },
+      "disasm":         { label: "Pergamene Decifrate",    desc: "Traguardo significativo di disassemblaggio / reverse engineering." },
+      "toolchain":      { label: "Fucina Eretta",          desc: "È stata forgiata una toolchain / pipeline di compilazione funzionante." },
+      "released":       { label: "Pubblicato",             desc: "Distribuito come release finita e utilizzabile." },
+      "world-first":    { label: "Primo al Mondo",         desc: "Un primato documentato — nessuno l'aveva mai fatto prima." },
+    },
+    generations: {
+      90:  { title: "Il Campo di Casa",       era: "IBM PC e compatibili, dal 1981 a oggi" },
+      91:  { title: "La Wunderkammer",        era: "macchine venute da linee temporali più strane" },
+      99:  { title: "La Fucina Senza Tempo",  era: "strumenti al servizio delle reliquie" },
+      100: { title: "La Grande Opera",        era: "non una reliquia — un progetto vivo, ancora in divenire" },
+    },
+    platforms: {
+      coleco: { blurb: "La meraviglia arcade-in-salotto del 1982: un VDP TMS9918, uno Z80 e 1 KB di RAM — finché il Super Game Module non si innesta e all'improvviso c'è spazio per sognare molto più in grande." },
+      "7800": { blurb: "La console what-if di Atari: niente tilemap, niente limiti agli sprite — solo MARIA e le sue display list, un cuore 6502 e un POKEY sulla cartuccia quando serve vera musica." },
+      gx4000: { blurb: "Il disastro di novanta giorni di Amstrad: un CPC Plus travestito da console — Z80, sprite hardware ASIC, una palette da 4096 colori — affondato dal suo stesso catalogo di lancio in un solo Natale." },
+      vis: { blurb: "Il Video Information System: una console CD con Microsoft Modular Windows 3.1 su un 80286 a 12 MHz e sintesi FM OPL3. Così dimenticata che perfino i suoi fantasmi chiedono indicazioni — e ora ci girano i raycaster." },
+      hyperscan: { blurb: "Carte collezionabili RFID, una CPU S+Core con un compilatore abbandonato, zero memoria, nessun SDK, nessuna scena, fuori produzione entro un anno. La documentazione pubblica più profonda di questa macchina vive in queste imprese." },
+      pippin: { blurb: "Un Macintosh ridotto all'osso venduto come console — PowerPC 603, un fork di Mac OS 7.5, un modem GeoPort come unica strada verso Internet. A malapena documentata, a malapena emulata." },
+      playdia: { blurb: "La macchina FMV-anime solo-Giappone di Bandai: una CPU NEC a 8 bit, un controller a infrarossi, 42 titoli — e ogni pixel instradato attraverso un chip custom che nessuno ha mai documentato, l'Asahi Kasei AK8000. Nessun handshake del BIOS, nessuna autenticazione del disco: avvia qualsiasi CD-R tu masterizzi." },
+      lynx: { blurb: "La prima portatile a colori — progettata da Epyx, venduta da Atari: un 65C02 affiancato da Suzy e Mikey, scaling hardware degli sprite nel 1989, ambidestra per progetto. Schiacciata sul mercato da un Game Boy che surclassava sulla carta." },
+      gamecom: { blurb: "La follia di Tiger in anticipo sui tempi: la prima console da gioco con touchscreen — stilo, cartuccia-modem a 14.4k, sogni di Internet — mossa da uno Sharp SM8521 e da un LCD monocromatico che lasciava scie. Ricordata come una barzelletta; meritava di meglio." },
+      ngpc: { blurb: "La feroce portatile a 16 bit di SNK (TLCS-900/H), con una toolchain Toshiba proprietaria tenuta insieme da link vecchi di decenni — e un cavo link che nessun emulatore aveva mai fatto parlare, da nessuno dei due lati." },
+      wsc: { blurb: "L'ultimo progetto di console di Gunpei Yokoi: una portatile solo-Giappone con un cuore V30MZ compatibile x86, uno schermo pensato per essere giocato orizzontale o ruotato in verticale, e 20 ore su una singola stilo AA. La terza reliquia di Bandai in questo codice." },
+      loopy: { blurb: "La macchina Casio del 1995 per un pubblico che nessun altro corteggiava: una console SH-1 il cui organo distintivo è una stampante termica a colori integrata per fare adesivi — l'unica console da gioco mai costruita per stampare. Un chip NEC µPD937 canta la musica. Solo-Giappone, appena una dozzina di giochi e una scena che conti su una mano." },
+      jaguar: { blurb: "L'ultima resistenza di Atari: 'do the math', cinque processori che si parlano a malapena, e un 68000 che doveva fare solo il custode — eppure finisce per svolgere gran parte del lavoro." },
+      "3do": { blurb: "L'ambiziosa console CD del 1993 fatta di CEL codificati, PLUT a 32 colori e nessun runtime in virgola mobile. Un piccolo devkit moderno tiene accesa la fucina." },
+      "32x": { blurb: "Il fungo sfortunato di Sega: due SH-2 imbullonati sopra un Mega Drive che ha ancora il suo 68000 e lo Z80 sotto. Quattro CPU, 4 MB di cartuccia e una vita breve e rabbiosa — qui tutti e quattro i processori vengono messi al lavoro." },
+      saturn: { blurb: "La macchina barocca e incompresa di Sega: due SH-2, un VDP1 che disegna quad invece di triangoli e un VDP2 che dipinge interi piani di tile gratis. Una console famosa per combattere i propri sviluppatori — e ricompensare chi fa pace con lei." },
+      ps1: { blurb: "La scatola grigia che ridefinì tutto — e il territorio meglio cartografato di tutto il romhacking. Per un ragazzino che aveva solo un PC, era roba da leggenda del cortile." },
+      ps2: { blurb: "La console più venduta di sempre, e uno dei bersagli homebrew più aperti della sua epoca: l'Emotion Engine e le sue due vector unit, un Graphics Synthesizer nutrito da microcodice VU1 scritto a mano, streaming audsrv e gsKit. Comune come reliquia — ma piegarla al proprio volere, una trappola VU1 alla volta, è tutt'altro." },
+      n64: { blurb: "93,75 MHz di MIPS big-endian, 8 KB di cache dati, RDRAM ad alta latenza — e libdragon, la toolchain open source che ha fatto fiorire la sua scena homebrew senza un solo SDK trafugato." },
+      dreamcast: { blurb: "Il canto del cigno di Sega e il porto preferito dell'homebrew — territorio KallistiOS, salvataggi VMU e un SH4 che premia il codice curato." },
+      wiiu: { blurb: "L'outsider a doppio schermo: PowerPC big-endian, un GamePad con pannello touch e una scena homebrew che non l'ha mai abbandonata." },
+      snes: { blurb: "Il re dei 16 bit — comune come reliquia, ma i suoi motori di testo giapponese e i suoi driver sonori custodiscono ancora segreti che vale la pena decifrare." },
+      cdi: { blurb: "La televisione interattiva di Philips che non fu: un 68070 con il CDRTOS di OS-9 — nessuna anima bare-metal qui, ma un sistema operativo real-time che pretende moduli fatti a regola d'arte. Ricordata per tutti i giochi sbagliati." },
+      cd32: { blurb: "L'ultima scommessa di Commodore: un cuore Amiga 1200 in una console CD, 2 MB di chip RAM in tutto e il chip Akiko che fa il chunky-to-planar. Ogni kilobyte è negoziato." },
+      ds: { blurb: "Due schermi, due CPU ARM, 4 MB di RAM e un pannello touch che implora di diventare un HUD. Una delle case più amate dall'homebrew." },
+      gba: { blurb: "Un ARM7TDMI a 16,78 MHz con 256 KB di work RAM — la console tascabile che continua a dire sì a cose che davvero non dovrebbe riuscire a far girare." },
+      pc: { blurb: "Non hardware oscuro — la macchina dell'infanzia in persona. Qui le reliquie sono i giochi: motori di fine anni '90 con i simboli di debug lasciati dentro, cifrari da violare e sistemi di party in attesa di diventare qualcosa di più." },
+      smaky: { blurb: "Il computer scolastico svizzero: un 68000 con 640×400 al fosforo verde, PSos multitasking nel 1983, all'incirca 1.500 unità mai costruite — per le aule della Svizzera francese. Sì, davvero." },
+      forge: { blurb: "Non una console: il banco di lavoro. Strumenti forgiati nel browser al servizio delle altre reliquie — e dei musicisti che scrivono per loro." },
+      "great-work": { blurb: "Non una reliquia, e non una conversione: un action-RPG originale in tempo reale costruito in Godot 4.6 — l'impresa più grande di tutto questo codice di un ordine di grandezza. Circa 108.000 righe di GDScript su oltre 500 script e oltre 200 scene, cresciute in più di 170 sessioni di sviluppo. Tutto ciò che segue è un unico gioco." },
+      // PLATFORMS-IT-END
+    },
+    projects: {
+      "coleco-ff1": {
+        title: "Final Fantasy — ColecoVision",
+        summary: "L'RPG NES del 1987 su hardware del 1982 — una conversione che nessuno ha mai tentato. Il Super Game Module e il banking MegaCart la rendono possibile; i limiti di colore del TMS9918 sono battuti con colori dominanti per riga più overlay di sprite d'accento, arrivando a personaggi di battaglia alla pari col NES sul piano visivo. Tutte le 24 tracce estratte byte-esatte dal disassemblaggio sull'AY-3-8910. La svolta rispetto al gemello 7800: questa conversione corregge di proposito i bug degli incantesimi di Square — pur preservando byte-esatte le stravaganze amate come la penisola del Finger Point. Mappa del mondo, Coneria e battaglia già in loop sotto multi-bank.",
+        milestones: [
+          "Toolchain + bring-up SGM — il Fighter di FF1 cammina sul Coleco",
+          "Mappa del mondo a 60 Hz con movimento discreto a tile",
+          "Audio: AY-3-8910 validato, 24 brani byte-esatti",
+          "Schermata di battaglia alla pari visiva col NES (colori per riga + accenti OAM)",
+          "Architettura multi-bank MegaCart, loop mondo+città+battaglia",
+          "Motore di battaglia completo con incantesimi corretti nell'intento; 3 bug di banking aperti",
+        ],
+      },
+      "7800-ff1": {
+        title: "Final Fantasy — Atari 7800",
+        summary: "L'originale NES del 1987 ricostruito sulla console dimenticata di Atari, lavorando direttamente dal disassemblaggio di FF1 con una rigida politica di parità col NES — i bug originali di Square catalogati, e correggibili a scelta. Le display list di MARIA sostituiscono le tilemap del NES, la mappa toroidale scorre fluida, Coneria ha i suoi veri dialoghi degli NPC e i negozi, e le battaglie a 4 personaggi girano con statistiche, magia e dati dei nemici autentici — fino a uno scontro giocabile con Garland dotato del suo vero sprite. La pipeline della colonna sonora passa per ChipRoll fino al POKEY: la Fucina al servizio dell'impresa. Obiettivo: una demo di combattimento fino al ponte di Pravoka, su hardware reale tramite moderne flash cart.",
+        milestones: [
+          "Fondamenta di rendering MARIA: display list, metatile, scroll fluido",
+          "Mappa toroidale con movimento agganciato ai tile e sprite del giocatore",
+          "Coneria: mappe cittadine, dialoghi NPC fedeli al disasm, dati dei negozi",
+          "Motore di battaglia: turni a 4 personaggi, magia, oggetti, bersaglio del party",
+          "Scontro con Garland giocabile — statistiche vere, sprite vero",
+          "Demo-con-combattimento fino al ponte di Pravoka · colonna sonora POKEY completa",
+        ],
+      },
+      "gx4000-jetpack": {
+        title: "Jetpack — Amstrad GX4000",
+        summary: "Il classico DOS del 1993 di Adam Pedersen ricostruito per il flop più famoso di Amstrad. Non esiste codice sorgente: i 234 tile e tutti i 100 livelli sono stati estratti dai file dati originali, e la fisica ricostruita fedele al TAS dalle specifiche frame-perfect della community di speedrun — movimento subpixel, spinta del jetpack, scale, e il phaser che scava attraverso la griglia del livello. Sprite memorizzati solo rivolti a destra, specchiati dall'ASIC. È prevista un'impresa gemella su Atari 7800. E una regola sopra tutte: nulla viene pubblicato finché l'autore originale non dà l'assenso — il piano è prima un prototipo funzionante, poi una lettera a Pedersen per chiedere la sua benedizione.",
+        milestones: [
+          "Pipeline degli asset: 234 tile + 100 livelli ricostruiti dai file DAT",
+          "Toolchain CPCtelera — la cartuccia si avvia in MAME",
+          "Runtime di Jetman: fisica subpixel fedele al TAS, jetpack, phaser",
+          "Collisioni complete, nemici, loop di livello completo",
+          "Deploy su GX4000: vera palette a 12 bit sull'ASIC",
+          "La benedizione dell'autore — poi, forse, il mondo",
+        ],
+      },
+      "vis-wolf3d": {
+        title: "Wolfenstein 3D sul VIS",
+        summary: "Una conversione da zero di Wolfenstein 3D che gira nativamente come app Win16 sul VIS: raycaster texturizzato, IA nemici, combattimento, raccolte — e uno stack audio completo a 3 canali (musica FM, effetti AdLib, voci digitalizzate via DMA grezzo sul DAC del VIS). 14–18 fps su un 286 a 12 MHz, e genuinamente giocabile.",
+        milestones: [
+          "Toolchain Win16 + CD del VIS avviabile forgiati",
+          "Raycaster texturizzato con porte, sprite e HUD",
+          "IA nemici, combattimento hitscan, raccolte, economia delle munizioni",
+          "Audio completo: musica IMF + effetti AdLib + voci digitalizzate sul DAC",
+          "Rifinitura dell'episodio completo e panning stereo",
+        ],
+      },
+      "vis-synth": {
+        title: "VIS Synth — uno strumento OPL3",
+        summary: "Il VIS come strumento musicale: un synth polifonico OPL3 a 8 voci suonato col controller a mano, un lettore di file MIDI SMF e MIDI dal vivo da una vera tastiera hardware tramite una scheda ponte ISA MAME custom. Tutte e tre le modalità verificate — da un musicista.",
+        milestones: [
+          "Strumento polifonico da controller a mano (v0)",
+          "Lettore di file MIDI SMF con scheduler PIT-µs (v2)",
+          "MIDI dal vivo dall'hardware host tramite ponte MAME custom (v3)",
+        ],
+      },
+      "vis-fileviewer": {
+        title: "VIS File Viewer",
+        summary: "Un browser multimediale con cui il VIS non fu mai venduto: foto, audio WAV/MIDI e video Autodesk FLC riprodotti alla maniera nativa di Modular Windows — incluso un lettore FLC scritto da zero con scritture dirette sulla RAM video, perché è così che il video del VIS funzionava davvero (spoiler: non fu mai AVI).",
+        milestones: [
+          "Browser di file da controller a mano come shell del CD",
+          "Foto BMP + WAV/MIDI tramite MCI nativo",
+          "Lettore video FLC da zero tramite DISPDIB DVA",
+        ],
+      },
+      "vis-dangerous-creatures": {
+        title: "Dangerous Creatures — Tandy VIS",
+        summary: "L'enciclopedia multimediale del 1994 di Microsoft ricostruita come titolo VIS nativo — probabilmente il software per cui questa console edutainment era nata e che non ricevette mai. Il database di navigazione dietro EXPLORE.EXE è stato interamente sottoposto a reverse engineering: 66 animali, 1.064 argomenti, tutti i 719 asset referenziati contabilizzati. La fetta verticale del Leone gira validata sul VIS emulato: pagine ad alta risoluzione a 16 colori leggibili, ciclaggio istantaneo degli hotspot in XOR, popup con narrazione fuori campo e riproduzione video — muta per progetto hardware, poiché il percorso video diretto del VIS silenzia l'audio MCI; un percorso DAC diretto scandito dal PIT è la cura prevista, presa in prestito dall'impresa Wolfenstein qui accanto.",
+        milestones: [
+          "Database MSDANGER.THE violato: 66 animali, 1.064 argomenti mappati",
+          "Pipeline asset: 719/719 asset referenziati risolti e convertiti",
+          "Fetta del Leone validata: pagine hi-res, hotspot, popup con voce, video",
+          "Video + audio sincronizzati via DAC diretto nel loop del PIT",
+          "Scalare al sottoinsieme di 25 animali su un singolo CD",
+        ],
+      },
+      "vis-ff1": {
+        title: "Final Fantasy — Tandy VIS",
+        summary: "Il quarto concorrente nella gara fra i gemelli di FF1 — e l'unico il cui hardware può tenere la logica 1:1 dal disassemblaggio, senza compromessi in stile NES. Le scoperte si accumulano: una modalità CRTC 320×240 con altezza pari al NES, scroll hardware via panning dell'indirizzo di partenza del CRTC, e il gioiello della corona — il motore sonoro di FF1 convertito per pilotare direttamente l'OPL3 con dati di partitura byte-esatti, dopo aver escluso esaustivamente le note bloccate dell'MCI. L'intero flusso d'apertura — leggenda introduttiva, schermata del titolo, creazione del party con nomi da sei lettere, e la mappa completa 256×256 con uno sprite dell'eroe dinamico secondo la classe — è cucito in un unico EXE, verificato su MAME con il Preludio che va in loop pulito.",
+        milestones: [
+          "Base del motore a 320×240 + schermate fedeli di intro, titolo, classe e nome",
+          "Motore sonoro nativo di FF1 su OPL3 — Preludio pulito e in loop",
+          "Mappa completa 256×256, scroll fluido, mapman dinamico secondo la classe",
+          "Flusso d'apertura cucito in un unico EXE, verificato con la musica",
+          "Percorribilità, città, salvataggio con password, battaglie — l'RPG vero e proprio",
+        ],
+      },
+      "hyperscan-homebrew": {
+        title: "HyperScan: cartografare l'inesplorato",
+        summary: "La documentazione pubblica più profonda dell'HyperScan: oltre 16 bug riproducibili nel backend GCC abbandonato di score-elf con workaround verificati, mappe dei registri della PPU spinte fino al blending parallax a doppio strato e a uno stress test 3D in tre fasi, e un driver di bit-banging RFID/NFC scritto da zero — incluse carte di test da 120 byte costruite a mano che dimostrano come i dischi retail contengano già tutti i dati delle carte. A coronare il tutto: il primo audio HyperScan mai emulato — un dispositivo SPU completo scritto per MAME, fino alla scoperta del vero clock a 54 MHz del DAC — confrontato A/B con una cattura da hardware reale, poi cresciuto in uno stack audio completo e funzionante con ADPCM e ricampionamento a virgola fissa.",
+        milestones: [
+          "Oltre 16 bug del compilatore GCC score-elf ricondotti alla causa radice",
+          "Mappa dei registri della PPU + driver del controller I²C",
+          "Stress test: blending parallax a doppio strato + demo 3D in 3 fasi",
+          "Driver di carte RFID/NFC da zero; carte di test forgiate decodificate",
+          "Primo audio HyperScan emulato → stack SPU completo in MAME",
+          "Ulteriori diramazioni della pipeline",
+        ],
+        links: ["▶ Primo audio HyperScan emulato"],
+      },
+      "pippin-homebrew": {
+        title: "Pippin Online — mettere in rete l'@WORLD",
+        summary: "Il Pippin emulato portato sulla vera Internet per la prima volta: correzioni seriali/DBDMA a DingusPPC (proponibili a monte), un modem virtuale + stack host PPP, Netscape 1.1N che carica una pagina web dal vivo — più un browser thin-client homebrew, e un'onesta falsificazione del mistero del caricamento delle immagini.",
+        milestones: [
+          "Correzioni seriali/DBDMA a DingusPPC (proponibili a monte)",
+          "Modem Hayes virtuale + catena host PPP/NAT",
+          "Netscape carica una pagina web dal vivo dalla vera Internet",
+          "Architettura di browser homebrew thin-client (formato PPF)",
+        ],
+      },
+      "pippin-dangerous-creatures": {
+        title: "Dangerous Creatures — Bandai Pippin",
+        summary: "L'enciclopedia multimediale del 1994 di Microsoft, seconda versione — la sorella dell'impresa VIS, e un trapianto ancora più strano: un titolo Windows x86 rinato sulla console PowerPC di Apple e Bandai. Il motore originale non è convertibile, così la strada è estrazione degli asset più un viewer C scritto da zero (Retro68), cresciuto dal guscio del browser thin-client dell'impresa di rete Pippin qui accanto. La fetta verticale del Leone gira verificata sul Pippin emulato: pagina principale pixel-perfect al primo tentativo (decompressione SZDD → RGB555 → GWorld), hotspot cliccabili con cinque popup e la scheda informativa, narrazione ADPCM fuori campo pulita — e il filmato 'Fixing dinner' che gira con audio perfetto, senza codec sulla console: l'Indeo 3.2 è pre-decodificato offline in un flusso di fotogrammi grezzo che il Pippin si limita a blittare. Due muri di memoria sono caduti lungo la strada verso un formato di file dati paginato custom. Ciò che resta: domare la sincronia video contro un clock dell'emulatore che corre veloce, scalare a tutti i 66 animali tramite il database di navigazione violato nell'impresa VIS sorella, e una release porta-i-tuoi-asset.",
+        milestones: [
+          "Ricognizione: 3.346 bitmap, 2.183 WAV ADPCM, 109 AVI Indeo — tutti estraibili",
+          "Pagina principale del Leone pixel-perfect sul Pippin, al primo tentativo",
+          "Navigazione completa del Leone: hotspot, 5 popup, scheda info — muri di memoria battuti",
+          "Audio end-to-end: narrazione ADPCM pulita attraverso il Sound Manager",
+          "Video: il filmato Indeo gira con audio perfetto via streaming di fotogrammi senza codec",
+          "Sincronia video, scalatura a 66 animali (violazione del DB VIS), release BYOA",
+        ],
+      },
+      "playdia-ak8000": {
+        title: "L'Assedio dell'AK8000 — Bandai Playdia",
+        summary: "L'assedio più puro del codice: ogni chip del Playdia è documentato tranne uno — l'Asahi Kasei AK8000, il decoder custom attraverso cui deve passare ogni fotogramma di video, con zero documentazione pubblica e zero emulazione. Trentacinque sessioni ne hanno smontato le mura esterne strato per strato: prima è caduta l'anatomia del disco (un multiplex CD-XA che nasconde ~7 ore di audio ADPCM su sette titoli retail, estratte con un decoder da zero là dove ogni tool di ripping fallisce in silenzio); poi la traccia cartacea — un gruppo di brevetti Asahi Chemical del dicembre 1992 che si sono rivelati descrivere il progetto stesso del chip; poi lo strato di entropia in sé, una tabella di codici a lunghezza variabile risolta fino a una somma di Kraft perfetta che effettua il parsing del 100% di ogni bitstream testato. Ciò che resta è il mastio più interno: la mappatura dai simboli decodificati ai pixel, dimostrata irrecuperabile dalla sola statistica da scrivania — chiusa a chiave nella mask ROM e nel silicio. La prossima arma ha un nome: hardware. E se mai quel muro dovesse cadere, ciò che sorgerà poi sul Playdia è una storia per un altro giorno.",
+        milestones: [
+          "Anatomia del disco mappata: multiplex CD-XA, contenitore AJS, modello di boot-da-disco",
+          "~7 h di audio XA ADPCM decodificate da zero su 7 titoli retail",
+          "Gruppo di brevetti Asahi Chemical del 1992 identificato come il progetto dell'AK8000",
+          "Strato di entropia violato: tabella VLC completa, Kraft = 1.0, parsing 100% cross-titolo",
+          "Struttura a blocchi 4×4 + tabella di quantizzazione hardcoded + semantica del rate-control",
+          "BOSS: simboli → pixel. La geometria vive nel silicio; prossimo passo, traccia hardware",
+        ],
+      },
+      "ngpc-homebrew-notes": {
+        title: "Ponte Link NGPC ↔ Dreamcast",
+        summary: "Il cavo link dell'NGPC vide uso retail nel 1999 ma non era mai stato emulato su nessuno dei due lati — finché questo ponte a tre anelli non l'ha riportato in vita: un loopback HLE dentro l'emulatore NGPC, poi TCP fra due istanze NGPC, poi l'intera campata fino a un Dreamcast che gira in Flycast. Sia un payload homebrew sia software retail attraversano il varco, verificati su video. Sotto c'è vero reverse engineering: il protocollo di link retail smontato fino a un handshake end-to-end deterministico e byte-perfect — frame delimitati da FF e un header di sincronia con sonda del cavo — più genuine correzioni allo stesso emulatore beetle-ngp, dove un bug distruttivo di peek dei pacchetti è stato corretto e un side-channel di comunicazione in RAM è stato regolato in modo che le ROM retail girino pulite di default. Il tutto poggia su una toolchain cc900 recuperata e completamente documentata, marcita dietro link morti.",
+        milestones: [
+          "Toolchain cc900 recuperata e documentata (a prova di link morti)",
+          "Ponte a tre anelli: loopback HLE → TCP NGPC↔NGPC → Dreamcast via Flycast",
+          "Protocollo di link retail sottoposto a reverse engineering — byte-perfect, E2E deterministico",
+          "Correzioni all'emulatore beetle-ngp: bug di peek corretto, passthrough retail pulito",
+          "Verificato su video con software sia homebrew sia retail",
+          "Ulteriori diramazioni della pipeline",
+        ],
+        links: ["▶ Primo ponte funzionante (homebrew)", "▶ Test del ponte con software retail"],
+      },
+      "gamecom-bringup": {
+        title: "Bring-Up Homebrew del Game.com",
+        summary: "La portatile touchscreen derisa di Tiger ottiene la toolchain moderna che non ebbe mai: perso nel tempo l'SDK DOS di Sharp, è stato costruito da zero un assembler Python per l'SM8521 invertendo la tabella degli opcode del disassembler di MAME — affiancato da un disassembler corrispondente e da un verificatore round-trip per tenerlo onesto. Il BIOS si è rivelato non avviare mai automaticamente le cartucce: il protocollo di lancio è stato sottoposto a reverse engineering fino a una vtable del BIOS che contiene il puntatore RAM d'ingresso della cartuccia, poi validato end-to-end. Da lì la salita: il primo pixel, una prima cartuccia interattiva (mover di pixel a D-pad con double buffering cancella-disegna), il protocollo DMA grafico regolato dall'HALT con il suo trucco di riempimento a palette forzata, e testo leggibile a schermo tramite un atlante di font 2bpp nativo per la VRAM codificato offline in Python. Prossimo obiettivo: lo stilo — una griglia touch discreta 13×10, protocollo già documentato dall'analisi statica. Dove portano quei gesti è una storia per un altro giorno.",
+        milestones: [
+          "Assembler + disassembler + verificatore round-trip SM8521 custom",
+          "Protocollo di lancio cartuccia del BIOS violato (puntatore d'ingresso in vtable)",
+          "Primo pixel, poi prima cartuccia interattiva: D-pad + double buffering",
+          "Protocollo DMA grafico + primitive sprite + libreria di include",
+          "Testo leggibile: pipeline di atlante font 2bpp nativo per la VRAM",
+          "Input a stilo (griglia 13×10, protocollo documentato) — verso una vera app",
+        ],
+      },
+      "lynx-bringup": {
+        title: "Bring-Up Homebrew del Lynx",
+        summary: "L'impresa è giovane, ma la strada è aperta: la toolchain cc65 provata end-to-end sul pioniere ambidestro di Atari, con un hello world grafico che gira sotto l'emulatore Handy e una pipeline Makefile riproducibile pronta all'uso. Le classiche trappole da esordienti sono già documentate per i posteri — a partire dalla scoperta che qui conio.h non fa silenziosamente nulla: il Lynx parla solo TGI. Prossimo all'orizzonte: gli sprite, la cosa per cui Suzy è nata per scalare.",
+        milestones: [
+          "Toolchain cc65 provata: hello world TGI gira sotto Handy",
+          "Build riproducibile: Makefile, struttura del progetto, insidie documentate",
+          "Sprite e scaling — ciò per cui questo hardware è stato creato",
+        ],
+      },
+      "wsc-bringup": {
+        title: "Bring-Up Homebrew del WonderSwan Color",
+        summary: "Il cigno di Yokoi ottiene il suo bring-up — alla maniera sudata: la moderna Wonderful Toolchain (GCC che punta al V30MZ) ha reagito con cinque distinte trappole prima della prima luce, da un package manager che si auto-aggiorna a metà sincronizzazione ed esce senza installare, passando per rinomine di header deprecati e una trappola di stringificazione del preprocessore C, fino a una cache di build che ignora le modifiche al Makefile. Tutte e cinque documentate e battute. La ricompensa dall'altra parte: un hello world che brilla in Mesen 2 — reso in verticale, naturalmente, come questa portatile rotante ha sempre voluto essere impugnata. Header hardware scritto prima della prima riga di C, come vuole la tradizione.",
+        milestones: [
+          "Wonderful Toolchain installata e provata — cinque trappole di build battute",
+          "Header hardware + hello world verticale, primo pixel in Mesen 2",
+          "Oltre l'hello: grafica, input, la vera salita",
+        ],
+      },
+      "loopy-homebrew": {
+        title: "La Console che Stampa — Casio Loopy",
+        summary: "L'unica console da gioco mai costruita con una stampante termica di adesivi integrata riceve uno stack homebrew moderno. Sul fronte software: un mini-platformer completo che gira su MAME — fisica a virgola fissa 8.8 con gravità asimmetrica, un renderer software a bitmap con camera al seguito e culling degli sprite fuori schermo, un mondo a tile su due schermi, IA dei nemici con rilevamento dei bordi, tutto a fluidi ~55 fps da una pipeline sh-elf-gcc. Sul fronte hardware, un overlay osservatore della stampante intercetta ogni scrittura MMIO documentata — chiavi di fase del motore, dati della testina, gating di abilitazione — decodificando solo ciò che il megadoc hardware garantisce e lasciando l'invenzione del protocollo a quando arriverà una macchina vera. E la corona: un dispositivo sonoro MAME clean-room per il synth NEC µPD937, circa 900 righe che producono il primo audio emulato della console — parsing della directory ROM, allocazione delle voci MIDI, inviluppi di volume e pitch, riproduzione dei campioni, modellazione del timbro con biquad — poi cablato così che una moderna tastiera MIDI suoni il chip del 1995 dal vivo, tutte le sue 110 voci strumentali catalogate come musicali a orecchio. Dove porta infine la strada della stampante è una storia per un altro giorno.",
+        milestones: [
+          "Toolchain sh-elf-gcc + hello world verificati su MAME",
+          "Mini-platformer completo: fisica a virgola fissa, renderer software, IA a ~55 fps",
+          "Overlay osservatore della stampante: intercettazione MMIO documentata con timeline a schermo",
+          "Dispositivo sonoro MAME µPD937 clean-room — il primo audio emulato della console",
+          "MIDI dal vivo: il synth del 1995 suonato da una tastiera moderna in tempo reale",
+          "Hardware reale, e la stampante termica stessa — la strada che verrà",
+        ],
+        links: ["▶ Il synth µPD937, ascoltato"],
+      },
+      "jag-ff4": {
+        title: "Final Fantasy IV — Atari Jaguar",
+        summary: "La rotta più folle del codice: FF4 portato sul Jaguar non riscrivendolo, ma transpilando l'intero disassemblaggio SNES — un transpiler 65c816→68k costruito su misura (tutti e sei i moduli verdi, 4,78 MB di assembly generato), una build SNES byte-perfect come oracolo, e un ponte software SNES-PPU che alimenta il Jaguar. Il motore sonoro AKAO è stato ricostruito con fedeltà SNES: il Preludio e l'arpa di Edward validati a orecchio come 'praticamente identici'. Fronte attuale: il volo d'apertura delle Ali Rosse, dove il Mode 7 incontra una console che non l'ha mai avuto. La barra di progresso minuscola è onesta — questa è la pipeline di lacrime-e-sangue, combattuta una sudata sessione alla volta.",
+        milestones: [
+          "Transpiler 65c816→68k custom — sei moduli, 4,78 MB di asm",
+          "Si avvia su Jaguar: dispatch a trampolino, la schermata del titolo passa",
+          "Pipeline di sincronia completa: dispatch NMI, input del pad in arrivo",
+          "Audio AKAO con fedeltà SNES — validato dall'orecchio di un musicista",
+          "Apertura delle Ali Rosse: Mode 7 + sprite (4 cause radice corrette, in validazione)",
+          "Campo, menu, battaglie… la montagna",
+        ],
+      },
+      "jag-lba1": {
+        title: "Little Big Adventure — Atari Jaguar",
+        summary: "La decima vita di LBA in questo codice, e fra le più sudate: LBA1 su una cartuccia Jaguar da 6 MB con bank switching, reso da un rasterizzatore di poligoni scritto istruzione per istruzione in assembly GPU TOM — clipping a quattro bordi, shading Gouraud, sfere — finché Twinsen non sta correttamente ombreggiato nella Cittadella e cammina attraverso uno scrolling multi-stanza a 60 fps. Il gioiello della corona: la modalità interlacciata 480i del Jaguar, che nessun gioco retail spedì mai, accesa per inseguire la parità 1:1 con l'originale PC DOS a 640×480. Solo locale finché i detentori dei diritti non danno l'assenso.",
+        milestones: [
+          "Scena della Cittadella resa; cartuccia a 134 scene; scroll multi-stanza a 60 fps",
+          "Rasterizzatore GPU TOM da zero: clipping, riempimento, Gouraud, sfere",
+          "Twinsen percorribile, corpo a sprite — contesa del bus sconfitta",
+          "Interlacciato 640×480i — una modalità che nessun gioco Jaguar retail usò mai",
+          "Animazioni, collisioni, motore di script dal fork della community",
+          "La montagna, di nuovo",
+        ],
+      },
+      "jag-relics-arg": {
+        title: "Domare Tutti e Cinque — Atari Jaguar",
+        summary: "La pipeline più profonda di tutto il codice, e quella da cui è iniziato tutto: quarantacinque sessioni di puro assembly 68000 spese a far cooperare i cinque processori del Jaguar, una stranezza hardware alla volta. Al suo cuore c'è un raycaster DDA scritto da zero — stanze e un corridoio texturizzati in prima persona, movimento a quattro direzioni, terminali interattivi — che gira su BigPEmu e su un vero Atari Jaguar tramite flashcart. Attorno, una vetrina tecnica che mette al lavoro ogni chip: la GPU RISC che disegna un ipercubo wireframe rotante dalla RAM locale, il Blitter che fa riempimenti a pattern, tratti di linea e mesh ombreggiate in Gouraud, l'Object Processor che sovrappone sprite a doppio buffer senza uno sfarfallio, e il DSP che porta il suono — con una voce di vocoder LPC-10, un primato dell'homebrew Jaguar, in pipeline. Il vero trofeo è il tessuto cicatriziale: word-swap dell'OLP, codice GPU che gira solo dalla RAM locale, moltiplicazioni senza segno che restituiscono spazzatura sul silicio reale, NOP di write-posting prima delle divisioni, gare del doppio buffer contro l'Object Processor — il sapere hardware accumulato di una macchina famosa per rispondere ai colpi, annotato leva per leva. Dove portano infine queste stanze è una storia per un altro giorno.",
+        milestones: [
+          "Pipeline pura 68000 + RMAC; si avvia su BigPEmu e su un vero Jaguar via flashcart",
+          "Raycaster DDA: stanze in prima persona texturizzate + corridoio, movimento a quattro direzioni, terminali",
+          "3D wireframe GPU RISC da RAM locale (ipercubo rotante), doppio buffer senza sfarfallio",
+          "Strati di sprite dell'Object Processor + audio DSP; 45 sessioni di stranezze hardware domate",
+          "Finale Gouraud del Blitter + voce vocoder LPC-10 (un primato homebrew Jaguar) — la strada che verrà",
+        ],
+      },
+      "3do-omf2097": {
+        title: "One Must Fall: 2097 sul 3DO",
+        summary: "Può un 3DO far girare il motore CEL di OMF a un ritmo giocabile? Sì: un incontro 1-contro-1 completo contro l'IA — selezione del pilota, mosse vere, prese, knockback, musica per arena, KO — costruito su OpenOMF e compresso sotto il tetto dei 32 colori della PLUT. Versione 0.1, '1v1 giocabile'.",
+        milestones: [
+          "1v1 giocabile contro l'IA con flusso di scena completo",
+          "Mosse guidate dai dati, prese, danno, effetti + musica",
+          "Tutti i 10 HAR cablati come combattenti (2/10 finora)",
+          "Round, barra di stordimento, insidie d'arena, pose di vittoria",
+        ],
+      },
+      "3do-terminal": {
+        title: "Segnale & Statica — Panasonic 3DO",
+        summary: "Un'esperienza interattiva originale per il Panasonic 3DO nella forma di un terminale a fosfori verdi — e un tour approfondito del Portfolio SDK della macchina. È incentrata su un oscilloscopio animato che si sintonizza fra le frequenze, avvolto in una sequenza di boot CRT, un archivio di diapositive a immagini CEL e un minigioco arcade a tre livelli — uno stage di reazione, uno di ritmo e uno di bersagli a sfera wireframe — ciascuno con la propria traccia drone in streaming ed effetti di impatto. L'ingegneria è dove è finito il sudore: sette sessioni di sfarfallio da busy-wait sono state curate il giorno in cui si è scoperto WaitVBL nascosto a una sola maiuscola di distanza dal nome in camelCase che il codice cercava, sbloccando il corretto loop draw → DisplayScreen → WaitVBL → flip; il DMA SPORT via CopyVRAMPages ha sostituito la memcpy della CPU per il blit dello sfondo da ~120 KB/fotogramma, trascinando il minigioco da ingiocabile a fluido; il DSP mixer dell'EffectsHandler ha prodotto suono solo dopo che le sue manopole di guadagno — mute a zero di default — sono state trovate e aperte; e gli effetti a pitch variabile sono stati pilotati attraverso la manopola di frequenza a virgola fissa 1.15 di sampler.dsp, che pretende in silenzio campioni mono. Gli asset AIFF andavano riempiti fino a confini di secondi interi o il loader falliva con un errore di allineamento silenzioso. Tutto in C89 stretto, tutto validato su un vero FZ-10 in NTSC — divario di FPS emulatore-a-hardware incluso. A cosa serva davvero il terminale è una storia per un altro giorno.",
+        milestones: [
+          "Bring-up del Portfolio SDK: immagini CEL, testo del terminale, pipeline C89, si avvia su un vero FZ-10",
+          "Double buffering VBL via WaitVBL — sfarfallio eliminato dopo una caccia di sette sessioni",
+          "Blit di sfondo in DMA SPORT (CopyVRAMPages) — minigioco da ingiocabile a fluido",
+          "Audio completo: mixer EffectsHandler, droni in streaming, effetti mono a pitch variabile",
+          "Minigioco arcade a tre livelli con transizioni; terminale oscilloscopio a fosfori verdi",
+          "Contenuti finali, e dove porta il terminale — la strada che verrà",
+        ],
+      },
+      "32x-lba1": {
+        title: "Little Big Adventure — Sega 32X",
+        summary: "Archiviato come 'infattibile al 99%' al via — 19 sessioni dopo il vero motore di LBA1 gira da puro bytecode LIFE/TRACK sul fungo. Lungo la strada: scena isometrica divisa fra i due SH-2, un Twinsen 3D ombreggiato in Gouraud, e un'odissea audio finita col 68000 che pilota direttamente lo YM2612 del Mega Drive — cinque regole empiriche di traduzione OPL2→FM che comprimono tutte le 33 tracce musicali in 55 KB invece di 10 MB di PCM. Tutte e quattro le CPU impiegate. 1,48 MB dei 4 MB della cartuccia usati.",
+        milestones: [
+          "Scena iso a mattoni + camera interattiva su doppio SH-2",
+          "Twinsen 3D in Gouraud: animazioni, comportamenti, collisioni",
+          "Audio FM: YM2612 pilotato dal 68000, 33 tracce in 55 KB",
+          "Diapositive d'intro, dialoghi a macchina da scrivere, inventario, raccolte",
+          "Svolta del motore: vero bytecode LIFE/TRACK, DoAnim/DoDir 1:1",
+          "Danno da combattimento, dialoghi di zona, chiusura completa della prima scena",
+        ],
+      },
+      "32x-lba2": {
+        title: "Little Big Adventure 2 — Sega 32X",
+        summary: "La scommessa gemella: il 3D esterno di LBA2 è per lo più statico e piatto, quindi fin dove può allungarsi la pipeline LBA1/32X? Gli interni riusano il renderer iso a mattoni; gli esterni ottengono uno scene graph compatto con frustum culling diviso fra i due SH-2. L'apertura del cubo-0 gira da vero bytecode LIFE — Twinsen e Zoe scriptati, dialogo a schermo, eroe controllabile subito dopo. Fronte attuale: sostituire il modello di locomozione segnaposto dell'eroe con una fedele conversione PERSO.",
+        milestones: [
+          "Scene iso interne tramite la pipeline LBA1/32X",
+          "3D statico esterno, frustum cull su doppio SH-2",
+          "Bring-up del motore: bytecode LIFE + dialoghi nel cubo 0",
+          "Animazione / orientamento fedeli dell'eroe (conversione PERSO)",
+          "Riuso audio FM, selezione delle isole sotto la cartuccia da 4 MB",
+        ],
+      },
+      "saturn-explorer": {
+        title: "Mondi Wireframe — Sega Saturn",
+        summary: "Un gioco di esplorazione 3D originale costruito sul Sega Saturn tramite Jo Engine e l'SGL di Sega — che gira sulla console reale, non solo in emulazione. Il giocatore pilota una freecam con inerzia da astronave (velocità a virgola fissa, smorzamento, collisione per asse, senza rollio) attraverso stanze wireframe disegnate come quad VDP1, collegate da un corridoio la cui collisione a rollback evita il classico bug di teletrasporto all'ingresso. Nascosti in un campo di rumore alla deriva ci sono cluster di tile anamorfici che si risolvono in forme pulite solo da punti di osservazione precisi — un trucco di pura prospettiva senza texture. Il pezzo forte è un gioco di forza a due chip: mentre il VDP1 ruota il wireframe 3D con la camera, il VDP2 dipinge un 'cielo digitale' a piano di tile hardware indipendente che scorre sul proprio asse sotto un filtro di colore atmosferico — tutto a costo di zero cicli SH-2, poiché scroll e tinta sono singoli registri VDP2. Resta fermo troppo a lungo e ondate di nemici hitscan si chiudono attorno, spazzate via con un laser anziché con proiettili fisici. Più avanti il mondo si apre con una rivelazione alla Breath of the Wild: una struttura fantasma da 64 quad, visibile attraverso i muri ma mai accessibile, gradata più scura con la profondità — dentro un budget poligonale che il gioco intacca appena, un misurato 15–25% del VDP1. L'audio cavalca loop drone CDDA con cambio di traccia senza soluzione di continuità sopra stinger PCM. Tutta matematica intera, tutti quad, tutto sul metallo — con le stranezze di overscan dell'hardware reale documentate contro una cattura RetroTink. Dove portano infine i corridoi è una storia per un altro giorno.",
+        milestones: [
+          "Pipeline Jo Engine / SGL: build ISO+CUE, si avvia su un vero Saturn",
+          "Freecam con inerzia da astronave + collisione a rollback per asse fra stanze collegate",
+          "Simboli anamorfici a tile VDP1 che si risolvono solo da punti di vista precisi",
+          "Cielo hardware VDP2: scroll indipendente + filtro di colore a costo zero per l'SH-2",
+          "Drone CDDA + stinger PCM, cambio senza soluzione di continuità; rivelazione della struttura fantasma nel budget",
+          "Rifinitura finale, e dove portano i corridoi — la strada che verrà",
+        ],
+      },
+      "ps1-vampire-re": {
+        title: "Vampire: Kyūketsuki Densetsu — Impresa di Traduzione",
+        summary: "Un'impresa nata dall'amicizia: una traduzione inglese privata della rivisitazione di Dracula per PS1 di Artdink — Jonathan l'avvocato, la sua fidanzata Rose, il Conte Varaur, Londra — come regalo per un amico che ama i vampiri. La seconda sessione ha trovato l'oro: l'intera storia si è rivelata testo in chiaro Shift-JIS, e tutti i ~12.400 caratteri narrativi sono estratti e catalogati. Il bytecode degli script di scena è stato violato strutturalmente. Ancora embrionale, e portata avanti con la sua etichetta: un altro traduttore amatoriale sta lavorando sullo stesso gioco, così il piano è contattarlo prima di andare a fondo — e questa resta personale, mai una release pubblica.",
+        milestones: [
+          "Struttura del disco e contenitori analizzati, asset classificati",
+          "Tutto il testo narrativo estratto: ~12.400 caratteri, 607 kanji unici",
+          "Bytecode degli script di scena violato strutturalmente",
+          "RE del renderer di testo + pipeline di reinserimento",
+          "La traduzione stessa — un regalo, non una release",
+        ],
+      },
+      "ps2-rhythm": {
+        title: "Sotto il Ritmo — PlayStation 2",
+        summary: "Un gioco ritmico originale costruito dal metallo in su sulla PlayStation 2 — e uno che nasconde sotto la superficie più di quanto mostri. Il cuore ritmico legge cinque dita sul DualShock: tocchi e tenute dei dorsali, colpi dei tasti frontali, flick e sostegni degli stick — quattordici input e tre tipi di nota su una pista scorrevole, con una schermata di calibrazione in-game, punteggio, combo e sblocchi progressivi, tutto validato 1:1 fra PCSX2 e una vera PS2 slim. Ma sotto le note gira una sorprendente quantità di motore 3D: una pipeline vettoriale VU1 scritta a mano che fa skinning scheletrico su modelli completamente rigged, gsKit e microcodice VU1 che coesistono in un unico binario senza conflitto, un ambiente 3D free-roam con camere lookAt e collisione, effetti particellari procedurali, e una pipeline di streaming degli asset che infila la VRAM attraverso un allocatore lineare a bump che punisce un singolo upload fuori ordine. Dozzine di insidie sudate sono state pagate per intero — chiralità delle matrici VU1, contaminazione dello stato dei registri GS che trapela fra i draw, trappole di stride dei vertex buffer, centratura XYOFFSET — il tipo di sapere PS2 a basso livello raramente messo per iscritto. Per i giocatori su hardware reale c'è perfino un livello nascosto di sensibilità analogica alla pressione del DualShock 2. Ciò che lo strato ritmico custodisce davvero è una storia per un altro giorno.",
+        milestones: [
+          "Cuore ritmico: 14 input, 3 tipi di nota, calibrazione, punteggio, combo, sblocchi",
+          "Pipeline vettoriale VU1: skinning scheletrico + coesistenza gsKit/VU1 in un unico binario",
+          "Ambiente 3D free-roam: camere lookAt, collisione, percorso di draw in spazio-mondo",
+          "Streaming di grafica + audio attraverso l'allocatore a bump della VRAM; pipeline di tracce MP3",
+          "Validato 1:1 su vera PS2 slim ↔ PCSX2; livello nascosto di pressione analogica",
+          "Charts finali, tuning, e ciò che attende sotto il ritmo — la strada che verrà",
+        ],
+      },
+      "n64-lba2": {
+        title: "Little Big Adventure 2 — Nintendo 64",
+        summary: "Il gemello big-endian della conversione Wii U: LBA2 su libdragon senza SDK trafugato, il renderer software presentato attraverso l'RDP come un blit di palette, e un emulatore di accessi disallineati MIPS scritto nel gestore delle eccezioni per domare i dati impacchettati del motore. Il gioco gira — 58 VPS nella casa di Twinsen, esterni funzionanti, effetti a 12 voci sul mixer RSP e musica Opus in streaming da una ROM da 45 MB.",
+        milestones: [
+          "Toolchain Docker — l'intero motore compila e si avvia su Ares",
+          "Il gioco gira: prima scena, dialoghi, script, input completi",
+          "Emulatore di accessi disallineati nel gestore delle eccezioni MIPS",
+          "Audio: effetti RSP a 12 voci + musica Opus in streaming, in-game",
+          "Crash dell'RSP al cambio scena (correzione TLUT a doppio buffer da verificare)",
+          "Repack del doppiaggio sotto i 64 MB, salvataggi SRAM, FMV, rifinitura",
+        ],
+      },
+      "dc-lba2": {
+        title: "Little Big Adventure 2 — Dreamcast",
+        summary: "Il motore Adeline originale del 1997 compilato per il Dreamcast tramite KallistiOS: prima isola giocabile fino al completamento su Flycast con FMV, musica, voci, salvataggi VMU. Lo scontro col boss: su hardware reale l'avvio si blocca dopo il logo EA — la prima cattura UART ha individuato un crash lato rendering, diagnosi in corso.",
+        milestones: [
+          "Il motore si avvia: FMV d'intro, menu, gameplay su Flycast",
+          "Prima isola completabile; la seconda isola si carica",
+          "Streaming audio + salvataggio/caricamento VMU",
+          "BOSS: blocco all'avvio su Dreamcast reale (diagnosi UART)",
+          "Validazione del playthrough completo",
+        ],
+      },
+      "dc-ff8": {
+        title: "Final Fantasy VIII — Dreamcast",
+        summary: "Il gioco che il Dreamcast non ebbe mai, ricostruito alla maniera onesta: una reimplementazione in C++ su KallistiOS che esegue i dati stessi di FF8 — le scene di campo eseguono il loro autentico bytecode di script (l'infermeria di Balamb recita il suo vero programma da 1.960 operazioni), le statistiche vengono da kernel.bin, e la formula del danno fisico è trascritta da codice decompilato byte-matching. Triple Triad è pienamente giocabile e 'inquietantemente identico'; l'intero party cammina in 3D a 60 fps dentro i veri fondali dipinti con occlusione in profondità; i mostri di battaglia si animano su veri stage 3D con arte dell'UI autentica. Include un contributo RE originale: la decodifica della rotazione delle ossa di campo, verificata contro l'assembly PS1 che nessuno aveva decompilato. Porta-i-tuoi-asset dall'inizio alla fine. E parcheggiato in un cassetto: Chocobo World che gira la sua ROM ARM originale sul VMU tramite un emulatore PocketStation fatto in casa.",
+        milestones: [
+          "Triple Triad 1:1 — tutte le regole, arte autentica, effetti e BGM",
+          "Campo: party in 3D a 60 fps dentro veri fondali, occluso in profondità",
+          "VM di campo: autentico bytecode JSM eseguito (scena dell'infermeria dal vivo)",
+          "Fetta di battaglia: formule vere, statistiche dei mostri, stage, UI autentica",
+          "Pipeline FMV provata (streaming RoQ con audio)",
+          "Compositore degli effetti Magia/GF — la frontiera che nessuno ha decompilato",
+          "Interprete del bytecode IA-nemici, menu principale, salvataggi VMU",
+        ],
+      },
+      "dc-mi3": {
+        title: "The Curse of Monkey Island — Dreamcast",
+        summary: "Bug #6008 di ScummVM: i giochi SCUMM v8 non sono mai girati sul Dreamcast — un muro rimasto in piedi una ventina d'anni. Questa impresa l'ha abbattuto. Costruita sul backend KallistiOS alternativo, la guerra della memoria è stata vinta leva per leva: 3,5 MB di font TrueType della GUI sfrattati, un buffer da 600 KB che un modulo a monte alloca per errore rimosso, costumi scaricati prima delle cutscene — mentre una gara CD-I/O concomitante e un overflow dello stack di thread da 32 KB (mascherato da una dozzina di corruzioni diverse) sono stati ricondotti alla causa radice e corretti. Risultato: The Curse of Monkey Island si avvia, riproduce il suo FMV d'intro con il sonoro e rende gameplay reale — Guybrush e Wally nella stiva della nave — a 52 fps su un Dreamcast stock da 16 MB, il punto più profondo a cui CMI sia mai arrivato sulla console. Il boss: un blocco del thread principale appena prima della prima battuta parlata.",
+        milestones: [
+          "ScummVM dcalt/KOS compilato dai sorgenti con SCUMM v8 abilitato",
+          "Si avvia in 16 MB: dieta dei font a tema, intro, selezione difficoltà, audio",
+          "FMV d'intro con audio in sincronia + cartello di capitolo con musica",
+          "Gara CD-I/O e corruzione dello stack di thread ricondotte alla causa radice e corrette",
+          "Gameplay reale reso a 52 fps — oltre il muro storico",
+          "BOSS: blocco del thread principale prima della prima battuta di dialogo",
+          "Passata di piena giocabilità, correzioni proponibili a monte, hardware reale",
+        ],
+      },
+      "dc-shmup": {
+        title: "Spremere il Dreamcast — uno Shmup Sincronizzato alla Musica",
+        summary: "Uno sparatutto originale sincronizzato al ritmo, costruito per spingere la PVR del Dreamcast fino al metallo — e il suo motore ha una storia in due atti. Prima una conversione completa del moderno motore C++ Simulant a KallistiOS e GCC 15, pulita su hardware reale; poi, quando gli screenshot di giochi commerciali hanno alzato l'asticella, una svolta verso un mini-motore custom che parla direttamente alla PVR attraverso KOS, agganciando 60 fps bloccati su tutte e tre le liste hardware. La strada per arrivarci è stata una lezione magistrale di grafica Dreamcast: la scoperta che i proiettili parcheggiati dietro la camera venivano comunque inviati ogni fotogramma ha portato a un frustum culling esplicito che ha tagliato la traversata della scena da 22 ms a 3 ms; un fast-path GLdc che bypassa l'invio normale per scritture dirette in store-queue dell'SH4 verso la PVR (swap-buffer 22 ms → 12 ms); modelli GLB dati direttamente al tile accelerator; e una saga di debug su hardware reale inseguita su un cavo seriale, dove un overflow del vertex buffer del TA e un crash su confine di banco VRAM sono stati ricondotti alla causa radice con sonde a schermo e dbgio, poi domati con decimazione delle mesh e un piano di fallback a texture VQ. La musica guida tutto: tracce analizzate al ritmo fino al BPM decimale, raggi del boss che pulsano a forma di capsula sul battito forte, sistemi particellari per elemento, scontri che durano finché la canzone finisce. Uno stage tutorial e uno stage boss elementale già si giocano — gli stage rimanenti, e la ragione dietro di essi, sono una storia per un altro giorno.",
+        milestones: [
+          "Motore C++ Simulant convertito a KallistiOS / GCC 15, pulito su hardware reale",
+          "Svolta verso un mini-motore PVR-diretto custom — 60 fps bloccati, tutte e tre le liste TA",
+          "Frustum culling + fast-path store-queue GLdc (swap 22→12 ms, traversata 22→3 ms)",
+          "Debug su hardware reale via seriale: overflow vbuf del TA + crash su banco VRAM alla radice",
+          "Combattimento sincronizzato al ritmo: analisi BPM decimale, raggi pulsanti, particelle elementali",
+          "Stage rimanenti e una passata completa su hardware reale — la strada che verrà",
+        ],
+      },
+      "wiiu-lba2": {
+        title: "Little Big Adventure 2 — Wii U",
+        summary: "V1.0: i sorgenti Adeline originali del 1997 che girano nativamente su Wii U — completato dall'inizio alla fine su hardware reale, storia completa, tutte le cutscene e gli FMV, 50–80 fps, audio AX nativo, pannello touch del GamePad per comportamenti e incantesimi, salvataggi con tastiera a schermo. Parità ~99,9% con l'originale.",
+        milestones: [
+          "Conversione PowerPC big-endian del motore DOS/Win95",
+          "Streaming FMV, audio AX, salvataggi, GamePad completo + touch",
+          "Playthrough completo validato su hardware reale",
+          "Rifinitura post-release (taratura dei controlli, etichette touch)",
+        ],
+      },
+      "cdi-bringup": {
+        title: "Bring-Up Homebrew del CD-i",
+        summary: "Primi passi sulla grande curiosità di Philips. La toolchain Microware OS-9 — compilatore xcc, linker l68, fixmod, e uno strumento di mastering dischi DOS a 16 bit — resuscitata dentro Docker con build da 25 secondi; avvio confermato in emulazione; e un hello world che dipinge bande di colore CLUT7 attraverso il chip video MCD212, consegnato come moduli OS-9 fatti a regola d'arte anziché con trucchi bare-metal. Il Nobelia open source di TwBurn fa da oracolo end-to-end che prova l'esistenza della strada. Dove porta questa strada è una storia per un altro giorno.",
+        milestones: [
+          "Ricognizione di fattibilità: toolchain, emulatori, pipeline asset mappati",
+          "Toolchain Docker: xcc + l68 + fixmod + mastering DOS, build da 25 s",
+          "Avvio confermato in emulazione CD-i",
+          "Hello world a schermo: bande CLUT7 tramite l'MCD212",
+          "Una vera applicazione — e dove porta è un'altra storia",
+        ],
+      },
+      "cd32-lba1": {
+        title: "Little Big Adventure — Amiga CD32",
+        summary: "Il motore Adeline del 1994 compresso in 2 MB di chip RAM su un 68020 big-endian: si avvia da CD, rendering C2P Akiko, e un menu principale perfetto a 320×240 nativi — dove una scoperta chiave (la proiezione del motore è hardcoded) significa che la vista nativa È la vista originale del 1994. Fronte attuale: un crash nel renderer degli oggetti, prima scena quasi in vista.",
+        milestones: [
+          "M0: il viewer HQR Akiko C2P si avvia da ISO",
+          "M1: l'intero motore compila, si avvia, logo Adeline a schermo",
+          "M2: render nativo 320×240 — menu perfetto, muro dei 2 MB di RAM battuto",
+          "Prima scena in-game (crash del renderer degli oggetti in diagnosi)",
+          "M4: effetti Paula, musica CDDA, salvataggi NVRAM",
+        ],
+      },
+      "cd32-workbench-anthology": {
+        title: "L'Antologia del Workbench — Amiga CD32",
+        summary: "Un Amiga Workbench avviabile pieno di homebrew CD32 originale, costruito sulla toolchain GCC m68k di Bartman — niente libgcc, niente float, puro intero e virgola fissa. Il pezzo centrale è una genuina vetrina hardware: una demo plasma AGA a 256 colori che pilota il caratteristico registro chunky-to-planar Akiko del CD32 a $B80038, il suo protocollo di scrittura-poi-lettura a 8 longword sottoposto a reverse engineering da akiko.cpp di WinUAE — prova che il vero collo di bottiglia è il fill rate del 68020, non il silicio C2P. Attorno stanno diversi programmi giocabili: un Breakout circolare con fisica del pad e progressione dei livelli, un mini-RPG a sprite, e un gioco di tiro al piattello pseudo-3D con rendering poligonale — più video CDXL, immagini IFF tramite MultiView, e CDDA in streaming asincrono attraverso cd.device. Il sapere Amiga di basso livello è tutto qui: scritture nella copper list che danno bus error su hardware reale a meno di non fare il cast giusto, un handshake WBStartup per il lancio dal desktop, un pad CD32 a sette tasti letto attraverso ReadJoyPort con la sua stranezza di priming alla prima chiamata, e un gestore di input sceso all'assembly m68k dove la via del C non arrivava. Di cosa fanno silenziosamente parte tutti questi programmi è una storia per un altro giorno.",
+        milestones: [
+          "Pipeline GCC m68k di Bartman: CD Workbench avviabile, lancio app WBStartup",
+          "Demo C2P Akiko: plasma AGA a 256 colori via $B80038, protocollo RE da WinUAE",
+          "Programmi giocabili: Breakout circolare, mini-RPG a sprite, tiro al piattello pseudo-3D",
+          "Stack multimediale: video CDXL, immagini IFF, CDDA asincrono attraverso cd.device",
+          "Pad CD32 a sette tasti via ReadJoyPort + gestore di input in asm m68k",
+          "Legare insieme l'antologia — la strada che verrà",
+        ],
+      },
+      "cd32-first-draft": {
+        title: "La Prima Bozza — Amiga CD32",
+        summary: "La reliquia più antica di questo codice — il primissimo progetto, costruito prima di tutti gli strumenti che hanno reso possibili gli altri: niente Claude Code, niente integrazione con l'editor, ogni riga copiata a mano da una finestra del browser. E per un primo passo cauto, è sceso subito a basso livello — uno scheletro di JRPG bare-metal per l'Amiga CD32 che si impossessa dell'hardware con TakeSystem (Forbid, Disable, DMA e interrupt custom) e gestisce il proprio display AGA a 8 bitplane e 256 colori. Mappe di campo e schermate di battaglia sono convertite da PNG attraverso una pipeline chunky-to-bitplane in Python scritta a mano che riserva slot di palette fissi per i colori degli sprite del giocatore e degli NPC, e la transizione campo-a-battaglia funziona già. Il pezzo forte è un'odissea audio degna di un veterano: dieci tentativi documentati di strappare musica CDDA al cd.device di AmigaOS dopo TakeSystem — ogni combinazione Enable/Permit sveglia task del SO che calpestano i registri custom — finiti nella giusta risposta architetturale, pilotando il lettore CD in bare-metal attraverso il chip Akiko a $B80000, il suo protocollo di comandi DMA (PLAY, STOP, checksum) sottoposto a reverse engineering dai sorgenti di WinUAE. La musica non è ancora cablata; il gioco gira, per ora, in silenzio. Tutti si comincia da qualche parte — è da qui che si è cominciato.",
+        milestones: [
+          "Bring-up CD32 bare-metal: TakeSystem, DMA/interrupt custom, display AGA a 8 bitplane",
+          "Pipeline asset PNG→bitplane in Python con slot di palette riservati agli sprite",
+          "Scheletro JRPG: mappe di campo, schermate di battaglia, transizione campo-a-battaglia",
+          "Vicolo cieco CDDA diagnosticato; protocollo di comandi DMA Akiko $B80000 sottoposto a reverse engineering",
+          "Cablare l'audio CD Akiko nel gioco — la strada che verrà",
+        ],
+      },
+      "ds-lba1": {
+        title: "Little Big Adventure — Nintendo DS",
+        summary: "LBA1 giocabile sul DS a 50 fps bloccati: il vero motore ottimizzato ITCM/ARM fino a 6,5 ms per attore 3D, salvataggi persistenti su SD, effetti e recitazione vocale attraverso i canali audio hardware — e un HUD touch custom sul secondo schermo con salute, denaro e cambio comportamento con un tocco dal vivo. Sta in un DS stock da 4 MB con 1,5 MB di margine.",
+        milestones: [
+          "Si avvia fino al gameplay: loghi, menu, intro, prima scena",
+          "Gameplay a 50 fps dopo la campagna di ottimizzazione ITCM/DTCM",
+          "Salvataggi persistenti su scheda SD",
+          "Effetti + voci dei dialoghi tramite i canali hardware dell'ARM7",
+          "HUD touch sul secondo schermo con statistiche dal vivo",
+          "Musica, voci delle isole rimanenti, validazione del gioco completo",
+        ],
+      },
+      "gba-lba1-poc": {
+        title: "Little Big Adventure — GBA (Proof of Concept)",
+        summary: "Non un demake: il genuino motore di LBA1 — interpreti di script LIFE/TRACK, collisioni a mattoni, animazione degli attori 3D — che fa girare la cella d'apertura del manicomio su un ARM7TDMI a 16,78 MHz con 256 KB di RAM. Un viaggio di ottimizzazione misurato a 4,7× (waitstate della ROM, codice caldo IWRAM/ARM, ordinamento del painter a radix) l'ha portato da 3,5 a 16,5 fps, dialogo con l'infermiera incluso.",
+        milestones: [
+          "Fetta del vero motore su ARM: scena, script, collisioni",
+          "Twinsen completamente animato (180 vertici, rasterizzatore Gouraud)",
+          "Sistema di dialoghi con autentici dati TEXT.HQR",
+          "Campagna di ottimizzazione misurata 3,5 → 16,5 fps",
+          "Scene oltre il cubo 0, audio",
+        ],
+      },
+      "snes-rudra-re": {
+        title: "Rudra no Hihō — RE di Testo & Suono",
+        summary: "Decodificare il sistema di testo giapponese di Treasure of the Rudras di Square: codifica kanji custom a 2 byte, dizionari DTE, furigana in linea — ~286 di ~730 codici kanji identificati. Una seconda traccia ha violato il motore sonoro AKAO, finendo in un estrattore SPC completamente statico che estrae ogni brano dalle sole tabelle della ROM, senza bisogno di emulatore.",
+        milestones: [
+          "Layout kana, codici di controllo, dizionario DTE decodificati",
+          "Motore sonoro AKAO + ripper SPC statico senza emulatore",
+          "Tabella kanji: 286 / ~730 codici identificati",
+        ],
+      },
+      "snes-lba1-poc": {
+        title: "Little Big Adventure — SNES + SuperFX (PoC)",
+        summary: "Il vero motore di LBA1 su un 65816, con una GSU SuperFX che compone la scena isometrica direttamente in formato bitplane SNES — pilotata da assembly GSU scritto a mano costruito con un mini-assembler Python da zero. Il piano superiore della prigione è vivo: 23 attori, script LIFE/TRACK e zone in funzione, la piattaforma fluttuante che vola verso l'eroe a comando, occlusione degli sprite pixel-esatta dietro la grata della cella.",
+        milestones: [
+          "Studio di fattibilità + M0: scena della prigione in Mode 3, budget validati",
+          "M1: compositore SuperFX pixel-perfect vs riferimento + pan della camera",
+          "M2: motore vivo in C — Twinsen cammina e collide (~30 fps solo-eroe)",
+          "M3: scena completa — 23 attori, script, zone, occlusione sprite-clip GSU",
+          "Textbox dei dialoghi + passata sulle prestazioni (11–25 fps con NPC oggi)",
+          "M4: vero eroe flat-3D reso dalla GSU · M5: audio SPC700",
+        ],
+      },
+      "smaky-ff1": {
+        title: "Final Fantasy — Smaky (Il Remake Anacronistico)",
+        summary: "L'impresa più gloriosamente improbabile del codice: e se Square avesse posseduto uno Smaky invece di un Famicom? FF1 rifatto per il computer scolastico svizzero — hardware uscito tre anni prima del gioco, eppure più potente di un NES: un 68000, un intero megabyte di RAM, una vera tastiera e 640×400 di fosforo verde. Niente bank switching, niente compressione del testo — la sfida è rendere leggibili i tile in puro dithering monocromatico. Le viscere dello Smaky 100 non furono mai documentate pubblicamente, così la conversione punta a una 'fantasy console' fedele a ogni specifica autentica. Toolchain provata, il font di FF1 brilla già di verde. È in corso una gara informale contro i gemelli ColecoVision e 7800 per la prima demo spedibile — e questa macchina da una linea temporale più strana potrebbe ancora giocare un ruolo più grande nelle storie a venire.",
+        milestones: [
+          "Sprint sulle specifiche: specifiche autentiche dello Smaky 100 triangolate da fonti svizzere",
+          "Toolchain + harness a fosfori verdi provati (hello 68000)",
+          "Pipeline del font di FF1 che rende sul display mono",
+          "Generazione del party, mappa 80×60, arte dei tile in dithering",
+          "Prima demo spedibile — la gara fra i gemelli di FF1",
+        ],
+      },
+      "pc-silver-re": {
+        title: "Silver (1999) — Archeologia del Motore, verso il Co-op",
+        summary: "Uno scavo completo nell'action-RPG del 1999 di Spiral House: ogni formato di scena decodificato (308 fondali con occlusione in profondità pixel-perfect), il cifrario dei dialoghi a XOR scorrevole violato (2.828 righe recuperate), modelli dei personaggi ricostruiti con scheletri e animazioni — fino a scoprire che i quaternioni su disco sono memorizzati (z,x,y,w) — e la walkmesh di tutte le 287 scene analizzata. Anche la build Dreamcast è stata disassemblata, per risolvere un mistero del sistema di input. Obiettivo finale: una mod a patch di codice che porti il gioco cooperativo al party di 3 membri. Solo documentazione e metodologia — nessun asset, nessun dump di codice; il gioco è ancora in vendita.",
+        milestones: [
+          "Tutti i 308 fondali + profondità/occlusione decodificati pixel-perfect",
+          "Cifrario dei dialoghi violato — 2.828 righe recuperate",
+          "Modelli, texture, UV, scheletri, animazioni completamente decodificati",
+          "Grafo di walkmesh / pathfinding analizzato per tutte le 287 scene",
+          "Sistema di input mappato — incl. cross-check col disassemblaggio SH-4 del Dreamcast",
+          "Mod modalità co-op tramite patch di codice",
+        ],
+      },
+      "pc-tle-re": {
+        title: "The Last Express (1997) — L'Orologeria dell'Orient Express",
+        summary: "Scavare nel capolavoro in tempo reale di Jordan Mechner attraverso la sua riedizione moderna — un guscio cocos2d-x attorno al gioco del 1997 quasi intatto. Tutti i formati principali decodificati: fondali, audio, il sistema di sottotitoli col suo font bitmap custom (testo perfetto in cinque lingue), gli sprite degli attori in RLE, e i contenitori di cutscene NIS — il cui motore si è rivelato byte-identico all'originale del 1997. La macchina virtuale dell'IA dei personaggi è stata mappata nell'exe, fino a invertire l'esatto innesco del famigerato game over 'August trova il cadavere', confermato in modo incrociato contro ScummVM in tre punti di chiamata corrispondenti. Solo documentazione e strumenti — il gioco è ancora in vendita.",
+        milestones: [
+          "Fondali, audio, sottotitoli + font custom completamente decodificati",
+          "Sprite degli attori SEQ decodificati (tutte le varianti di packing RLE)",
+          "Contenitori di cutscene NIS + decodifica sprite risolti",
+          "VM delle entità mappata; innesco del game over 1009 invertito",
+          "Sprite di dissolvenza, timing di riproduzione NIS, scene graph del treno",
+        ],
+      },
+      "pc-risinglands-wrap": {
+        title: "Rising Lands — Strato di Compatibilità a Zero Attrito",
+        summary: "L'unica conversione a tempo invertito del codice: invece di riportare un gioco su vecchio silicio, questa porta l'RTS del 1997 di Microïds avanti fino a Windows 11 — niente driver, niente ISO montata, niente CD fisico. Un proxy winmm.dll drop-in, sottoposto a reverse engineering dalle stringhe di comando MCI del gioco stesso, riproduce la colonna sonora del CD da file OGG e finge la presenza del disco; DDrawCompat cura la palette; un minuscolo launcher fissa a un core il loop di timing dell'era Pentium. Il colpo profondo: un feroce crash in-game ricondotto alla causa radice con un logger di eccezioni vettorizzate e hook a trampolino fino a un file di missione cablato al percorso del CD — corretto con un hook di file redirect-on-failure che cura l'intera classe. Missione 1 confermata pienamente giocabile, installer one-click costruito. Porta il tuo gioco.",
+        milestones: [
+          "Proxy winmm: musica MCI→OGG + finzione della presenza del CD",
+          "Video e timing: DDrawCompat, pinning a core singolo, manifest DPI",
+          "Crash in-game ricondotto alla causa radice (percorso cablato al CD) e corretto",
+          "Installer one-click v1.0; missione 1 pienamente giocabile",
+          "Validazione della campagna completa di 25 missioni",
+        ],
+      },
+      "pc-replay-vault": {
+        title: "La Cripta dei Replay — Titoli d'Infanzia Rianimati",
+        summary: "Un tipo di impresa più gentile: non forzare i giochi su hardware impossibile, ma riportare in vita i titoli di un'infanzia italiana su macchine moderne — e rigiocarli davvero, dall'inizio alla fine. Ciascuno un rompicapo a sé: Tip Top (Director 5 + QuickTime) risolto tramite emulazione di Mac OS 9 dopo che ScummVM è venuto a mancare; Stellaris della RAI (ToolBook a 16 bit + video Indeo) convinto a girare su Windows 11 tramite otvdm e archeologia dei codec; A.J.'s World di Coktel Vision che gira sotto ScummVM; Gorillas del QBasic rinato in DOSBox-X — completo di uno shader GLSL custom a monitor ambra per il pieno sapore del 1991; e AEnigmatica, un CD rompicapo del 1998 che si è rivelato un'app Java 1.1 con stranezze del JDK hardcoded, che resiste ancora. Escapade bonus: Tip Top avviato nativamente su un Bandai Pippin emulato, pad AppleJack e tutto.",
+        milestones: [
+          "Tip Top — giocabile al 100% via SheepShaver / Mac OS 9",
+          "Stellaris: Sfida a StarCity — su Win11 via otvdm + codec Indeo",
+          "A.J.'s World of Discovery — funzionante sotto ScummVM",
+          "Gorillas + Battle Bugs — DOSBox-X, shader a fosfori ambra incluso",
+          "AEnigmatica — la sfinge Java 1.1 custodisce ancora il suo enigma",
+          "Tip Top sul Pippin — si avvia nativamente; resta il boss delle cutscene",
+        ],
+      },
+      "chiproll": {
+        title: "ChipRoll — Piano Roll per la Chip Music",
+        summary: "Un piano roll da browser che permette ai musicisti di scrivere per NES, Atari TIA e POKEY come scriverebbero qualsiasi altra cosa: griglia in stile DAW, import MIDI con stretch automatico del BPM, registrazione MIDI dal vivo, feedback di intonazione fedele al chip, ed export consapevoli del brano direttamente in testo FamiTracker e assembly ca65.",
+        milestones: [
+          "Motori NES + TIA + POKEY con sequencing pattern/brano",
+          "Pipeline di import MIDI + registrazione dal vivo Web MIDI",
+          "Export consapevoli del brano: FamiTracker, ca65, nativi del chip",
+          "POKEY v2 (join a 16 bit, clock alternativi), import MusicXML",
+        ],
+      },
+      "gw-combat": {
+        title: "Combattimento & Reazioni Elementali",
+        summary: "Un cuore di combattimento action in tempo reale costruito sull'identità elementale: ogni colpo porta un elemento, e un sistema di reazione all'impatto risolve ogni accoppiamento in danno bonus e status nell'istante in cui due elementi si incontrano. Tutto il danno scorre attraverso un unico punto di strozzatura — un valore base scalato da una statistica di magia e dall'affinità attaccante-contro-bersaglio — con statistiche di DEF, spirito e fortuna, colpi critici e un sistema di poise che confluiscono. Un roster di abilità a tre livelli con regole di corsia e di slotting sta accanto ad attacchi con schegge nella mano secondaria in tre distinti archetipi di lancio, un cooldown di cambio arma, un lock-on che raggiunge anche i bersagli in aria, e un'IA di guardia elementale capace di assorbire e punire un elemento corrispondente.",
+        milestones: [
+          "Affinità elementale + sistema di reazione all'impatto (danno bonus & status)",
+          "Punto di strozzatura del danno unificato: base × magia × affinità, con DEF/SPR/LCK + crit",
+          "Roster di abilità a tre livelli con regole di corsia e di slotting",
+          "Attacchi con schegge nella mano secondaria (tre archetipi) + cooldown di cambio arma",
+          "Lock-on inclusi i bersagli in aria + IA di guardia elementale",
+          "Passata completa di tuning degli scontri coi boss",
+        ],
+      },
+      "gw-crafting": {
+        title: "Crafting & Tessitura",
+        summary: "Uno strato di crafting che rifiuta i menu-come-fogli-di-calcolo: un hub di sei stazioni di minigiochi pratici — forgiare, distillare, incidere, legare, cucire, ricuocere — ciascuno una propria interazione, che alimentano un sistema di ricette costruito attorno alla scoperta cieca, dove le ricette sono scritte ma mai rivelate, così il giocatore le trova per esperimento. C'è un selettore di ingredienti su griglia, un modello di costo delle risorse, il riempimento di bottiglie da fonti d'acqua, consumabili lanciabili e diversivi che lasciano pozze e richiami, e ricette di cibo che si risolvono in buff fuori dal combattimento. L'equipaggiamento porta effetti doppi, e ogni oggetto è giustificato contro un piccolo insieme di pilastri di design così che nulla sia riempitivo.",
+        milestones: [
+          "Hub di tessitura a sei stazioni, ciascuna un distinto minigioco pratico",
+          "Scoperta cieca delle ricette: scritte-ma-nascoste, trovate per esperimento",
+          "Selettore di ingredienti a griglia + modello di costo delle risorse + riempimento bottiglie",
+          "Consumabili lanciabili/diversivi (pozze, richiami) + buff fuori combattimento del cibo",
+          "Equipaggiamento a doppio effetto giustificato contro i pilastri di design",
+          "Scrittura delle ricette rimanenti + effetti sonori dei minigiochi",
+        ],
+      },
+      "gw-world": {
+        title: "Mondo & Attraversamento",
+        summary: "Un mondo aperto e organico assemblato da una pipeline di terreno a heightmap con giunzioni di tile fra macrozone tarate a mano — uno schema di cucitura corretto-al-paletto così che i confini delle zone non si crepino mai — più il meshing dei muri invalicabili e una regola deliberata per cui acqua e lava sono scavate in profondità nel terreno, mai posate piatte. La geometria delle zone è scritta organicamente: tortuosa, jitterata, mai una linea retta, attraverso campi aperti, grotte e minidungeon. L'attraversamento è servito da viaggio rapido basato su santuari, transizioni di scena a iride con continuità della camera d'arrivo, un cancello a cielo aperto che scambia l'illuminazione per zona, e una minimappa con marcatori di missioni e NPC.",
+        milestones: [
+          "Pipeline di terreno a heightmap + giunzioni di tile fra macrozone corrette-al-paletto",
+          "Geometria di zona organica; acqua e lava scavate (mai piatte)",
+          "Viaggio rapido a santuari + transizioni a iride con continuità della camera d'arrivo",
+          "Cancello di illuminazione a cielo aperto + marcatori missioni/NPC sulla minimappa",
+          "Zone rimanenti e interni dei dungeon",
+        ],
+      },
+      "gw-enemies": {
+        title: "Nemici & Boss",
+        summary: "Una pipeline riutilizzabile per i nemici dove il primo mostro di ciascuno dei sette archetipi diventa un pilota da cui si costruiscono gli altri — una libreria di rig alimentata da una catena mista di asset fatta di generazione procedurale di mesh, motion capture e clip di animazione stock ritarget-ati su scheletri importati. L'IA nemica gestisce aggro e macchine a stati con un recinto di bordo che impedisce agli spawn di sfuggire fuori mappa e una tregua che sospende l'aggressione durante le cutscene. I boss ricevono ciascuno una logica di scontro su misura — poise che non può contare doppio, insidie interne che puniscono il turtling — insieme a un paradigma a sciame-nuvola dove una raffica disperde lo sciame e un risucchio lo raggruppa per una finestra di pieno danno, e scontri in aria che costringono la camera a guardare in alto.",
+        milestones: [
+          "Pipeline di rig riutilizzabile per i mostri: sette piloti archetipo, catena di asset mista",
+          "IA nemica: macchine aggro/a stati, recinto di bordo, tregua in cutscene",
+          "Scontri coi boss su misura: poise (senza conteggio doppio), insidie anti-turtling",
+          "Paradigma a sciame-nuvola (disperdi/raggruppa) + camera di combattimento in aria",
+          "Tuning del roster completo dei boss + effetti sonori dei nemici rimanenti",
+        ],
+      },
+      "gw-cutscenes": {
+        title: "Cutscene & Voce",
+        summary: "Un sistema di cutscene guidato da un formato di specifica scritto, con scene doppiate normalizzate a un obiettivo di loudness coerente e sottotitoli cablati da file di didascalie temporizzate. La regia vive nei dettagli: personaggi rivelati a metà passo anziché congelati in una posa (la camminata parte un battito prima della dissolvenza in entrata), continuità della camera d'arrivo così che il controllo torni pulito, e una tregua che regola l'aggressione dei nemici mentre una scena è in corso così che nulla entri nell'inquadratura.",
+        milestones: [
+          "Formato di specifica delle cutscene che guida le scene scriptate",
+          "Scene doppiate a un obiettivo di loudness normalizzato + sottotitoli cablati",
+          "Timing di rivelazione a metà passo + continuità della camera d'arrivo",
+          "Regolazione della tregua dei nemici in cutscene",
+          "Scrittura delle scene rimanenti + passata completa di doppiaggio",
+        ],
+      },
+      "gw-systems": {
+        title: "Sistemi, Salvataggio & UI",
+        summary: "Il tessuto connettivo: un sistema di salvataggio a tre slot con stato per slot più una galleria globale e un reset da capo, glifi di input consapevoli del dispositivo che scambiano dal vivo fra prompt di tastiera e controller, e un harness di validazione GDScript headless che verifica il parsing dell'intera base di codice fuori dall'editor. L'UI pende deliberatamente verso il JRPG anziché la dashboard — arrotondata, calma, effetti sonori organici — con catene di focus che si avvolgono ai bordi delle liste, dimensionamento esplicito delle etichette per schivare le trappole di min-size di Godot, navigazione a ping delle missioni, e una vetrina del negozio rielaborata.",
+        milestones: [
+          "Salvataggio a tre slot: stato per slot + galleria globale + reset da capo",
+          "Glifi di input consapevoli del dispositivo (tastiera/controller, scambio dal vivo)",
+          "Harness di validazione parsing GDScript headless sull'intera base di codice",
+          "UI in salsa JRPG: catene di focus avvolgenti, ping delle missioni, rework del negozio",
+          "Passata completa di rifinitura UI/UX pre-pubblicazione",
+        ],
+      },
+      // PROJECTS-IT-END
+    },
+  },
+};

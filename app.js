@@ -17,10 +17,39 @@
     }[c]));
   }
 
+  /* ---------- i18n ----------
+     Translation tables live in data.js (I18N[lang]); English is the base,
+     and any missing string falls back to the source. Content is keyed by the
+     platform/project id; chrome strings by their English text. */
+
+  function L() {
+    return (typeof I18N !== "undefined" && I18N[state.lang]) || null;
+  }
+  /* Chrome string: look up the English source in ui, else return it. */
+  function tUI(s) {
+    const l = L();
+    return (l && l.ui && l.ui[s] != null) ? l.ui[s] : s;
+  }
+  /* Simple table (types/statuses/rarities): key → string. */
+  function tr(cat, key, fallback) {
+    const l = L();
+    return (l && l[cat] && l[cat][key] != null) ? l[cat][key] : fallback;
+  }
+  /* Content field on a platform/project, by id. milestones/links come back
+     as parallel arrays of translated strings (indexed like the source). */
+  function tContent(bag, obj, field) {
+    const l = L();
+    const t = l && l[bag] && l[bag][obj.id];
+    return (t && t[field] != null) ? t[field] : obj[field];
+  }
+  const tPlatform = (p, f) => tContent("platforms", p, f);
+  const tProject = (q, f) => tContent("projects", q, f);
+
   /* ---------- Header ---------- */
 
   function renderHero() {
-    $("#tagline").textContent = SITE.tagline;
+    const l = L();
+    $("#tagline").textContent = (l && l.site && l.site.tagline) || SITE.tagline;
 
     const total = PROJECTS.length;
     const completed = PROJECTS.filter(p => p.status === "completed").length;
@@ -31,9 +60,9 @@
       [total, "Quests"],
       [completed, "Completed"],
       [legendary, "Legendary"],
-    ].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+    ].map(([n, key]) => `<div class="stat"><b>${n}</b><span>${esc(tUI(key))}</span></div>`).join("");
 
-    $("#footer-updated").textContent = "Codex last inscribed on " + SITE.updated;
+    $("#footer-updated").textContent = tUI("Codex last inscribed on") + " " + SITE.updated;
     renderSupport();
   }
 
@@ -47,13 +76,20 @@
     if (s.kofi)   btns.push(`<a class="support-btn" href="${esc(s.kofi)}" target="_blank" rel="noopener noreferrer">☕ Ko-fi</a>`);
     if (s.paypal) btns.push(`<a class="support-btn" href="${esc(s.paypal)}" target="_blank" rel="noopener noreferrer">PayPal</a>`);
     el.innerHTML = btns.length
-      ? `<span class="support-label">If a tale here was worth a coin</span>${btns.join("")}`
+      ? `<span class="support-label">${esc(tUI("If a tale here was worth a coin"))}</span>${btns.join("")}`
       : "";
   }
 
   /* ---------- Language switcher ----------
-     Scaffolding only: the control persists a choice and re-renders.
-     Translation tables plug into render() here once authored (next: Italian). */
+     The control persists a choice and re-renders the whole codex. Language
+     names are themselves localized (English → "Inglese" when Italian is on). */
+
+  function langLabel(l) {
+    if (l.label && typeof l.label === "object") {
+      return l.label[state.lang] || l.label.en || l.code;
+    }
+    return l.label || l.code;
+  }
 
   function renderLangSwitch() {
     const sel = $("#lang-select");
@@ -61,31 +97,62 @@
     const saved = localStorage.getItem("sr-lang");
     if (saved && LANGUAGES.some(l => l.code === saved)) state.lang = saved;
     sel.innerHTML = LANGUAGES.map(l =>
-      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(l.label)}</option>`
+      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(langLabel(l))}</option>`
     ).join("");
     document.documentElement.lang = state.lang;
     sel.addEventListener("change", () => {
       state.lang = sel.value;
       localStorage.setItem("sr-lang", state.lang);
-      document.documentElement.lang = state.lang;
-      render();
+      renderAll();
     });
+  }
+
+  /* Static chrome carried in the HTML: swap textContent / placeholder by the
+     English source string stored in data-i18n / data-i18n-ph. */
+  function applyChrome() {
+    document.documentElement.lang = state.lang;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      el.textContent = tUI(el.getAttribute("data-i18n"));
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      el.setAttribute("placeholder", tUI(el.getAttribute("data-i18n-ph")));
+    });
+  }
+
+  /* Re-render everything that carries language (used on a language change). */
+  function renderAll() {
+    applyChrome();
+    renderLangSwitchLabels();
+    renderHero();
+    renderTypeChips();
+    render();
+  }
+
+  /* Refresh only the option labels in the switcher (not the listener). */
+  function renderLangSwitchLabels() {
+    const sel = $("#lang-select");
+    if (!sel || typeof LANGUAGES === "undefined") return;
+    sel.innerHTML = LANGUAGES.map(l =>
+      `<option value="${esc(l.code)}"${l.code === state.lang ? " selected" : ""}>${esc(langLabel(l))}</option>`
+    ).join("");
   }
 
   /* ---------- Filters ---------- */
 
   function renderTypeChips() {
     const group = $("#type-group");
-    const chips = [["all", "All Quests"]].concat(Object.entries(TYPES));
+    const chips = [["all", tUI("All Quests")]]
+      .concat(Object.keys(TYPES).map(key => [key, tr("types", key, TYPES[key])]));
     group.innerHTML = chips.map(([key, label]) =>
-      `<button class="chip chip-type${key === "all" ? " active" : ""}" data-type="${key}">${esc(label)}</button>`
+      `<button class="chip chip-type${key === state.type ? " active" : ""}" data-type="${key}">${esc(label)}</button>`
     ).join("");
   }
 
   function matchesFilters(q, platform) {
     if (state.type !== "all" && q.type !== state.type) return false;
     if (state.query) {
-      const hay = [q.title, q.summary, platform.name, platform.maker, TYPES[q.type] || ""]
+      const hay = [tProject(q, "title"), tProject(q, "summary"), platform.name,
+                   platform.maker, tr("types", q.type, TYPES[q.type] || "")]
         .join(" ").toLowerCase();
       if (!hay.includes(state.query)) return false;
     }
@@ -96,42 +163,56 @@
 
   function questCard(q) {
     const st = STATUSES[q.status] || STATUSES.accepted;
+    const stLabel = tr("statuses", q.status, st.label);
+    const title = tProject(q, "title");
+
     const badges = (q.badges || [])
-      .map(id => BADGES[id])
-      .filter(Boolean)
-      .map(b => `<span class="badge" title="${esc(b.label)} — ${esc(b.desc)}">${b.icon} ${esc(b.label)}</span>`)
+      .filter(id => BADGES[id])
+      .map(id => {
+        const b = BADGES[id];
+        const tb = (L() && L().badges && L().badges[id]) || {};
+        const label = tb.label || b.label;
+        const desc = tb.desc || b.desc;
+        return `<span class="badge" title="${esc(label)} — ${esc(desc)}">${b.icon} ${esc(label)}</span>`;
+      })
       .join("");
 
+    const mLabels = tProject(q, "milestones"); // parallel array of strings, or source objects
     const milestones = (q.milestones || []).length ? `
       <details class="milestones">
-        <summary>Milestones (${q.milestones.filter(m => m.done).length}/${q.milestones.length})</summary>
-        <ul>${q.milestones.map(m => `<li class="${m.done ? "done" : ""}">${esc(m.label)}</li>`).join("")}</ul>
+        <summary>${esc(tUI("Milestones"))} (${q.milestones.filter(m => m.done).length}/${q.milestones.length})</summary>
+        <ul>${q.milestones.map((m, i) => {
+          const label = (Array.isArray(mLabels) && typeof mLabels[i] === "string") ? mLabels[i] : m.label;
+          return `<li class="${m.done ? "done" : ""}">${esc(label)}</li>`;
+        }).join("")}</ul>
       </details>` : "";
 
     const shots = (q.screenshots || []).length ? `
       <div class="shots">${q.screenshots.map(s =>
-        `<img src="${esc(s)}" alt="Screenshot of ${esc(q.title)}" loading="lazy" data-lightbox>`
+        `<img src="${esc(s)}" alt="${esc(tUI("Screenshot of"))} ${esc(title)}" loading="lazy" data-lightbox>`
       ).join("")}</div>` : "";
 
+    const tLinks = tProject(q, "links"); // parallel array of translated labels, or source objects
     const linkItems = [];
-    if (q.repo) linkItems.push(`<a href="${esc(q.repo)}" target="_blank" rel="noopener">⟡ View on GitHub</a>`);
-    (q.links || []).forEach(l => {
-      linkItems.push(`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`);
+    if (q.repo) linkItems.push(`<a href="${esc(q.repo)}" target="_blank" rel="noopener">⟡ ${esc(tUI("View on GitHub"))}</a>`);
+    (q.links || []).forEach((l, i) => {
+      const label = (Array.isArray(tLinks) && typeof tLinks[i] === "string") ? tLinks[i] : l.label;
+      linkItems.push(`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(label)}</a>`);
     });
     const repo = linkItems.length ? `<div class="quest-links">${linkItems.join(" &nbsp;·&nbsp; ")}</div>` : "";
 
     return `
       <article class="quest${q.status === "completed" ? " completed-glow" : ""}">
         <div class="quest-top">
-          <h4>${esc(q.title)}</h4>
-          <span class="type-tag">${esc(TYPES[q.type] || q.type)}</span>
+          <h4>${esc(title)}</h4>
+          <span class="type-tag">${esc(tr("types", q.type, TYPES[q.type] || q.type))}</span>
         </div>
-        <div class="status-line ${st.cls}"><span class="status-dot"></span>${esc(st.label)}</div>
+        <div class="status-line ${st.cls}"><span class="status-dot"></span>${esc(stLabel)}</div>
         <div class="xp">
           <div class="xp-fill" data-progress="${Math.max(0, Math.min(100, q.progress || 0))}"></div>
           <div class="xp-label">${Math.max(0, Math.min(100, q.progress || 0))}%</div>
         </div>
-        <p class="quest-summary">${esc(q.summary)}</p>
+        <p class="quest-summary">${esc(tProject(q, "summary"))}</p>
         ${milestones}
         ${badges ? `<div class="badges">${badges}</div>` : ""}
         ${shots}
@@ -141,18 +222,20 @@
 
   function platformSection(p, quests) {
     const rar = RARITIES[p.rarity] || RARITIES.common;
+    const rarLabel = tr("rarities", p.rarity, rar.label);
+    const blurb = tPlatform(p, "blurb");
     const questHtml = quests.length
       ? quests.map(questCard).join("")
-      : `<div class="quests-empty">No quests inscribed for this relic yet.</div>`;
+      : `<div class="quests-empty">${esc(tUI("No quests inscribed for this relic yet."))}</div>`;
 
     return `
       <section class="platform" style="--rarity: var(--r-${esc(p.rarity)})">
         <header class="platform-crest">
           <h3>${esc(p.name)}</h3>
           <span class="platform-meta">${esc(p.maker)} · ${p.year}</span>
-          <span class="rarity-tag">${esc(rar.label)}</span>
+          <span class="rarity-tag">${esc(rarLabel)}</span>
         </header>
-        ${p.blurb ? `<div class="platform-blurb">${esc(p.blurb)}</div>` : ""}
+        ${blurb ? `<div class="platform-blurb">${esc(blurb)}</div>` : ""}
         <div class="quests">${questHtml}</div>
       </section>`;
   }
@@ -167,7 +250,7 @@
     })).filter(entry => filtering ? entry.quests.length > 0 : true);
 
     if (!visible.length) {
-      codex.innerHTML = `<div class="codex-empty">The codex holds no such quest… try another incantation.</div>`;
+      codex.innerHTML = `<div class="codex-empty">${esc(tUI("The codex holds no such quest… try another incantation."))}</div>`;
       return;
     }
 
@@ -185,11 +268,15 @@
       });
       [...byGen.keys()].sort((a, b) => a - b).forEach(gen => {
         const info = GENERATIONS[gen] || { num: gen, era: "" };
+        const tg = (L() && L().generations && L().generations[gen]) || {};
+        const heading = tg.title || info.title ||
+          (tUI("Generation") + " " + info.num);
+        const era = tg.era != null ? tg.era : info.era;
         html += `
           <div class="gen-header">
-            <h2>${esc(info.title || "Generation " + info.num)}</h2>
+            <h2>${esc(heading)}</h2>
             <div class="rule"></div>
-            ${info.era ? `<span class="era">${esc(info.era)}</span>` : ""}
+            ${era ? `<span class="era">${esc(era)}</span>` : ""}
           </div>`;
         byGen.get(gen)
           .sort((a, b) => a.platform.name.localeCompare(b.platform.name))
@@ -263,6 +350,7 @@
   }
 
   renderLangSwitch();
+  applyChrome();
   renderHero();
   renderTypeChips();
   wireEvents();
