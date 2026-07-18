@@ -392,7 +392,7 @@ const PROJECTS = [
       { label: "Full battle engine with intent-fixed spells; 3 banking bugs open", done: false },
     ],
     badges: ["toolchain", "first-boot", "audio-unlocked"],
-    screenshots: [],
+    screenshots: ["assets/coleco-ff1/1-charcreation.png", "assets/coleco-ff1/2-battle.png"],
     repo: null,
   },
 
@@ -414,7 +414,7 @@ const PROJECTS = [
       { label: "Demo-with-combat to the Pravoka bridge · full POKEY soundtrack", done: false },
     ],
     badges: ["toolchain", "first-boot", "disasm", "audio-unlocked"],
-    screenshots: [],
+    screenshots: ["assets/7800-ff1/1-overworld.png", "assets/7800-ff1/2-garland.png"],
     repo: null,
   },
 
@@ -531,7 +531,7 @@ const PROJECTS = [
       { label: "Walkability, towns, password save, battles — the RPG itself", done: false },
     ],
     badges: ["toolchain", "first-boot", "audio-unlocked", "disasm"],
-    screenshots: [],
+    screenshots: ["assets/vis-ff1/1-intro-legend.png", "assets/vis-ff1/2-title.png", "assets/vis-ff1/3-party-select.png", "assets/vis-ff1/4-overworld.png"],
     repo: null,
   },
 
@@ -1281,7 +1281,7 @@ const PROJECTS = [
       { label: "First shippable demo — the FF1 sibling race", done: false },
     ],
     badges: ["toolchain"],
-    screenshots: [],
+    screenshots: ["assets/smaky-ff1/1-class-list.png"],
     repo: null,
   },
 
