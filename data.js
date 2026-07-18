@@ -342,6 +342,15 @@ const PLATFORMS = [
     blurb: "The Swiss school computer: a 68000 with green-phosphor 640×400, multitasking PSos in 1983, roughly 1,500 units ever built — for classrooms of French-speaking Switzerland. Yes, really.",
   },
   {
+    id: "x68000",
+    name: "Sharp X68000",
+    maker: "Sharp",
+    year: 1987,
+    gen: 91,
+    rarity: "rare",
+    blurb: "Sharp's Japan-only dream machine: a Motorola 68000 in an iconic twin-tower 'manga' case, with arcade-grade custom silicon — hardware PCG sprites, a YM2151 FM synth alongside ADPCM, and 65,536-colour modes — all running Hudson's Human68k. The home computer Capcom trusted with its arcade ports, and the demoscene never let go of.",
+  },
+  {
     id: "forge",
     name: "The Chip Forge",
     maker: "Browser-based · no install",
@@ -1276,6 +1285,28 @@ const PROJECTS = [
     repo: null,
   },
 
+  /* ---- Sharp X68000 ---- */
+  {
+    id: "x68000-poc",
+    title: "First Light, First Note — Sharp X68000",
+    platform: "x68000",
+    type: "homebrew",
+    status: "ongoing",
+    progress: 35,
+    summary: "A modern homebrew foundation for Sharp's arcade-grade home computer, built and validated in a single sitting. A current GCC cross-compiler (elf2x68k) is bent to emit Human68k .X executables — with the crt0's MPU/FPU check defused so they run on a plain 68000 — wrapped in a ~40-second edit→compile→play loop stitched from home-made tooling: FAT12 disk injection, an auto-run disk image, and launch-plus-screenshot automation over the XM6 emulator and run68x. Then the machine is proven subsystem by subsystem: the Human68k API (DOS and IOCS calls, native file I/O, date and time), a 512×512 65,536-colour linear-GVRAM gradient, hardware PCG sprites steered by keyboard and joystick, and the YM2151 (OPM) FM synth singing a clean arpeggio. It all converges in the payoff — a playable FM instrument: move a colour-shifting sprite to pick notes across a C-major scale, its hue the pitch and its height the volume. Foundations laid; the real climb is a project to build on them.",
+    milestones: [
+      { label: "Modern GCC toolchain (elf2x68k) emitting Human68k .X — crt0 MPU/FPU check defused for a base 68000", done: true },
+      { label: "~40 s edit→compile→play loop: home-made FAT12 injection, auto-run disk, launch + screenshot automation", done: true },
+      { label: "Human68k API exercised: DOS & IOCS calls, native file I/O, date/time, command line", done: true },
+      { label: "Graphics: 512×512 65,536-colour linear GVRAM + hardware PCG sprites on keyboard/joystick", done: true },
+      { label: "YM2151 (OPM) FM synthesis, and the payoff — a playable FM instrument (hue = pitch, height = volume)", done: true },
+      { label: "A real project on the foundation — a game, a demo, or a deeper instrument", done: false },
+    ],
+    badges: ["toolchain", "first-boot", "audio-unlocked"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- The PC ---- */
   {
     id: "pc-silver-re",
@@ -1598,6 +1629,7 @@ const I18N = {
       gba: { blurb: "Un ARM7TDMI a 16,78 MHz con 256 KB di work RAM — la console tascabile che continua a dire sì a cose che davvero non dovrebbe riuscire a far girare." },
       pc: { name: "Il PC", maker: "IBM PC e compatibili", blurb: "Non hardware oscuro — la macchina dell'infanzia in persona. Qui le reliquie sono i giochi: motori di fine anni '90 con i simboli di debug lasciati dentro, cifrari da violare e sistemi di party in attesa di diventare qualcosa di più." },
       smaky: { blurb: "Il computer scolastico svizzero: un 68000 con 640×400 al fosforo verde, PSos multitasking nel 1983, all'incirca 1.500 unità mai costruite — per le aule della Svizzera francese. Sì, davvero." },
+      x68000: { blurb: "La macchina dei sogni solo-Giappone di Sharp: un Motorola 68000 nell'iconico case a doppia torre 'manga', con silicio custom di livello arcade — sprite hardware PCG, un sintetizzatore FM YM2151 accanto all'ADPCM, e modi a 65.536 colori — il tutto sotto lo Human68k di Hudson. Il computer di casa a cui Capcom affidava le sue conversioni arcade, e che la demoscene non ha mai mollato." },
       forge: { name: "La Fucina dei Chip", maker: "Basato su browser · nessuna installazione", blurb: "Non una console: il banco di lavoro. Strumenti forgiati nel browser al servizio delle altre reliquie — e dei musicisti che scrivono per loro." },
       "great-work": { name: "Un Action-RPG Originale", maker: "Godot 4.6 · IP originale", blurb: "Non una reliquia, e non una conversione: un action-RPG originale in tempo reale costruito in Godot 4.6 — l'impresa più grande di tutto questo codice di un ordine di grandezza. Circa 108.000 righe di GDScript su oltre 500 script e oltre 200 scene, cresciute in più di 170 sessioni di sviluppo. Tutto ciò che segue è un unico gioco." },
       // PLATFORMS-IT-END
@@ -2090,6 +2122,18 @@ const I18N = {
           "Prima demo spedibile — la gara fra i gemelli di FF1",
         ],
       },
+      "x68000-poc": {
+        title: "Prima luce, prima nota — Sharp X68000",
+        summary: "Una base homebrew moderna per il computer di casa di livello arcade di Sharp, costruita e validata in una sola sessione. Un cross-compilatore GCC attuale (elf2x68k) è piegato a produrre eseguibili .X di Human68k — con il check MPU/FPU del crt0 disinnescato perché girino su un 68000 puro — avvolto in un loop edit→compila→gioca da ~40 secondi cucito con tooling fatto in casa: iniezione su disco FAT12, un'immagine disco auto-avviante, e automazione di lancio-più-screenshot sopra l'emulatore XM6 e run68x. Poi la macchina è provata sottosistema per sottosistema: l'API Human68k (chiamate DOS e IOCS, I/O nativo su file, data e ora), un gradiente 512×512 a 65.536 colori su GVRAM lineare, sprite hardware PCG pilotati da tastiera e joystick, e il sintetizzatore FM YM2151 (OPM) che canta un arpeggio pulito. Tutto converge nella ricompensa — uno strumento FM giocabile: muovi uno sprite che cambia colore per scegliere le note su una scala di Do maggiore, la sua tinta è l'intonazione e la sua altezza il volume. Fondamenta gettate; la vera salita è un progetto da costruirci sopra.",
+        milestones: [
+          "Toolchain GCC moderna (elf2x68k) che produce .X di Human68k — check MPU/FPU del crt0 disinnescato per un 68000 base",
+          "Loop edit→compila→gioca da ~40 s: iniezione FAT12 fatta in casa, disco auto-avviante, automazione lancio + screenshot",
+          "API Human68k esercitata: chiamate DOS e IOCS, I/O nativo su file, data/ora, riga di comando",
+          "Grafica: GVRAM lineare 512×512 a 65.536 colori + sprite hardware PCG su tastiera/joystick",
+          "Sintesi FM YM2151 (OPM), e la ricompensa — uno strumento FM giocabile (tinta = intonazione, altezza = volume)",
+          "Un vero progetto sulle fondamenta — un gioco, una demo, o uno strumento più profondo",
+        ],
+      },
       "pc-silver-re": {
         title: "Silver (1999) — Archeologia del Motore, verso il Co-op",
         summary: "Uno scavo completo nell'action-RPG del 1999 di Spiral House: ogni formato di scena decodificato (308 fondali con occlusione in profondità pixel-perfect), il cifrario dei dialoghi a XOR scorrevole violato (2.828 righe recuperate), modelli dei personaggi ricostruiti con scheletri e animazioni — fino a scoprire che i quaternioni su disco sono memorizzati (z,x,y,w) — e la walkmesh di tutte le 287 scene analizzata. Anche la build Dreamcast è stata disassemblata, per risolvere un mistero del sistema di input. Obiettivo finale: una mod a patch di codice che porti il gioco cooperativo al party di 3 membri. Solo documentazione e metodologia — nessun asset, nessun dump di codice; il gioco è ancora in vendita.",
@@ -2314,6 +2358,7 @@ const I18N = {
       gba: { blurb: "256 KBのワークRAMを持つ16.78 MHzのARM7TDMI — 本来なら動かせるはずのないものに、次々と『イエス』と言い続けるポケットコンソール。" },
       pc: { name: "PC", maker: "IBM PC と互換機", blurb: "無名のハードウェアではない — 子ども時代のマシンそのもの。ここでの遺物はゲームだ：デバッグシンボルが残された90年代末のエンジン、破るべき暗号、そしてもっと大きな何かになるのを待つパーティシステム。" },
       smaky: { blurb: "スイスの学校用コンピュータ：640×400の緑リン光を持つ68000、1983年にしてマルチタスクのPSos、生産台数はおよそ1,500台きり — フランス語圏スイスの教室のために。ええ、本当に。" },
+      x68000: { blurb: "シャープの日本専用の夢のマシン：象徴的な二本塔の『マンガ』筐体に収まったMotorola 68000、アーケード級のカスタムシリコン — ハードウェアPCGスプライト、ADPCMと並ぶYM2151 FM音源、そして65,536色モード — すべてがハドソンのHuman68kの上で動く。カプコンがアーケード移植を託した家庭用コンピュータ、そしてデモシーンが決して手放さなかった一台。" },
       forge: { name: "チップの鍛冶場", maker: "ブラウザ上 · インストール不要", blurb: "コンソールではない：作業台だ。ほかの遺物たち — そしてそのために書く音楽家たち — に仕えるべく、ブラウザの中で鍛えられた道具たち。" },
       "great-work": { name: "オリジナルのアクションRPG", maker: "Godot 4.6 · オリジナルIP", blurb: "遺物でも移植でもない：Godot 4.6で作られたオリジナルのリアルタイム・アクションRPG — このコデックス全体で桁違いに最大の試み。500超のスクリプトと200超のシーンにまたがる約108,000行のGDScriptが、170を超える開発セッションを経て育った。以下のすべては一つのゲームだ。" },
       // PLATFORMS-JA-END
@@ -2804,6 +2849,18 @@ const I18N = {
           "モノ・ディスプレイに描画するFF1フォントのパイプライン",
           "パーティ生成、80×60のフィールド、ディザリングのタイルアート",
           "最初の出荷可能なデモ — FF1兄弟レース",
+        ],
+      },
+      "x68000-poc": {
+        title: "最初の光、最初の音 — Sharp X68000",
+        summary: "シャープのアーケード級の家庭用コンピュータのための、現代的な自作ソフトの土台を、一度の作業で構築・検証。現代のGCCクロスコンパイラ（elf2x68k）を、Human68kの.X実行ファイルを吐くように仕込み — crt0のMPU/FPUチェックを無効化して素の68000でも動くようにし — 自作のツール群で編集→コンパイル→プレイの約40秒のループに包む：FAT12ディスクへの注入、自動起動のディスクイメージ、そしてXM6エミュレータとrun68xの上での起動＋スクリーンショットの自動化。それからマシンをサブシステムごとに実証する：Human68k API（DOSとIOCSの呼び出し、ネイティブのファイルI/O、日付と時刻）、512×512・65,536色のリニアGVRAMのグラデーション、キーボードとジョイスティックで動かすハードウェアPCGスプライト、そしてきれいなアルペジオを歌うYM2151（OPM）のFM音源。すべては報酬へと収束する — 演奏できるFM楽器：色の変わるスプライトを動かしてハ長調の音階の音を選び、その色相が音程、高さが音量になる。土台は据えた；本当の登攀は、その上に築く一つのプロジェクトだ。",
+        milestones: [
+          "現代的なGCCツールチェーン（elf2x68k）がHuman68kの.Xを出力 — 素の68000のためにcrt0のMPU/FPUチェックを無効化",
+          "約40秒の編集→コンパイル→プレイのループ：自作のFAT12注入、自動起動ディスク、起動＋スクリーンショットの自動化",
+          "Human68k APIを行使：DOSとIOCSの呼び出し、ネイティブのファイルI/O、日付/時刻、コマンドライン",
+          "グラフィック：512×512・65,536色のリニアGVRAM + キーボード/ジョイスティックのハードウェアPCGスプライト",
+          "YM2151（OPM）のFM音源、そして報酬 — 演奏できるFM楽器（色相＝音程、高さ＝音量）",
+          "土台の上の本当のプロジェクト — ゲーム、デモ、あるいはより深い楽器",
         ],
       },
       "pc-silver-re": {
