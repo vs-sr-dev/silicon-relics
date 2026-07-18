@@ -436,7 +436,7 @@ const PROJECTS = [
       { label: "The author's blessing — then, maybe, the world", done: false },
     ],
     badges: ["toolchain", "first-boot"],
-    screenshots: [],
+    screenshots: ["assets/gx4000-jetpack/1-level-render.png"],
     repo: null,
   },
 
@@ -576,7 +576,7 @@ const PROJECTS = [
       { label: "Thin-client homebrew browser architecture (PPF format)", done: true },
     ],
     badges: ["world-first", "disasm", "first-boot"],
-    screenshots: [],
+    screenshots: ["assets/pippin-homebrew/1-ping.png", "assets/pippin-homebrew/2-frogfind.png"],
     repo: "https://github.com/vs-sr-dev/pippin-homebrew",
   },
 
@@ -834,7 +834,7 @@ const PROJECTS = [
       { label: "Rounds, stun bar, arena hazards, victory poses", done: false },
     ],
     badges: ["first-boot", "toolchain"],
-    screenshots: [],
+    screenshots: ["assets/3do-omf2097/1-pilot-select.png", "assets/3do-omf2097/2-versus.png", "assets/3do-omf2097/3-combat.png"],
     repo: "https://github.com/vs-sr-dev/3do-omf2097",
   },
 
@@ -1194,7 +1194,7 @@ const PROJECTS = [
       { label: "Music, remaining islands' voices, full-game validation", done: false },
     ],
     badges: ["real-hardware", "toolchain", "first-boot", "audio-unlocked"],
-    screenshots: [],
+    screenshots: ["assets/ds-lba1/1-behavior-select.png"],
     repo: null,
   },
 
