@@ -600,6 +600,27 @@ const PROJECTS = [
     screenshots: [],
     repo: null,
   },
+  {
+    id: "pippin-lba1",
+    title: "Little Big Adventure — Bandai Pippin",
+    platform: "pippin",
+    type: "porting",
+    status: "ongoing",
+    progress: 40,
+    summary: "Twinsen's adventure carried onto Apple and Bandai's short-lived console — the newest runner in the long LBA saga, and a sibling of the CD32 port whose engine it borrows. The whole LBA1 codebase (the open community source, on the CD32 base where the big-endian sweep was already done) compiles through Retro68/PowerPC into a single .pef with zero engine-source edits, and runs on DingusPPC. The climb is memory and plumbing: a Pippin app gets only ~3.4 MB after Mac OS, so the render drops to 320×240 like the CD32 — and the single biggest win was shedding the C++ console runtime, which alone freed ~1.34 MB of heap for the pure-C engine. Around it, a QuickDraw 320×240 present, and AppleJack gamepad input driven asynchronously from a 50 Hz Time Manager task — mirroring the original DOS interrupt, because the engine's busy-waits poll input without ever presenting a frame; plus dirty-rectangle blitting, so the dialogue typewriter stops repainting the whole screen for every character. Today it boots to the Mac desktop, into the main menu in correct colours, through New Game and the entire Twinsun intro — its story slides advancing on a button press — and into gameplay: Twinsen rendered in his cell, correct palette, walking under AppleJack control. Two big-endian body-render bugs had to fall first (structural fields and rotated vertices read little-endian) before the 3D hero appeared instead of hanging. The FLA intro movies are stubbed for now — not yet staged on the disc. Still ahead: render polish (the view sits at 2× zoom, mesh scanlines, a movement trail, roughly double speed), the FLA movies, and the road on past the cell.",
+    milestones: [
+      { label: "Full LBA1 engine (CD32 base, 59 C files) compiles and links under Retro68/PowerPC — zero engine-source edits", done: true },
+      { label: "Boots on DingusPPC to the Mac desktop; render dropped to 320×240 to fit the ~3.4 MB app budget", done: true },
+      { label: "Main menu renders in correct colours — heap freed by shedding the C++ console runtime", done: true },
+      { label: "AppleJack gamepad input, async from a 50 Hz Time Manager task — menu navigation to New Game", done: true },
+      { label: "The whole New-Game intro plays: Twinsun story slides advance on a button press", done: true },
+      { label: "Gameplay renders: Twinsen in his cell, correct palette, walking (big-endian body fixes)", done: true },
+      { label: "Render polish (2× zoom, mesh scanlines, trail, speed), the FLA movies, scene-to-scene — the road ahead", done: false },
+    ],
+    badges: ["toolchain", "first-boot"],
+    screenshots: [],
+    repo: null,
+  },
 
   /* ---- Bandai Playdia ---- */
   {
@@ -1761,6 +1782,19 @@ const I18N = {
           "Sincronia video, scalatura a 66 animali (violazione del DB VIS), release BYOA",
         ],
       },
+      "pippin-lba1": {
+        title: "Little Big Adventure — Bandai Pippin",
+        summary: "L'avventura di Twinsen portata sulla console effimera di Apple e Bandai — l'ultima corridora della lunga saga LBA, e sorella della conversione CD32 di cui prende in prestito il motore. L'intero codice di LBA1 (il sorgente open della community, sulla base CD32 dove la bonifica big-endian era già fatta) compila attraverso Retro68/PowerPC in un unico .pef con zero modifiche al sorgente del motore, e gira su DingusPPC. La salita è memoria e idraulica: un'app Pippin ottiene solo ~3,4 MB dopo Mac OS, così il rendering scende a 320×240 come sul CD32 — e la vittoria più grande è stata liberarsi del runtime console C++, che da solo ha restituito ~1,34 MB di heap al motore in puro C. Attorno, un present QuickDraw 320×240 e l'input del gamepad AppleJack pilotato in modo asincrono da un task Time Manager a 50 Hz — a specchio dell'interrupt DOS originale, perché le attese attive del motore leggono l'input senza mai presentare un fotogramma; più il blit a rettangoli sporchi, così la macchina da scrivere dei dialoghi smette di ridipingere tutto lo schermo per ogni carattere. Oggi si avvia al desktop Mac, entra nel menu principale coi colori giusti, attraversa New Game e tutta l'intro di Twinsun — le sue slide di storia che avanzano alla pressione di un tasto — e arriva al gioco: Twinsen renderizzato nella sua cella, palette corretta, che cammina sotto il controllo dell'AppleJack. Due bug di rendering del corpo big-endian sono dovuti cadere prima (campi strutturali e vertici ruotati letti little-endian) perché l'eroe 3D apparisse invece di bloccarsi. I filmati d'intro FLA sono per ora stubbati — non ancora messi sul disco. Ancora davanti: rifiniture di rendering (la vista è a zoom 2×, scanline sulla mesh, una scia di movimento, velocità circa doppia), i filmati FLA, e la strada oltre la cella.",
+        milestones: [
+          "Motore LBA1 completo (base CD32, 59 file C) compila e linka sotto Retro68/PowerPC — zero modifiche al sorgente",
+          "Boota su DingusPPC al desktop Mac; rendering sceso a 320×240 per stare nel budget app ~3,4 MB",
+          "Il menu principale si disegna coi colori giusti — heap liberato togliendo il runtime console C++",
+          "Input gamepad AppleJack, asincrono da un task Time Manager a 50 Hz — navigazione menu fino a New Game",
+          "Gira tutta l'intro di New Game: le slide di storia di Twinsun avanzano alla pressione di un tasto",
+          "Il gioco si disegna: Twinsen nella sua cella, palette corretta, che cammina (fix corpo big-endian)",
+          "Rifiniture di rendering (zoom 2×, scanline mesh, scia, velocità), i filmati FLA, scena-a-scena — la strada avanti",
+        ],
+      },
       "playdia-ak8000": {
         title: "L'Assedio dell'AK8000 — Bandai Playdia",
         summary: "L'assedio più puro del codice: ogni chip del Playdia è documentato tranne uno — l'Asahi Kasei AK8000, il decoder custom attraverso cui deve passare ogni fotogramma di video, con zero documentazione pubblica e zero emulazione. Trentacinque sessioni ne hanno smontato le mura esterne strato per strato: prima è caduta l'anatomia del disco (un multiplex CD-XA che nasconde ~7 ore di audio ADPCM su sette titoli retail, estratte con un decoder da zero là dove ogni tool di ripping fallisce in silenzio); poi la traccia cartacea — un gruppo di brevetti Asahi Chemical del dicembre 1992 che si sono rivelati descrivere il progetto stesso del chip; poi lo strato di entropia in sé, una tabella di codici a lunghezza variabile risolta fino a una somma di Kraft perfetta che effettua il parsing del 100% di ogni bitstream testato. Ciò che resta è il mastio più interno: la mappatura dai simboli decodificati ai pixel, dimostrata irrecuperabile dalla sola statistica da scrivania — chiusa a chiave nella mask ROM e nel silicio. La prossima arma ha un nome: hardware. E se mai quel muro dovesse cadere, ciò che sorgerà poi sul Playdia è una storia per un altro giorno.",
@@ -2492,6 +2526,19 @@ const I18N = {
           "オーディオを端から端まで：ADPCMナレーションがSound Manager経由でクリーン",
           "動画：Indeoのフィルムがコーデックなしのフレーム・ストリーミングで完璧な音とともに再生",
           "動画同期、66種の動物への拡張（VISデータベース解読）、BYOAリリース",
+        ],
+      },
+      "pippin-lba1": {
+        title: "リトルビッグアドベンチャー — Bandai Pippin",
+        summary: "トウィンセンの冒険を、アップルとバンダイの短命なコンソールへ運ぶ — 長いLBAサーガの最新の走者にして、そのエンジンを借りるCD32移植の姉妹。LBA1のコード全体（コミュニティのオープンソース、ビッグエンディアン対応がすでに済んでいるCD32ベース上）が、Retro68/PowerPCを通して一つの.pefへ、エンジンソースへの改変ゼロでコンパイルされ、DingusPPC上で動く。登りはメモリと配管だ：PippinのアプリはMac OSのあと約3.4 MBしか得られないので、レンダリングはCD32と同じ320×240へ落とす — そして最大の勝利はC++コンソールランタイムを捨てたこと、それだけで純Cエンジンに約1.34 MBのヒープが戻った。その周りに、QuickDrawの320×240のpresent、そして50 HzのTime Managerタスクから非同期で駆動されるAppleJackゲームパッド入力 — 元のDOS割り込みを映して、というのもエンジンのビジーウェイトはフレームを一度も提示せずに入力を読むからだ；さらにダーティ矩形のブリットで、ダイアログのタイプライタが一文字ごとに画面全体を再描画するのをやめさせる。今日それはMacデスクトップへ起動し、正しい色のメインメニューへ入り、New Gameとトウィンセンのイントロ全体を通り — その物語スライドがボタン押下で進む — そしてゲームプレイへ至る：トウィンセンが独房に描画され、正しいパレットで、AppleJackの操作で歩く。3Dの主人公がハングせずに現れるには、まず二つのビッグエンディアンのボディ描画バグが崩れねばならなかった（構造フィールドと回転頂点をリトルエンディアンで読む）。FLAイントロムービーは今のところスタブ — まだディスクに載せていない。この先にはまだ：レンダリングの仕上げ（視点は2倍ズーム、メッシュのスキャンライン、移動の尾、およそ倍速）、FLAムービー、そして独房の先の道。",
+        milestones: [
+          "LBA1エンジン全体（CD32ベース、59のCファイル）がRetro68/PowerPCでコンパイル・リンク — エンジンソース改変ゼロ",
+          "DingusPPCでMacデスクトップへ起動；約3.4 MBのアプリ予算に収めるためレンダリングを320×240へ",
+          "メインメニューが正しい色で描画 — C++コンソールランタイムを捨ててヒープを解放",
+          "AppleJackゲームパッド入力、50 HzのTime Managerタスクから非同期 — メニュー操作からNew Gameまで",
+          "New Gameのイントロ全体が再生：トウィンセンの物語スライドがボタン押下で進む",
+          "ゲームプレイが描画：トウィンセンが独房に、正しいパレットで、歩く（ビッグエンディアンのボディ修正）",
+          "レンダリングの仕上げ（2倍ズーム、メッシュのスキャンライン、尾、速度）、FLAムービー、シーン間 — この先の道",
         ],
       },
       "playdia-ak8000": {
