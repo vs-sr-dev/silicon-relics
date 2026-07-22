@@ -270,6 +270,15 @@ const PLATFORMS = [
     blurb: "Sega's swan song and homebrew's favourite harbour — KallistiOS territory, VMU saves, and an SH4 that rewards careful code.",
   },
   {
+    id: "wii",
+    name: "Nintendo Wii",
+    maker: "Nintendo",
+    year: 2006,
+    gen: 7,
+    rarity: "common",
+    blurb: "The living-room phenomenon that outsold its whole generation, and one of homebrew's warmest harbours: a 729 MHz Broadway PowerPC beside the Hollywood GPU — overclocked GameCube silicon — thrown wide open by the Homebrew Channel and the devkitPPC/libogc toolchain. Big-endian like its Wii U heir, common as relics come, and friendlier to newcomers than almost any console before it.",
+  },
+  {
     id: "wiiu",
     name: "Nintendo Wii U",
     maker: "Nintendo",
@@ -1098,6 +1107,29 @@ const PROJECTS = [
     repo: null,
   },
 
+  /* ---- Nintendo Wii ---- */
+  {
+    id: "wii-laststory",
+    title: "The Last Story — Cracking the LastWorld Engine",
+    platform: "wii",
+    type: "re",
+    status: "ongoing",
+    progress: 40,
+    summary: "Sakaguchi's Wii swan song — the Mistwalker JRPG that Operation Rainfall fought to bring west — opened up for study, engine and all. No public reverse-engineering of this game seems to exist, so every finding below is, as far as can be verified, new ground. The disc is SLSP01, PAL Multi-5, dual-layer at ~8 GiB, its internal engine named 'LastWorld', shipped as retail build 2350. The real game hides inside recursive pack archives — a .pfs name-tree beside a .pkh index beside a .pk data blob whose files are LZ11-compressed — and the name-to-data mapping runs through a path hash, which is exactly why the text first looked encrypted: the blobs aren't stored in tree order, and only the hash reunites a name with its bytes. That hash fell: CRC-32/BZIP2 over the lowercased path, verified across the packs. Underneath, every string turned out to be plaintext UTF-16BE — and out of it came a consolidated dialogue database: 221 scenes, 16,435 rows, the five PAL languages set beside the original Japanese, more than eight thousand lines carrying a voice ID, with the internal Japanese codenames (Elza, Quark, Kanan) still shadowing the localized heroes (Zael, Dagran, Calista). A whole extraction toolchain was built to get there — a pfs/pkh parser, an LZ11 decompressor, a hash-driven manifest — pulling roughly 54,000 assets out with their true names. And a loose thread glints: the retail disc still carries its entire debug menu — sound test, message test, lip-sync, stage select, battle debug, a level editor, a staff-roll viewer — inside a LastWorld_tools module, a promising thing to reactivate from RE. A study, nothing redistributed. Ahead lies the deeper dig: main.dol under Ghidra, the recursive pack layers, the binary chnkdata formats for models, animation, textures and lip-sync, and the textures out to PNG.",
+    milestones: [
+      { label: "Disc mapped: SLSP01 PAL dual-layer, the LastWorld engine, retail debug build 2350", done: true },
+      { label: "Pack container reversed: .pfs name-tree + .pkh index + .pk LZ11-compressed blob", done: true },
+      { label: "Path hash cracked — CRC-32/BZIP2 over the lowercased path — reuniting name and data", done: true },
+      { label: "Extraction toolchain: pfs/pkh parser, LZ11 decompressor, hash-driven manifest — ~54k assets recovered", done: true },
+      { label: "Dialogue database: 221 scenes, 16,435 rows, six languages side by side — a public first", done: true },
+      { label: "Retail debug menu located: sound / message / lip-sync / stage / battle / level editor", done: true },
+      { label: "main.dol in Ghidra, recursive packs, chnkdata binary formats, textures to PNG, debug-menu activation — the deeper dig", done: false },
+    ],
+    badges: ["disasm", "toolchain"],
+    screenshots: [],
+    repo: null,
+  },
+
   /* ---- Nintendo Wii U ---- */
   {
     id: "wiiu-lba2",
@@ -1646,6 +1678,7 @@ const I18N = {
       ps2: { blurb: "La console più venduta di sempre, e uno dei bersagli homebrew più aperti della sua epoca: l'Emotion Engine e le sue due vector unit, un Graphics Synthesizer nutrito da microcodice VU1 scritto a mano, streaming audsrv e gsKit. Comune come reliquia — ma piegarla al proprio volere, una trappola VU1 alla volta, è tutt'altro." },
       n64: { blurb: "93,75 MHz di MIPS big-endian, 8 KB di cache dati, RDRAM ad alta latenza — e libdragon, la toolchain open source che ha fatto fiorire la sua scena homebrew senza un solo SDK trafugato." },
       dreamcast: { blurb: "Il canto del cigno di Sega e il porto preferito dell'homebrew — territorio KallistiOS, salvataggi VMU e un SH4 che premia il codice curato." },
+      wii: { blurb: "Il fenomeno da salotto che ha superato nelle vendite l'intera sua generazione, e uno dei porti più accoglienti dell'homebrew: un Broadway PowerPC a 729 MHz accanto alla GPU Hollywood — silicio GameCube overcloccato — spalancato dall'Homebrew Channel e dalla toolchain devkitPPC/libogc. Big-endian come la sua erede Wii U, comune come reliquia, e più amichevole coi nuovi arrivati di quasi ogni console prima di lei." },
       wiiu: { blurb: "L'outsider a doppio schermo: PowerPC big-endian, un GamePad con pannello touch e una scena homebrew che non l'ha mai abbandonata." },
       snes: { blurb: "Il re dei 16 bit — comune come reliquia, ma i suoi motori di testo giapponese e i suoi driver sonori custodiscono ancora segreti che vale la pena decifrare." },
       cdi: { blurb: "La televisione interattiva di Philips che non fu: un 68070 con il CDRTOS di OS-9 — nessuna anima bare-metal qui, ma un sistema operativo real-time che pretende moduli fatti a regola d'arte. Ricordata per tutti i giochi sbagliati." },
@@ -2054,6 +2087,19 @@ const I18N = {
           "Stage rimanenti e una passata completa su hardware reale — la strada che verrà",
         ],
       },
+      "wii-laststory": {
+        title: "The Last Story — Craccare il motore LastWorld",
+        summary: "Il canto del cigno di Sakaguchi su Wii — il JRPG Mistwalker che Operation Rainfall lottò per portare in Occidente — aperto per lo studio, motore compreso. Non risulta esistere alcun reverse engineering pubblico di questo gioco, così ogni scoperta qui sotto è, per quanto verificabile, terreno inedito. Il disco è SLSP01, PAL Multi-5, dual-layer a ~8 GiB, il suo motore interno si chiama 'LastWorld', spedito come build retail 2350. Il gioco vero si nasconde dentro archivi pack ricorsivi — un albero-nomi .pfs accanto a un indice .pkh accanto a un blob dati .pk i cui file sono compressi in LZ11 — e la mappatura nome-a-dato passa per un hash di path, che è esattamente il motivo per cui il testo all'inizio sembrava cifrato: i blob non sono salvati nell'ordine dell'albero, e solo l'hash riunisce un nome ai suoi byte. Quell'hash è caduto: CRC-32/BZIP2 sul path minuscolo, verificato attraverso i pack. Sotto, ogni stringa si è rivelata UTF-16BE in chiaro — e ne è uscito un database dialoghi consolidato: 221 scene, 16.435 righe, le cinque lingue PAL affiancate all'originale giapponese, oltre ottomila battute che portano un voice ID, con i codename interni giapponesi (Elza, Quark, Kanan) che ancora ombreggiano gli eroi localizzati (Zael, Dagran, Calista). Un'intera toolchain di estrazione è stata costruita per arrivarci — un parser pfs/pkh, un decompressore LZ11, un manifest guidato dall'hash — tirando fuori circa 54.000 asset coi loro nomi veri. E un filo pende luccicante: il disco retail porta ancora il suo intero menu di debug — sound test, message test, lip-sync, stage select, battle debug, un editor di livelli, un visualizzatore dello staff roll — dentro un modulo LastWorld_tools, una cosa promettente da riattivare via RE. Uno studio, nulla di ridistribuito. Davanti c'è lo scavo più profondo: main.dol sotto Ghidra, gli strati di pack ricorsivi, i formati binari chnkdata per modelli, animazione, texture e lip-sync, e le texture verso PNG.",
+        milestones: [
+          "Disco mappato: SLSP01 PAL dual-layer, il motore LastWorld, build di debug retail 2350",
+          "Container pack reversato: albero-nomi .pfs + indice .pkh + blob .pk compresso in LZ11",
+          "Hash di path craccato — CRC-32/BZIP2 sul path minuscolo — riunisce nome e dato",
+          "Toolchain di estrazione: parser pfs/pkh, decompressore LZ11, manifest via hash — ~54k asset recuperati",
+          "Database dialoghi: 221 scene, 16.435 righe, sei lingue affiancate — una prima pubblica",
+          "Menu di debug retail individuato: sound / message / lip-sync / stage / battle / editor livelli",
+          "main.dol in Ghidra, pack ricorsivi, formati binari chnkdata, texture verso PNG, attivazione del menu debug — lo scavo profondo",
+        ],
+      },
       "wiiu-lba2": {
         title: "Little Big Adventure 2 — Wii U",
         summary: "V1.0: i sorgenti Adeline originali del 1997 che girano nativamente su Wii U — completato dall'inizio alla fine su hardware reale, storia completa, tutte le cutscene e gli FMV, 50–80 fps, audio AX nativo, pannello touch del GamePad per comportamenti e incantesimi, salvataggi con tastiera a schermo. Parità ~99,9% con l'originale.",
@@ -2392,6 +2438,7 @@ const I18N = {
       ps2: { blurb: "史上最も売れたコンソールにして、その時代で最も開かれた自作ソフトの標的の一つ：Emotion Engineと二つのベクターユニット、手書きのVU1マイクロコードで供給されるGraphics Synthesizer、audsrvストリーミングとgsKit。遺物としてはありふれている — だが一つずつVU1の罠を越えて意のままに従わせるのは、まったく別物だ。" },
       n64: { blurb: "93.75 MHzのビッグエンディアンMIPS、8 KBのデータキャッシュ、高レイテンシのRDRAM — そしてlibdragon、一つの流出SDKもなしにその自作シーンを花開かせたオープンソースのツールチェーン。" },
       dreamcast: { blurb: "セガの白鳥の歌にして、自作ソフトの一番のお気に入りの港 — KallistiOSの領土、VMUセーブ、そして丁寧なコードに報いるSH4。" },
+      wii: { blurb: "その世代全体を売上で上回った茶の間の現象にして、自作ソフトの最も温かな港の一つ：729 MHzのBroadway PowerPCがHollywood GPUと並ぶ — オーバークロックされたGameCubeのシリコン — Homebrew ChannelとdevkitPPC/libogcツールチェーンによって大きく開かれた。後継のWii Uと同じくビッグエンディアン、遺物としてはありふれ、そしてそれ以前のほぼどのコンソールよりも新参者に優しい。" },
       wiiu: { blurb: "二画面の負け犬：ビッグエンディアンのPowerPC、タッチパネル付きのGamePad、そして決して見捨てなかった自作シーン。" },
       snes: { blurb: "16ビットの王 — 遺物としてはありふれているが、その日本語テキストエンジンとサウンドドライバは、解読に値する秘密をなお守っている。" },
       cdi: { blurb: "そうはならなかったフィリップスのインタラクティブ・テレビ：OS-9のCDRTOSを走らせる68070 — ここにベアメタルの魂はないが、正しく整形されたモジュールを要求するリアルタイムOSがある。まったく間違ったゲームたちで記憶されている。" },
@@ -2798,6 +2845,19 @@ const I18N = {
           "シリアル越しの実機デバッグ：TAのvbufオーバーフロー + VRAMバンク・クラッシュを特定",
           "ビート同期の戦闘：小数点BPM解析、脈打つビーム、元素のパーティクル",
           "残るステージと全編の実機パス — この先の道",
+        ],
+      },
+      "wii-laststory": {
+        title: "ラストストーリー — LastWorldエンジンを解読する",
+        summary: "坂口のWiiの白鳥の歌 — Operation Rainfallが西洋へ届けようと戦ったミストウォーカーのJRPG — を、エンジンごと研究のために開く。このゲームの公開されたリバースエンジニアリングは存在しないようで、以下の発見はすべて、検証しうる限り未踏の地だ。ディスクはSLSP01、PAL Multi-5、~8 GiBのデュアルレイヤー、内部エンジンの名は『LastWorld』、リテールのビルド2350として出荷された。本当のゲームは再帰的なpackアーカイブの中に隠れている — .pfsの名前ツリー、.pkhのインデックス、そしてLZ11で圧縮されたファイルを収める.pkのデータブロブ — そして名前からデータへの対応はパスのハッシュを通る。それこそがテキストが最初は暗号化されて見えた理由だ：ブロブはツリー順に保存されておらず、ハッシュだけが名前とそのバイト列を再び結びつける。そのハッシュは落ちた：小文字化したパスに対するCRC-32/BZIP2で、pack全体で検証済み。その下で、あらゆる文字列は平文のUTF-16BEだと判明した — そこから統合された台詞データベースが生まれた：221シーン、16,435行、五つのPAL言語がオリジナルの日本語と並び、八千を超える行がボイスIDを持ち、内部の日本語コードネーム（エルザ、クォーク、カナン）がローカライズされた英雄たち（Zael、Dagran、Calista）をなお影のように従える。そこへ至るために抽出ツールチェーン一式が作られた — pfs/pkhパーサ、LZ11デコンプレッサ、ハッシュ駆動のマニフェスト — 約54,000のアセットを本来の名前とともに取り出した。そして緩んだ糸が光る：リテールのディスクは今なおデバッグメニュー一式を積んでいる — サウンドテスト、メッセージテスト、リップシンク、ステージ選択、バトルデバッグ、レベルエディタ、スタッフロールビューア — LastWorld_toolsモジュールの中に、REから再有効化するのに有望なものとして。研究であり、再配布は一切なし。この先に待つのはより深い掘削：Ghidraの下のmain.dol、再帰的なpackの層、モデル・アニメーション・テクスチャ・リップシンクのためのバイナリchnkdata形式、そしてテクスチャをPNGへ。",
+        milestones: [
+          "ディスクを地図化：SLSP01 PALデュアルレイヤー、LastWorldエンジン、リテールのデバッグビルド2350",
+          "packコンテナを解析：.pfs名前ツリー + .pkhインデックス + LZ11圧縮の.pkブロブ",
+          "パスのハッシュを解読 — 小文字化パスへのCRC-32/BZIP2 — 名前とデータを再結合",
+          "抽出ツールチェーン：pfs/pkhパーサ、LZ11デコンプレッサ、ハッシュ駆動マニフェスト — 約54kのアセットを回収",
+          "台詞データベース：221シーン、16,435行、六言語を並列 — 公開初",
+          "リテールのデバッグメニューを発見：サウンド / メッセージ / リップシンク / ステージ / バトル / レベルエディタ",
+          "Ghidraのmain.dol、再帰的pack、バイナリchnkdata形式、テクスチャのPNG化、デバッグメニュー再有効化 — 深い掘削",
         ],
       },
       "wiiu-lba2": {
