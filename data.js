@@ -1151,6 +1151,26 @@ const PROJECTS = [
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/wiiu-lba2",
   },
+  {
+    id: "wiiu-planetblupi",
+    title: "Planet Blupi — Wii U",
+    platform: "wiiu",
+    type: "porting",
+    status: "completed",
+    progress: 100,
+    summary: "Daniel Roux and Epsitec's 1997 point-and-click strategy-puzzle — long since freed as open source and lovingly maintained by Mathieu Schroeter — carried whole onto the Wii U through Aroma, and verified playing identically to the PC original on real hardware. The GamePad's touchscreen becomes the mouse, which is the entire point of a point-and-click, while the left stick pans the map; the full mission and training campaigns, terrain, Blupi AI, sound effects and music, TrueType menus, options sliders, save and load, the FMV cutscenes and even the 1997 attract-mode demos all run. The climb was pure Wii U: a devkitPPC/WUT SDL2 build in Docker producing a self-contained .wuhb with every freeware asset in the romfs — no bring-your-own-data; the GamePad touch read straight from VPAD and synthesised into SDL mouse events, since the SDL2 backend delivers no touch of its own; a big-endian byte-swap layer so the little-endian .blp levels, saves and demos load and round-trip on PowerPC; a from-scratch Cinepak decoder plus an Ogg backend for the cutscenes, every clip transcoded to a single codec; and a chain of GX2 quirks tamed — a glyph-cache teardown crash, a GPU texture use-after-free that scrambled menu labels, and the four stacked causes behind the attract demos (whose GPU pixel-readback fix also made tapping a Blupi's head select it in normal play). It is a GPLv3+ fan port made with substantial AI assistance: the upstream sources are kept pristine behind #ifdef __WIIU__ guards, and because the upstream project does not accept AI-generated code, this one is deliberately kept a separate repository and never proposed upstream — it exists only so Wii U owners can enjoy a game its creators so generously made free. What remains is accessory: a ZL/ZR right-click (context actions already reachable from the on-screen menu) and non-English text.",
+    milestones: [
+      { label: "devkitPPC/WUT SDL2 build in Docker → a self-contained .wuhb, every freeware asset in the romfs", done: true },
+      { label: "GamePad touch read from VPAD and synthesised into SDL mouse events; left-stick map scroll", done: true },
+      { label: "Big-endian byte-swap layer: .blp levels, saves and demos load and round-trip on PowerPC", done: true },
+      { label: "FMV cutscenes: a from-scratch Cinepak decoder + Ogg backend, every clip one codec on-device", done: true },
+      { label: "Full game verified on real Wii U hardware — campaigns, AI, music, save/load, the 1997 attract demos", done: true },
+      { label: "Accessory extras: a ZL/ZR right-click and Wii U-worded text — optional polish", done: false },
+    ],
+    badges: ["released", "real-hardware", "first-boot", "toolchain"],
+    screenshots: [],
+    repo: "https://github.com/vs-sr-dev/wiiu-planetblupi",
+  },
 
   /* ---- Philips CD-i ---- */
   {
@@ -2114,6 +2134,18 @@ const I18N = {
           "Rifinitura post-release (taratura dei controlli, etichette touch)",
         ],
       },
+      "wiiu-planetblupi": {
+        title: "Planet Blupi — Wii U",
+        summary: "Il gioco strategico-puzzle punta-e-clicca del 1997 di Daniel Roux ed Epsitec — da tempo liberato come open source e amorevolmente mantenuto da Mathieu Schroeter — portato intero su Wii U tramite Aroma, e verificato mentre gira in modo identico all'originale PC su hardware reale. Il touchscreen del GamePad diventa il mouse, che è tutto il senso di un punta-e-clicca, mentre lo stick sinistro fa scorrere la mappa; girano le campagne complete di missioni e addestramento, il terreno, l'IA dei Blupi, effetti sonori e musica, i menu TrueType, gli slider delle opzioni, salva e carica, le cutscene FMV e perfino le demo attract-mode del 1997. La salita è stata puro Wii U: una build SDL2 devkitPPC/WUT in Docker che produce un .wuhb autocontenuto con ogni asset freeware nella romfs — niente porta-i-tuoi-dati; il touch del GamePad letto direttamente dal VPAD e sintetizzato in eventi mouse SDL, perché il backend SDL2 non fornisce touch da solo; un layer di byte-swap big-endian perché i livelli, i salvataggi e le demo .blp little-endian carichino e facciano round-trip su PowerPC; un decoder Cinepak scritto da zero più un backend Ogg per le cutscene, ogni clip transcodificata in un solo codec; e una catena di stranezze GX2 domate — un crash nella distruzione della glyph-cache, un use-after-free di texture GPU che scombinava le etichette dei menu, e le quattro cause impilate dietro le demo attract (il cui fix del pixel-readback GPU ha anche reso possibile selezionare un Blupi toccandogli la testa nel gioco normale). È un port fan sotto GPLv3+ fatto con sostanziale assistenza IA: i sorgenti upstream restano intatti dietro guardie #ifdef __WIIU__, e poiché il progetto upstream non accetta codice generato dall'IA, questo è tenuto deliberatamente come repository separato e mai proposto upstream — esiste solo perché i possessori di Wii U possano godersi un gioco che i suoi creatori hanno così generosamente reso libero. Ciò che resta è accessorio: un right-click su ZL/ZR (le azioni contestuali sono già raggiungibili dal menu a schermo) e il testo non in inglese.",
+        milestones: [
+          "Build SDL2 devkitPPC/WUT in Docker → un .wuhb autocontenuto, ogni asset freeware nella romfs",
+          "Touch del GamePad letto dal VPAD e sintetizzato in eventi mouse SDL; scroll mappa sullo stick sinistro",
+          "Layer di byte-swap big-endian: livelli, salvataggi e demo .blp caricano e fanno round-trip su PowerPC",
+          "Cutscene FMV: un decoder Cinepak da zero + backend Ogg, ogni clip un solo codec sul dispositivo",
+          "Gioco completo verificato su Wii U reale — campagne, IA, musica, salva/carica, le demo attract del 1997",
+          "Extra accessori: un right-click su ZL/ZR e testo adattato alla Wii U — rifinitura opzionale",
+        ],
+      },
       "cdi-bringup": {
         title: "Bring-Up Homebrew del CD-i",
         summary: "Primi passi sulla grande curiosità di Philips. La toolchain Microware OS-9 — compilatore xcc, linker l68, fixmod, e uno strumento di mastering dischi DOS a 16 bit — resuscitata dentro Docker con build da 25 secondi; avvio confermato in emulazione; e un hello world che dipinge bande di colore CLUT7 attraverso il chip video MCD212, consegnato come moduli OS-9 fatti a regola d'arte anziché con trucchi bare-metal. Il Nobelia open source di TwBurn fa da oracolo end-to-end che prova l'esistenza della strada. Dove porta questa strada è una storia per un altro giorno.",
@@ -2874,6 +2906,18 @@ const I18N = {
           "FMVストリーミング、AXオーディオ、セーブ、完全なGamePad + タッチ",
           "実機で完全プレイスルーを検証",
           "リリース後の仕上げ（操作の調整、タッチのラベル）",
+        ],
+      },
+      "wiiu-planetblupi": {
+        title: "Planet Blupi — Wii U",
+        summary: "ダニエル・ルーとEpsitecによる1997年のポイント＆クリックの戦略パズル — とうにオープンソースとして解放され、マチュー・シュレーターが丹念に保守してきた — を、Aroma経由でWii Uへ丸ごと運び、実機でPC版とまったく同じに動くことを検証した。GamePadのタッチスクリーンがマウスになる — それこそポイント＆クリックの本質だ — 一方で左スティックがマップをスクロールする；ミッションと訓練のフルキャンペーン、地形、BlupiのAI、効果音と音楽、TrueTypeのメニュー、オプションのスライダー、セーブとロード、FMVのカットシーン、そして1997年のアトラクトモードのデモまで、すべて動く。登りは純粋にWii Uだった：Docker内のdevkitPPC/WUT SDL2ビルドが、あらゆるフリーウェアのアセットをromfsに収めた自己完結の.wuhbを生む — データ持参は不要；GamePadのタッチはVPADから直接読み、SDLのマウスイベントに合成する、SDL2バックエンドはタッチを自前で届けないからだ；ビッグエンディアンのバイトスワップ層で、リトルエンディアンの.blpのレベル・セーブ・デモがPowerPC上で読み込め往復する；カットシーンにはゼロから書いたCinepakデコーダとOggバックエンド、各クリップを一つのコーデックへ変換；そして一連のGX2のクセを手なずけた — グリフキャッシュの破棄時のクラッシュ、メニューのラベルを乱すGPUテクスチャの解放後使用、そしてアトラクトデモの背後にあった四つの積み重なった原因（そのGPUピクセル読み戻しの修正は、通常プレイでBlupiの頭をタップして選択できるようにもした）。これはGPLv3+のファン移植で、相当のAI支援のもとに作られた：upstreamのソースは#ifdef __WIIU__のガードの奥に手つかずで保たれ、upstreamのプロジェクトがAI生成コードを受け入れないため、これは意図的に別リポジトリとして保たれ、upstreamへは決して提案されない — Wii Uの所有者が、その作者たちがこれほど寛大に自由にしたゲームを楽しめるように存在するだけだ。残るのは付随的なもの：ZL/ZRの右クリック（コンテキスト操作は画面メニューからすでに到達可能）と非英語のテキスト。",
+        milestones: [
+          "Docker内のdevkitPPC/WUT SDL2ビルド → 自己完結の.wuhb、あらゆるフリーウェアのアセットをromfsに",
+          "GamePadのタッチをVPADから読みSDLのマウスイベントに合成；左スティックでマップスクロール",
+          "ビッグエンディアンのバイトスワップ層：.blpのレベル・セーブ・デモがPowerPCで読み込め往復",
+          "FMVカットシーン：ゼロから書いたCinepakデコーダ + Oggバックエンド、各クリップを一つのコーデックで端末上再生",
+          "実機Wii Uでゲーム全体を検証 — キャンペーン、AI、音楽、セーブ/ロード、1997年のアトラクトデモ",
+          "付随的なおまけ：ZL/ZRの右クリックとWii U向けの文言 — 任意の仕上げ",
         ],
       },
       "cdi-bringup": {
