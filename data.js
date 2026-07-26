@@ -1171,6 +1171,28 @@ const PROJECTS = [
     screenshots: [],
     repo: "https://github.com/vs-sr-dev/wiiu-planetblupi",
   },
+  {
+    id: "wiiu-crema",
+    title: "Crema — A Clean-Room Wii U Engine",
+    platform: "wiiu",
+    type: "tooling",
+    status: "completed",
+    progress: 100,
+    summary: "A clean-room engine for Wii U homebrew, sitting on Espresso and Latte the way a good crema sits on the coffee — every byte home-grown under MIT, no SDK leaks, no foreign engine code. It provides runtime GLSL shaders compiled to Latte through CafeGLSL, big-endian-safe uniform upload, GX2R vertex/index buffers, mip-chained textures, three flavours of frame pacing, entities over caller-owned storage, bounding-sphere collision, a scene stack, SD-card persistence and a .cpak asset archive — and an audio stack that treats AX as the hardware sampler it is: instruments, ADPCM the DSP decodes for free, aux sends, headroom, and a sequencer ticking on AX's own 3 ms clock that imports ChipRoll exports from the Forge. The method is the whole point: nothing was designed in advance — every module was extracted from an example that had already written it, usually twice, so the engine is a reusable layer rather than a product. There is no editor, no GUI, no inspector; you write C and your main loop stays yours, a stated boundary rather than a shortfall. It is proven across fourteen progressive examples, each verified on real hardware, culminating in four games in four genres: a flight demo at 59.9 fps with the CPU idle, a shoot-'em-up you can lose whose high score survives the power going off, a role-playing slice whose field is still standing where you left it when the battle pushed on top of it ends, and a football match whose ball obeys physics on a 120 Hz fixed timestep beneath a 59.94 Hz picture — the same kick landing on the same five decimals whether the console is idle or drowning. The last of the four needed not a single new line in the engine. Measured on real Latte silicon: some 130 million gouraud triangles a second, a budget of 2.2 million triangles a frame at 60 fps.",
+    milestones: [
+      { label: "GX2 pipeline from Cemu onto real silicon: runtime GLSL via CafeGLSL, big-endian-safe uniforms, GX2R buffers", done: true },
+      { label: "Fourteen progressive examples, every one verified on real Wii U hardware", done: true },
+      { label: "Latte profiled on hardware: ~130 M gouraud tris/s, a 2.2 M-triangle-per-frame budget at 60 fps", done: true },
+      { label: "AX audio stack: hardware sampler, ADPCM, instrument banks, a sequencer on AX's clock, ChipRoll import", done: true },
+      { label: "SD-card persistence verified across a power cycle; a scene stack proven by two different games", done: true },
+      { label: "Four games in four genres — flight, shmup, RPG slice, football — the last adding nothing to the engine", done: true },
+      { label: "The 'engine' word claimed: a reusable layer with a declared boundary — no editor, no GUI, your main loop stays yours", done: true },
+      { label: "Optional-by-design extensions (mesh/texture compression, async save, culling) — added only when a game demands one", done: false },
+    ],
+    badges: ["released", "real-hardware", "first-boot", "toolchain", "audio-unlocked"],
+    screenshots: [],
+    repo: "https://github.com/vs-sr-dev/wiiu-crema",
+  },
 
   /* ---- Philips CD-i ---- */
   {
@@ -2146,6 +2168,20 @@ const I18N = {
           "Extra accessori: un right-click su ZL/ZR e testo adattato alla Wii U — rifinitura opzionale",
         ],
       },
+      "wiiu-crema": {
+        title: "Crema — Un engine clean-room per Wii U",
+        summary: "Un engine clean-room per homebrew Wii U, che sta sopra a Espresso e Latte come una buona crema sta sul caffè — ogni byte coltivato in casa sotto MIT, nessun leak di SDK, nessun codice di engine altrui. Fornisce shader GLSL a runtime compilati verso Latte tramite CafeGLSL, upload di uniform sicuro in big-endian, buffer vertici/indici GX2R, texture con catene di mip, tre sapori di frame pacing, entità su storage posseduto dal chiamante, collisione a sfere, una pila di scene, persistenza su SD e un archivio asset .cpak — e uno stack audio che tratta AX per quello che è, un campionatore hardware: strumenti, ADPCM che il DSP decodifica gratis, aux send, headroom, e un sequencer che scandisce sul clock da 3 ms di AX e importa gli export di ChipRoll dalla Forgia. Il metodo è tutto il punto: niente è stato progettato in anticipo — ogni modulo è stato estratto da un esempio che lo aveva già scritto, di solito due volte, così l'engine è uno strato riusabile e non un prodotto. Non c'è editor, non c'è GUI, non c'è inspector; scrivi in C e il tuo main loop resta tuo, un confine dichiarato e non una mancanza. È provato attraverso quattordici esempi progressivi, ciascuno verificato su hardware reale, fino a quattro giochi in quattro generi: una demo di volo a 59,9 fps con la CPU a riposo, uno sparatutto che puoi perdere il cui record sopravvive allo spegnimento, una fetta di gioco di ruolo il cui campo è ancora lì dove l'hai lasciato quando finisce la battaglia spintagli sopra, e una partita di calcio la cui palla obbedisce alla fisica su un passo fisso a 120 Hz sotto un'immagine a 59,94 Hz — lo stesso calcio che atterra sugli stessi cinque decimali sia a console scarica sia mentre annega. L'ultimo dei quattro non ha richiesto una sola riga nuova nell'engine. Misurato sul vero silicio Latte: circa 130 milioni di triangoli gouraud al secondo, un budget di 2,2 milioni di triangoli a frame a 60 fps.",
+        milestones: [
+          "Pipeline GX2 da Cemu al silicio reale: GLSL a runtime via CafeGLSL, uniform sicuri in big-endian, buffer GX2R",
+          "Quattordici esempi progressivi, ognuno verificato su hardware Wii U reale",
+          "Latte profilato su hardware: ~130 M tri gouraud/s, un budget di 2,2 M triangoli a frame a 60 fps",
+          "Stack audio AX: campionatore hardware, ADPCM, banchi di strumenti, un sequencer sul clock di AX, import ChipRoll",
+          "Persistenza su SD verificata attraverso un power cycle; una pila di scene provata da due giochi diversi",
+          "Quattro giochi in quattro generi — volo, shmup, fetta di RPG, calcio — l'ultimo senza aggiungere nulla all'engine",
+          "La parola «engine» rivendicata: uno strato riusabile con un confine dichiarato — niente editor, niente GUI, il main loop resta tuo",
+          "Estensioni opzionali per scelta (compressione mesh/texture, salvataggio async, culling) — aggiunte solo quando un gioco le pretende",
+        ],
+      },
       "cdi-bringup": {
         title: "Bring-Up Homebrew del CD-i",
         summary: "Primi passi sulla grande curiosità di Philips. La toolchain Microware OS-9 — compilatore xcc, linker l68, fixmod, e uno strumento di mastering dischi DOS a 16 bit — resuscitata dentro Docker con build da 25 secondi; avvio confermato in emulazione; e un hello world che dipinge bande di colore CLUT7 attraverso il chip video MCD212, consegnato come moduli OS-9 fatti a regola d'arte anziché con trucchi bare-metal. Il Nobelia open source di TwBurn fa da oracolo end-to-end che prova l'esistenza della strada. Dove porta questa strada è una storia per un altro giorno.",
@@ -2918,6 +2954,20 @@ const I18N = {
           "FMVカットシーン：ゼロから書いたCinepakデコーダ + Oggバックエンド、各クリップを一つのコーデックで端末上再生",
           "実機Wii Uでゲーム全体を検証 — キャンペーン、AI、音楽、セーブ/ロード、1997年のアトラクトデモ",
           "付随的なおまけ：ZL/ZRの右クリックとWii U向けの文言 — 任意の仕上げ",
+        ],
+      },
+      "wiiu-crema": {
+        title: "Crema — Wii U向けのクリーンルーム・エンジン",
+        summary: "Wii U自作ソフトのためのクリーンルーム・エンジン。良いクレマがコーヒーの上に乗るように、EspressoとLatteの上に乗る — あらゆるバイトがMITの下で自家製、SDKの流出なし、他所のエンジンコードなし。提供するもの：CafeGLSL経由でLatteへコンパイルされるランタイムGLSLシェーダ、ビッグエンディアン安全なユニフォームのアップロード、GX2Rの頂点/インデックスバッファ、ミップ連鎖付きテクスチャ、三種類のフレームペーシング、呼び出し側が所有するストレージ上のエンティティ、境界球の衝突、シーンのスタック、SDへの永続化、そして.cpakのアセットアーカイブ — さらにAXをありのまま、ハードウェアのサンプラーとして扱うオーディオスタック：楽器、DSPがタダでデコードするADPCM、auxセンド、ヘッドルーム、そしてAX自身の3 msのクロックで刻み、Forge（鍛冶場）からChiprollのエクスポートを取り込むシーケンサ。手法こそがすべての要だ：何も事前に設計せず — 各モジュールはすでにそれを書いた例から、たいてい二度、抽出された。だからエンジンは製品ではなく再利用可能な層だ。エディタもGUIもインスペクタもない；Cを書き、メインループはあなたのものであり続ける — 欠落ではなく宣言された境界だ。十四の漸進的な例を通して実証され、それぞれ実機で検証され、四つのジャンルの四つのゲームに至る：CPUが遊んだままの59.9 fpsの飛行デモ、電源が落ちてもハイスコアが生き残る負けうるシューティング、上に押し重ねた戦闘が終わってもフィールドが去った場所になお立っているロールプレイングの断片、そして120 Hzの固定ステップの上でボールが物理に従い、59.94 Hzの画の下で走るサッカーの試合 — 同じキックが、コンソールが暇でも溺れていても、同じ五桁の小数に着地する。四つ目はエンジンに新しい一行も要らなかった。実際のLatteのシリコンで計測：毎秒およそ1億3千万のgouraud三角形、60 fpsで一フレームあたり220万三角形の予算。",
+        milestones: [
+          "Cemuから実機シリコンへのGX2パイプライン：CafeGLSL経由のランタイムGLSL、ビッグエンディアン安全なユニフォーム、GX2Rバッファ",
+          "十四の漸進的な例、そのすべてを実機Wii Uで検証",
+          "Latteを実機でプロファイル：約1.3億のgouraud三角形/秒、60 fpsで一フレーム220万三角形の予算",
+          "AXオーディオスタック：ハードウェアサンプラー、ADPCM、楽器バンク、AXのクロックで動くシーケンサ、Chiprollの取り込み",
+          "SDへの永続化を電源サイクル越しに検証；シーンのスタックを二つの異なるゲームで実証",
+          "四ジャンルの四ゲーム — 飛行、シューティング、RPGの断片、サッカー — 最後のものはエンジンに何も足さず",
+          "「エンジン」の語を鳴らす：宣言された境界を持つ再利用可能な層 — エディタもGUIもなく、メインループはあなたのもの",
+          "設計上の任意拡張（メッシュ/テクスチャ圧縮、非同期セーブ、カリング）— ゲームが要求したときにのみ追加",
         ],
       },
       "cdi-bringup": {
