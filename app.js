@@ -62,7 +62,9 @@
       [legendary, "Legendary"],
     ].map(([n, key]) => `<div class="stat"><b>${n}</b><span>${esc(tUI(key))}</span></div>`).join("");
 
-    $("#footer-updated").textContent = tUI("Codex last inscribed on") + " " + SITE.updated;
+    $("#footer-updated").textContent = SITE.since
+      ? tUI("Codex begun") + " " + SITE.since + " · " + tUI("last inscribed") + " " + SITE.updated
+      : tUI("Codex last inscribed on") + " " + SITE.updated;
     renderSupport();
   }
 

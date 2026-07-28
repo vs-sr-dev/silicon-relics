@@ -6,7 +6,8 @@
 
 const SITE = {
   tagline: "A living codex of homebrew, reverse engineering and porting quests across retro consoles — from the famous to the forgotten. A human + LLM collaboration, named openly.",
-  updated: "2026-07-17",
+  since: "2026-03",
+  updated: "2026-07-28",
   /* Support links — kept deliberately understated in the footer.
      Fill these with the real URLs; leave "" to hide a button. */
   support: {
@@ -1475,18 +1476,19 @@ const PROJECTS = [
     title: "The Replay Vault — Childhood Titles Revived",
     platform: "pc",
     type: "tooling",
-    status: "ongoing",
-    progress: 80,
-    summary: "A gentler kind of quest: not forcing games onto impossible hardware, but bringing the titles of an Italian childhood back to life on modern machines — and actually replaying them, start to finish. Each one its own puzzle: Tip Top (Director 5 + QuickTime) solved through Mac OS 9 emulation after ScummVM fell short; RAI's Stellaris (16-bit ToolBook + Indeo video) coaxed onto Windows 11 through otvdm and codec archaeology; Coktel Vision's A.J.'s World running under ScummVM; QBasic Gorillas reborn in DOSBox-X — complete with a custom amber-monitor GLSL shader for full 1991 flavour; and AEnigmatica, a 1998 puzzle CD that turned out to be a Java 1.1 app with hardcoded JDK quirks, still resisting. Bonus escapade: Tip Top booted natively on an emulated Bandai Pippin, AppleJack pad and all.",
+    status: "completed",
+    progress: 100,
+    summary: "A gentler kind of quest: not forcing games onto impossible hardware, but bringing the titles of an Italian childhood back to life on modern machines — and actually replaying them, start to finish. Each one its own puzzle: Tip Top (Director 5 + QuickTime) solved through Mac OS 9 emulation after ScummVM fell short; RAI's Stellaris (16-bit ToolBook + Indeo video) coaxed onto Windows 11 through otvdm and codec archaeology; Coktel Vision's A.J.'s World running under ScummVM; QBasic Gorillas reborn in DOSBox-X — complete with a custom amber-monitor GLSL shader for full 1991 flavour; AEnigmatica, a 1998 Settimana Enigmistica puzzle CD that turned out to be a Java 1.1 app, cracked at last — its Driver class decompiled, patched for the JDK-1.1 date format it secretly depended on, recompiled for Java 8 and run under a spoofed 'Windows 95'; and Starshot: Space Circus Fever, Infogrames' 1998 platformer that shipped only a 3dfx Glide renderer, brought to Windows 11 through dgVoodoo2 — which wraps both its Glide 3D and its DirectDraw front-end so it runs in a window instead of seizing the whole ultrawide desktop, an infinite rocket-fuel trainer reverse-engineered from its heap records thrown in. Every childhood title in the vault now replays. One thread stays pinned to the corkboard: Tip Top also boots natively on an emulated Bandai Pippin, AppleJack pad and all — but a frozen cutscene there still blocks the run, so the Pippin remains the vault's one open door.",
     milestones: [
       { label: "Tip Top — 100% playable via SheepShaver / Mac OS 9", done: true },
       { label: "Stellaris: Sfida a StarCity — on Win11 via otvdm + Indeo codecs", done: true },
       { label: "A.J.'s World of Discovery — running under ScummVM", done: true },
       { label: "Gorillas + Battle Bugs — DOSBox-X, amber-phosphor shader included", done: true },
-      { label: "AEnigmatica — the Java 1.1 sphinx still guards her riddle", done: false },
-      { label: "Tip Top on the Pippin — boots natively; cutscene boss remains", done: false },
+      { label: "AEnigmatica — the Java 1.1 sphinx cracked: Driver class decompiled, patched, recompiled for Java 8", done: true },
+      { label: "Starshot: Space Circus Fever — native on Win11 via dgVoodoo2, with a rocket-fuel trainer", done: true },
+      { label: "Bonus — Tip Top on the Pippin: boots natively; the frozen-cutscene boss still stands", done: false },
     ],
-    badges: ["toolchain"],
+    badges: ["toolchain", "disasm"],
     screenshots: [],
     repo: null,
   },
@@ -1647,6 +1649,8 @@ const I18N = {
       "Completed": "Completate",
       "Legendary": "Leggendarie",
       "Codex last inscribed on": "Codice vergato l'ultima volta il",
+      "Codex begun": "Codice iniziato nel",
+      "last inscribed": "ultima incisione il",
       "If a tale here was worth a coin": "Se una di queste storie valeva una moneta",
       "All Quests": "Tutte le Imprese",
       "Milestones": "Traguardi",
@@ -2330,14 +2334,15 @@ const I18N = {
       },
       "pc-replay-vault": {
         title: "La Cripta dei Replay — Titoli d'Infanzia Rianimati",
-        summary: "Un tipo di impresa più gentile: non forzare i giochi su hardware impossibile, ma riportare in vita i titoli di un'infanzia italiana su macchine moderne — e rigiocarli davvero, dall'inizio alla fine. Ciascuno un rompicapo a sé: Tip Top (Director 5 + QuickTime) risolto tramite emulazione di Mac OS 9 dopo che ScummVM è venuto a mancare; Stellaris della RAI (ToolBook a 16 bit + video Indeo) convinto a girare su Windows 11 tramite otvdm e archeologia dei codec; A.J.'s World di Coktel Vision che gira sotto ScummVM; Gorillas del QBasic rinato in DOSBox-X — completo di uno shader GLSL custom a monitor ambra per il pieno sapore del 1991; e AEnigmatica, un CD rompicapo del 1998 che si è rivelato un'app Java 1.1 con stranezze del JDK hardcoded, che resiste ancora. Escapade bonus: Tip Top avviato nativamente su un Bandai Pippin emulato, pad AppleJack e tutto.",
+        summary: "Un tipo di impresa più gentile: non forzare i giochi su hardware impossibile, ma riportare in vita i titoli di un'infanzia italiana su macchine moderne — e rigiocarli davvero, dall'inizio alla fine. Ciascuno un rompicapo a sé: Tip Top (Director 5 + QuickTime) risolto tramite emulazione di Mac OS 9 dopo che ScummVM è venuto a mancare; Stellaris della RAI (ToolBook a 16 bit + video Indeo) convinto a girare su Windows 11 tramite otvdm e archeologia dei codec; A.J.'s World di Coktel Vision che gira sotto ScummVM; Gorillas del QBasic rinato in DOSBox-X — completo di uno shader GLSL custom a monitor ambra per il pieno sapore del 1991; AEnigmatica, un CD rompicapo del 1998 della Settimana Enigmistica che si è rivelato un'app Java 1.1, craccato finalmente — la sua classe Driver decompilata, patchata per il formato data del JDK 1.1 da cui dipendeva in segreto, ricompilata per Java 8 e fatta girare sotto un finto 'Windows 95'; e Starshot: Space Circus Fever, il platform del 1998 di Infogrames che usciva col solo renderer 3dfx Glide, portato su Windows 11 tramite dgVoodoo2 — che avvolge sia il suo Glide 3D sia il suo front-end DirectDraw così gira in finestra invece di sequestrare tutto il desktop ultrawide, con in più un trainer a carburante infinito ricavato per reverse engineering dai suoi record in heap. Ogni titolo d'infanzia nella cripta ora si rigioca. Un filo resta appuntato alla lavagna: Tip Top si avvia nativamente anche su un Bandai Pippin emulato, pad AppleJack e tutto — ma lì una cutscene congelata blocca ancora la partita, così il Pippin resta l'unica porta aperta della cripta.",
         milestones: [
           "Tip Top — giocabile al 100% via SheepShaver / Mac OS 9",
           "Stellaris: Sfida a StarCity — su Win11 via otvdm + codec Indeo",
           "A.J.'s World of Discovery — funzionante sotto ScummVM",
           "Gorillas + Battle Bugs — DOSBox-X, shader a fosfori ambra incluso",
-          "AEnigmatica — la sfinge Java 1.1 custodisce ancora il suo enigma",
-          "Tip Top sul Pippin — si avvia nativamente; resta il boss delle cutscene",
+          "AEnigmatica — la sfinge Java 1.1 craccata: classe Driver decompilata, patchata, ricompilata per Java 8",
+          "Starshot: Space Circus Fever — nativo su Win11 via dgVoodoo2, con un trainer a carburante infinito",
+          "Bonus — Tip Top sul Pippin: si avvia nativamente; resta il boss della cutscene congelata",
         ],
       },
       "chiproll": {
@@ -2428,6 +2433,8 @@ const I18N = {
       "Completed": "達成",
       "Legendary": "伝説級",
       "Codex last inscribed on": "コデックス最終記載日",
+      "Codex begun": "コデックス開始",
+      "last inscribed": "最終記載",
       "If a tale here was worth a coin": "ここの物語が一枚の硬貨に値したなら",
       "All Quests": "すべてのクエスト",
       "Milestones": "マイルストーン",
@@ -3118,14 +3125,15 @@ const I18N = {
       },
       "pc-replay-vault": {
         title: "リプレイの宝物庫 — 蘇る子ども時代のタイトル",
-        summary: "より優しい種類のクエスト：ゲームを不可能なハードへ押し込むのではなく、イタリアの子ども時代のタイトルを現代のマシンで蘇らせ — そして実際に最初から最後まで遊び直す。どれもそれぞれの謎だ：Tip Top（Director 5 + QuickTime）はScummVMが力及ばず、Mac OS 9のエミュレーションで解決；RAIのStellaris（16ビットのToolBook + Indeo動画）はotvdmとコーデックの考古学でWindows 11へ；Coktel VisionのA.J.'s WorldはScummVM下で；QBasicのGorillasはDOSBox-Xで蘇り — 1991年の風味をたっぷり出すカスタムのアンバー・モニタGLSLシェーダ込み；そしてAEnigmatica、1998年のパズルCDはハードコードされたJDKの癖を持つJava 1.1のアプリと判明し、いまも抵抗している。おまけの逸話：Tip Topを、AppleJackのパッドごと、エミュレートされたBandai Pippin上でネイティブに起動させた。",
+        summary: "より優しい種類のクエスト：ゲームを不可能なハードへ押し込むのではなく、イタリアの子ども時代のタイトルを現代のマシンで蘇らせ — そして実際に最初から最後まで遊び直す。どれもそれぞれの謎だ：Tip Top（Director 5 + QuickTime）はScummVMが力及ばず、Mac OS 9のエミュレーションで解決；RAIのStellaris（16ビットのToolBook + Indeo動画）はotvdmとコーデックの考古学でWindows 11へ；Coktel VisionのA.J.'s WorldはScummVM下で；QBasicのGorillasはDOSBox-Xで蘇り — 1991年の風味をたっぷり出すカスタムのアンバー・モニタGLSLシェーダ込み；AEnigmatica、Settimana Enigmisticaの1998年のパズルCDはJava 1.1のアプリと判明し、ついに攻略された — そのDriverクラスを逆コンパイルし、密かに依存していたJDK 1.1の日付フォーマットに合わせてパッチし、Java 8向けに再コンパイルして、偽装した『Windows 95』の下で走らせた；そしてStarshot: Space Circus Fever、3dfx Glideレンダラだけを積んで出たInfogramesの1998年のプラットフォーマは、dgVoodoo2でWindows 11へ — それがGlideの3Dとその DirectDrawのフロントエンドの両方を包み、ウルトラワイドのデスクトップ全体を乗っ取る代わりにウィンドウで動くようにした。おまけにヒープのレコードから逆解析したロケット燃料無限のトレーナー付き。宝物庫の子ども時代のタイトルは、今やすべて遊び直せる。一本の糸だけが掲示板に留まっている：Tip TopはAppleJackのパッドごとエミュレートされたBandai Pippin上でもネイティブに起動する — だがそこでは凍りついたカットシーンがなおプレイを止め、Pippinは宝物庫の唯一の開いた扉のままだ。",
         milestones: [
           "Tip Top — SheepShaver / Mac OS 9経由で100%遊べる",
           "Stellaris: Sfida a StarCity — otvdm + Indeoコーデック経由でWin11に",
           "A.J.'s World of Discovery — ScummVM下で動作",
           "Gorillas + Battle Bugs — DOSBox-X、アンバー・リン光のシェーダ込み",
-          "AEnigmatica — Java 1.1のスフィンクスがなお謎を守る",
-          "PippinのTip Top — ネイティブに起動；カットシーンのボスが残る",
+          "AEnigmatica — Java 1.1のスフィンクスを攻略：Driverクラスを逆コンパイル・パッチ・Java 8向けに再コンパイル",
+          "Starshot: Space Circus Fever — dgVoodoo2経由でWin11ネイティブ、ロケット燃料トレーナー付き",
+          "ボーナス — PippinのTip Top：ネイティブに起動；凍りついたカットシーンのボスが残る",
         ],
       },
       "chiproll": {
