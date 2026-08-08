@@ -82,6 +82,15 @@ const GENERATIONS = {
 
 const PLATFORMS = [
   {
+    id: "channelf",
+    name: "Fairchild Channel F",
+    maker: "Fairchild",
+    year: 1976,
+    gen: 2,
+    rarity: "epic",
+    blurb: "The console that started it all and almost no one remembers: shipped in 1976, a year before the Atari 2600, it was the first to put its games on swappable ROM cartridges and the first built around a microprocessor — Fairchild's own F8. Around that CPU sit 64 bytes of RAM, a 128×64 framebuffer that cannot be read back, exactly three fixed sound tones, and a plunger controller you twist, push and pull. The first rough draft of the whole idea of a games console — and every convenience you have ever relied on is simply not here yet.",
+  },
+  {
     id: "coleco",
     name: "ColecoVision",
     maker: "Coleco",
@@ -383,6 +392,46 @@ const PLATFORMS = [
 /* ---------- Projects (the Quests) ---------- */
 
 const PROJECTS = [
+
+  /* ---- Fairchild Channel F ---- */
+  {
+    id: "fcf-bufo",
+    title: "Bufo — a Crossing Game for the Channel F",
+    platform: "channelf",
+    type: "homebrew",
+    status: "completed",
+    progress: 100,
+    summary: "A road-and-river crossing game written from scratch in F8 assembly for the 1976 Fairchild Channel F — 2 KiB of cartridge, 64 bytes of RAM, no libraries. You are a toad: three lanes of traffic, then four lanes of river crossed by riding the logs, and five bays to fill for a bonus life. With 64 bytes there is no object list — each lane is a single offset and the cars and logs are a periodic pattern that is computed, one formula that draws the lane, erases it, and answers 'am I standing on something?' — which matters, because the Channel F's video memory cannot be read back: you can never ask the screen what is under the toad, only recompute it. Scrolling is differential, a pixel at a time, twenty-four writes where repainting a whole lane would cost three hundred and eighty-four against a per-frame budget of about eight hundred. Original in every byte — no code, graphics or data from any other game; the mechanics of a crossing game aren't copyrightable, and the name and art are the author's. MIT, and the BIOS stays yours to supply.",
+    milestones: [
+      { label: "F8 toolchain: dasm backend, a build that fails on any silently-truncated branch, MAME snapshot tooling", done: true },
+      { label: "Computed lanes: one offset each, cars and logs an AND-masked periodic pattern — no object list in 64 bytes", done: true },
+      { label: "Differential scrolling: 24 pixel writes a step, because Channel F VRAM cannot be read back", done: true },
+      { label: "Full game: traffic, log-riding, five bays, three lives, a timer, a bonus life — playable end to end", done: true },
+      { label: "Released open-source (MIT); the three-tone ostinato is coded but unheard — MAME 0.287 crashes on any tone", done: true },
+    ],
+    badges: ["toolchain", "first-boot", "released"],
+    screenshots: [],
+    repo: "https://github.com/vs-sr-dev/fcf-bufo",
+  },
+  {
+    id: "fcf-quest",
+    title: "Quest — a JRPG in Coloured Rectangles",
+    platform: "channelf",
+    type: "homebrew",
+    status: "completed",
+    progress: 100,
+    summary: "A role-playing game written from scratch in F8 assembly for the 1976 Fairchild Channel F — 4 KiB of cartridge, 64 bytes of RAM, no libraries — a JRPG reduced to the only things this machine can actually say. There is no text, no font, no sprite, no melody, so the game is coloured rectangles and the grammar between them: you are the green block, four blue foes wander a single-screen map, touch one and the field turns pale blue and you are in a fight — attack or flee — and after three wins the red block at the top finally takes you seriously; beat it and the whole map is re-rolled, one level harder. The cast is not a choice but the hardware: every usable palette forces its three pixel values to blue, red and green, so green player, blue foes, red boss is the only reading that survives on every background — and bodies come out twice as tall as wide, because a 128×64 framebuffer on a 4:3 screen has non-square pixels. The screen transition is the palette, two pixels living outside the visible area; the random seed is how long you take to press the first button, since the machine has no clock to read; and the F8's single hardware return register shapes the whole call graph — leaves draw, workers sit one level up, the main loop dispatches at the bottom, and getting it wrong doesn't crash, it wanders off into the ROM and freezes. The second game to stand on this machine, after Bufo. MIT; bring your own BIOS.",
+    milestones: [
+      { label: "4 KiB cartridge proven really mapped: a test ROM measuring code, data and cross-region calls past $1000", done: true },
+      { label: "A JRPG in coloured rectangles — green player, blue wanderers, a red boss: the palette is the hardware's, not a choice", done: true },
+      { label: "The loop: wander, touch-to-battle, attack/flee, three wins to wake the boss, re-roll one level harder on the kill", done: true },
+      { label: "Call graph shaped to the F8's single return register; RNG seeded by first-button timing", done: true },
+      { label: "Released open-source (MIT); two jingles coded but unheard — MAME crashes on any tone", done: true },
+    ],
+    badges: ["toolchain", "first-boot", "released"],
+    screenshots: [],
+    repo: "https://github.com/vs-sr-dev/fcf-quest",
+  },
 
   /* ---- ColecoVision ---- */
   {
@@ -1705,6 +1754,7 @@ const I18N = {
       100: { title: "La Grande Opera",        era: "non una reliquia — un progetto vivo, ancora in divenire" },
     },
     platforms: {
+      channelf: { blurb: "La console che ha dato inizio a tutto e che quasi nessuno ricorda: uscita nel 1976, un anno prima dell'Atari 2600, fu la prima a mettere i giochi su cartucce ROM intercambiabili e la prima costruita attorno a un microprocessore — l'F8 di Fairchild. Attorno a quella CPU stanno 64 byte di RAM, un framebuffer 128×64 che non si può rileggere, esattamente tre toni sonori fissi e un controller a stantuffo che si torce, si spinge e si tira. La prima bozza dell'idea stessa di console — e ogni comodità su cui hai mai fatto affidamento semplicemente non c'è ancora." },
       coleco: { blurb: "La meraviglia arcade-in-salotto del 1982: un VDP TMS9918, uno Z80 e 1 KB di RAM — finché il Super Game Module non si innesta e all'improvviso c'è spazio per sognare molto più in grande." },
       "7800": { blurb: "La console what-if di Atari: niente tilemap, niente limiti agli sprite — solo MARIA e le sue display list, un cuore 6502 e un POKEY sulla cartuccia quando serve vera musica." },
       gx4000: { blurb: "Il disastro di novanta giorni di Amstrad: un CPC Plus travestito da console — Z80, sprite hardware ASIC, una palette da 4096 colori — affondato dal suo stesso catalogo di lancio in un solo Natale." },
@@ -1741,6 +1791,28 @@ const I18N = {
       // PLATFORMS-IT-END
     },
     projects: {
+      "fcf-bufo": {
+        title: "Bufo — un gioco d'attraversamento per il Channel F",
+        summary: "Un gioco di attraversamento strada-e-fiume scritto da zero in assembly F8 per il Fairchild Channel F del 1976 — 2 KiB di cartuccia, 64 byte di RAM, nessuna libreria. Sei un rospo: tre corsie di traffico, poi quattro corsie di fiume attraversate cavalcando i tronchi, e cinque baie da riempire per una vita bonus. Con 64 byte non esiste una lista di oggetti — ogni corsia è un solo offset e le auto e i tronchi sono un pattern periodico calcolato, un'unica formula che disegna la corsia, la cancella e risponde alla domanda «ci sono sopra qualcosa?» — il che conta, perché la memoria video del Channel F non si può rileggere: non puoi mai chiedere allo schermo cosa c'è sotto il rospo, puoi solo ricalcolarlo. Lo scorrimento è differenziale, un pixel alla volta, ventiquattro scritture dove ridipingere un'intera corsia ne costerebbe trecentottantaquattro contro un budget di circa ottocento a frame. Originale in ogni byte — nessun codice, grafica o dato preso da altri giochi; le meccaniche di un gioco d'attraversamento non sono soggette a copyright, e il nome e l'arte sono dell'autore. MIT, e il BIOS resta da fornire tu.",
+        milestones: [
+          "Toolchain F8: backend dasm, una build che fallisce su ogni branch troncato in silenzio, strumenti per gli snapshot MAME",
+          "Corsie calcolate: un offset ciascuna, auto e tronchi un pattern periodico mascherato con AND — niente lista oggetti in 64 byte",
+          "Scorrimento differenziale: 24 scritture di pixel a passo, perché la VRAM del Channel F non si può rileggere",
+          "Gioco completo: traffico, cavalcata dei tronchi, cinque baie, tre vite, un timer, una vita bonus — giocabile dall'inizio alla fine",
+          "Rilasciato open-source (MIT); l'ostinato a tre toni è scritto ma mai udito — MAME 0.287 crasha su qualsiasi tono",
+        ],
+      },
+      "fcf-quest": {
+        title: "Quest — un JRPG fatto di rettangoli colorati",
+        summary: "Un gioco di ruolo scritto da zero in assembly F8 per il Fairchild Channel F del 1976 — 4 KiB di cartuccia, 64 byte di RAM, nessuna libreria — un JRPG ridotto alle sole cose che questa macchina sa davvero dire. Non c'è testo, non c'è font, non ci sono sprite né melodia, così il gioco è fatto di rettangoli colorati e della grammatica fra loro: sei il blocco verde, quattro nemici blu vagano una mappa a schermo singolo, ne tocchi uno e il campo diventa azzurro pallido e sei in combattimento — attacca o fuggi — e dopo tre vittorie il blocco rosso in alto finalmente ti prende sul serio; battilo e l'intera mappa viene rigenerata, un livello più difficile. Il cast non è una scelta ma l'hardware: ogni palette utilizzabile forza i suoi tre valori di pixel a blu, rosso e verde, così giocatore verde, nemici blu, boss rosso è l'unica lettura che sopravvive su ogni sfondo — e i corpi vengono fuori alti il doppio di quanto sono larghi, perché un framebuffer 128×64 su uno schermo 4:3 ha pixel non quadrati. La transizione di schermo è la palette, due pixel che vivono fuori dall'area visibile; il seme casuale è quanto ci metti a premere il primo tasto, dato che la macchina non ha un clock da leggere; e l'unico registro di ritorno hardware dell'F8 plasma tutto il grafo delle chiamate — le foglie disegnano, i worker stanno un livello sopra, il main loop smista in fondo, e sbagliarlo non fa crashare: se ne va a spasso nella ROM e si blocca. Il secondo gioco a reggersi su questa macchina, dopo Bufo. MIT; il BIOS portalo tu.",
+        milestones: [
+          "Cartuccia da 4 KiB dimostrata davvero mappata: una ROM di test che misura codice, dati e chiamate cross-regione oltre $1000",
+          "Un JRPG di rettangoli colorati — giocatore verde, vaganti blu, un boss rosso: la palette è dell'hardware, non una scelta",
+          "Il loop: vaga, tocca-per-combattere, attacca/fuggi, tre vittorie per svegliare il boss, rigenera un livello più duro all'uccisione",
+          "Grafo delle chiamate plasmato sull'unico registro di ritorno dell'F8; RNG seminato dal tempo del primo tasto",
+          "Rilasciato open-source (MIT); due jingle scritti ma mai uditi — MAME crasha su qualsiasi tono",
+        ],
+      },
       "coleco-ff1": {
         title: "Final Fantasy — ColecoVision",
         summary: "L'RPG NES del 1987 su hardware del 1982 — una conversione che nessuno ha mai tentato. Il Super Game Module e il banking MegaCart la rendono possibile; i limiti di colore del TMS9918 sono battuti con colori dominanti per riga più overlay di sprite d'accento, arrivando a personaggi di battaglia alla pari col NES sul piano visivo. Tutte le 24 tracce estratte byte-esatte dal disassemblaggio sull'AY-3-8910. La svolta rispetto al gemello 7800: questa conversione corregge di proposito i bug degli incantesimi di Square — pur preservando byte-esatte le stravaganze amate come la penisola del Finger Point. Mappa del mondo, Coneria e battaglia già in loop sotto multi-bank.",
@@ -2496,6 +2568,7 @@ const I18N = {
       100: { title: "大いなる作品",         era: "遺物ではない — いまも作られ続ける、生きたプロジェクト" },
     },
     platforms: {
+      channelf: { blurb: "すべてを始めたのに、ほとんど誰も覚えていないコンソール：1976年、Atari 2600より一年早く出荷され、ゲームを交換可能なROMカートリッジに載せた最初の機であり、マイクロプロセッサ — Fairchild自身のF8 — を中心に組まれた最初の機だった。そのCPUの周りには64バイトのRAM、読み戻せない128×64のフレームバッファ、ちょうど三つの固定音、そして捻り・押し・引きするプランジャー型コントローラ。ゲーム機という発想そのものの最初の下書き — そしてあなたが頼りにしてきたあらゆる便利さは、まだここには無い。" },
       coleco: { blurb: "1982年、アーケードを家庭に持ち込んだ驚異：TMS9918 VDP、Z80、そしてわずか1 KBのRAM — スーパー・ゲーム・モジュールを装着するまでは。そして突然、もっと大きな夢を見る余地が生まれる。" },
       "7800": { blurb: "アタリの『もしも』のマシン：タイルマップなし、スプライト数の制限なし — あるのはMARIAとそのディスプレイリスト、6502の心臓、そして本物の音楽が要るときのためにカートリッジに載ったPOKEYだけ。" },
       gx4000: { blurb: "アムストラッドの90日間の惨事：コンソールの装いをまとったCPC Plus — Z80、ASICのハードウェアスプライト、4096色のパレット — たった一度のクリスマスで、自らのローンチカタログに沈められた。" },
@@ -2532,6 +2605,28 @@ const I18N = {
       // PLATFORMS-JA-END
     },
     projects: {
+      "fcf-bufo": {
+        title: "Bufo — Channel Fのための横断ゲーム",
+        summary: "1976年のFairchild Channel Fのために、F8アセンブリでゼロから書いた道と川の横断ゲーム — 2 KiBのカートリッジ、64バイトのRAM、ライブラリなし。あなたはヒキガエル：三車線の交通、続いて丸太に乗って渡る四車線の川、そして満たすとボーナスライフになる五つの入り江。64バイトではオブジェクトのリストは持てない — 各レーンはただ一つのオフセットで、車と丸太は計算される周期的なパターン、レーンを描き、消し、そして「自分は何かの上にいるか？」に答える一つの式だ — これは重要で、Channel Fのビデオメモリは読み戻せないからだ：画面にヒキガエルの下に何があるか尋ねることはできず、ただ再計算するのみ。スクロールは差分式、一度に一ピクセル、レーン全体を塗り直せば約800/フレームの予算に対して384かかるところを、24回の書き込みで済む。あらゆるバイトがオリジナル — 他のどのゲームからもコード・グラフィック・データを取っていない；横断ゲームのメカニクスは著作権の対象ではなく、名前とアートは作者のものだ。MIT、そしてBIOSは各自で用意のこと。",
+        milestones: [
+          "F8ツールチェーン：dasmバックエンド、黙って切り詰められた分岐で失敗するビルド、MAMEスナップショットのツール群",
+          "計算されるレーン：各々一つのオフセット、車と丸太はANDマスクの周期パターン — 64バイトにオブジェクトリストなし",
+          "差分スクロール：一歩あたり24ピクセルの書き込み、Channel FのVRAMは読み戻せないから",
+          "完全なゲーム：交通、丸太乗り、五つの入り江、三つのライフ、タイマー、ボーナスライフ — 端から端まで遊べる",
+          "オープンソースで公開（MIT）；三音のオスティナートは書かれたが未聴 — MAME 0.287はどの音でもクラッシュする",
+        ],
+      },
+      "fcf-quest": {
+        title: "Quest — 色の付いた矩形で作るJRPG",
+        summary: "1976年のFairchild Channel Fのために、F8アセンブリでゼロから書いたロールプレイングゲーム — 4 KiBのカートリッジ、64バイトのRAM、ライブラリなし — この機械が実際に言える事柄だけに切り詰めたJRPGだ。テキストもフォントもスプライトも旋律もない。だからゲームは色の付いた矩形と、その間の文法でできている：あなたは緑の矩形、四体の青い敵が一画面のマップを歩き回り、触れると盤面が淡い青に変わって戦闘に入る — 攻撃か逃走か — そして三勝すると上部の赤い矩形がようやく本気を出す；それを倒すとマップ全体が再抽選され、一段階難しくなる。配役は選択ではなくハードウェアだ：使えるどのパレットも三つのピクセル値を青・赤・緑に固定するので、緑のプレイヤー・青の敵・赤のボスが、あらゆる背景で成立する唯一の割り当てだ — そして矩形は幅の二倍の高さになる、4:3の画面上の128×64のフレームバッファはピクセルが正方形でないからだ。画面遷移はパレットそのもの、可視領域の外に居る二ピクセル；乱数の種は最初のボタンを押すまでの時間、機械には読める時計がないからだ；そしてF8のただ一つのハードウェア戻りレジスタが呼び出しグラフ全体を形づくる — 葉が描画し、ワーカーが一段上に居り、メインループが最下段で振り分ける、そして間違えてもクラッシュはせず、ROMの中へさまよい出て固まる。この機械の上に立った二本目のゲーム、Bufoに続いて。MIT；BIOSは持参のこと。",
+        milestones: [
+          "4 KiBカートリッジが本当にマップされていることを実証：$1000を越えるコード・データ・領域跨ぎ呼び出しを測るテストROM",
+          "色の付いた矩形のJRPG — 緑のプレイヤー、青の徘徊者、赤のボス：パレットはハードウェアのもので、選択ではない",
+          "ループ：歩き回る、触れて戦闘、攻撃/逃走、三勝でボスを起こし、撃破でマップを一段難しく再抽選",
+          "F8のただ一つの戻りレジスタに合わせて形づくった呼び出しグラフ；最初のボタンのタイミングで種を蒔く乱数",
+          "オープンソースで公開（MIT）；二つのジングルは書かれたが未聴 — MAMEはどの音でもクラッシュする",
+        ],
+      },
       "coleco-ff1": {
         title: "ファイナルファンタジー — ColecoVision",
         summary: "1982年のハードで動く1987年のNESのRPG — 誰も試みたことのない移植。スーパー・ゲーム・モジュールとMegaCartのバンク切り替えがそれを可能にする。TMS9918の色数の限界は、行ごとの支配色にスプライトのアクセント・オーバーレイを重ねて打ち破られ、戦闘キャラは見た目でNES並みに到達。全24曲を逆アセンブルからバイト単位で正確に抽出し、AY-3-8910へ。7800の兄弟版との違い：この移植はスクウェアの呪文バグをあえて修正する — 一方でFinger Pointの半島のような愛されたクセはバイト単位のまま保存する。フィールドマップ、コーネリア、戦闘はすでにマルチバンク下でループしている。",
