@@ -1334,7 +1334,7 @@ const PROJECTS = [
     platform: "ds",
     type: "porting",
     status: "completed",
-    progress: 90,
+    progress: 100,
     summary: "LBA1 running on the Nintendo DS at a locked 50 fps, built from the community GPL source: the real 1994 engine ITCM/ARM-optimized down to 6.5 ms per 3D actor, its sixteen x86 assembly modules rewritten in C, persistent saves on SD, music and voice acting through the hardware audio channels, all five text languages, and a custom touch HUD on the second screen with live health, money and one-tap behaviour switching — all fitting a stock 4 MB DS with 1.5 MB to spare. Released open-source as v0.9, bring-your-own-assets: one playtester has finished the whole game end to end on melonDS with no blocking crash, and real hardware runs it too, verified on a 3DS in DS mode. It is called 0.9 and not 1.0 for honest reasons — that playthrough is a single run, not a QA campaign; the hardware test covered the opening hours rather than the whole game; and latent defects in the 1994 code still surface — so full real-hardware validation and the ironing-out of the last glitches are the plus a 1.0 would carry. FLA cutscenes aside (they never lived in the DOS data), the game is there, start to finish.",
     milestones: [
       { label: "Boots to gameplay: logos, menu, intro, first scene", done: true },
