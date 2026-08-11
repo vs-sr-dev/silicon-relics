@@ -7,7 +7,7 @@
 const SITE = {
   tagline: "A living codex of homebrew, reverse engineering and porting quests across retro consoles — from the famous to the forgotten. A human + LLM collaboration, named openly.",
   since: "2026-03",
-  updated: "2026-07-28",
+  updated: "2026-08-12",
   /* Support links — kept deliberately understated in the footer.
      Fill these with the real URLs; leave "" to hide a button. */
   support: {
