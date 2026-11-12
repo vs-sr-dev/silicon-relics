@@ -1,29 +1,49 @@
 # Silicon Relics
 
-A living codex of retro console **homebrew**, **reverse engineering** and **porting** quests by Samuele Voltan — from the famous to the forgotten.
+A catalogue of every public repository on [vs-sr-dev](https://github.com/vs-sr-dev): static recompilations, ports, emulators, homebrew, platform research and format documentation. There is one room per machine, ordered by the year it came out, plus the pieces still in the workshop that are not published yet.
 
-This is a fully static, dependency-free site (vanilla HTML/CSS/JS). No build step.
+Live at **https://vs-sr-dev.github.io/silicon-relics/**
+
+The site is fully static: vanilla HTML, CSS and JS, with no build step for the page itself and no dependencies.
 
 ## Structure
 
 | File | Role |
-|------|------|
-| `index.html` | Page shell — written once |
-| `style.css` | Dark-fantasy codex theme — written once |
-| `app.js` | Rendering, sorting, filters, search, lightbox — written once |
-| `data.js` | **The only file content updates touch.** Platforms (Relics) and projects (Quests) |
-| `assets/` | Optimized screenshots |
+|---|---|
+| `index.html` | Page shell |
+| `style.css` | The museum-catalogue theme, light and dark |
+| `app.js` | Rendering, filters, search, the card dialog. Content changes never touch it |
+| `data.js` | **Generated.** The only file the page reads (`window.SR`) |
+| `content/github.json` | `gh repo list` metadata, public repositories only |
+| `content/catalog.json` | One curated entry per repository: title, tagline, summary, highlights, status, bar, and the evidence for the bar |
+| `content/overrides.json` | Hand corrections applied on top of the catalogue, plus each entry's screenshots and icon |
+| `content/workshop.json` | Work not yet on GitHub, kept spoiler-free: one neutral line each |
+| `tools/build-data.mjs` | Builds `data.js` from `content/`; holds the machine table and the repository → machine map |
+| `assets/` | Optimised screenshots |
 
-## Updating content
+## Updating
 
-Edit `data.js`:
+```sh
+# 1. refresh the GitHub metadata (public repos only; Bash, not PowerShell)
+gh repo list vs-sr-dev --limit 400 --json name,description,isPrivate,isFork,isArchived,createdAt,pushedAt,stargazerCount \
+  | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const a=JSON.parse(s).filter(r=>!r.isPrivate).map(({isPrivate,...r})=>r).sort((x,y)=>x.name.localeCompare(y.name));require("fs").writeFileSync("content/github.json",JSON.stringify(a,null,1)+"\n")})'
 
-- Add a platform to `PLATFORMS` (id, name, maker, year, gen, rarity, blurb).
-- Add a project to `PROJECTS` (id, title, platform id, type, status, progress %, summary, milestones, badges, screenshots, repo link).
-- Bump `SITE.updated`.
+# 2. see what changed
+node tools/build-data.mjs --check
+#    NEW  public but not catalogued → add an entry to content/catalog.json
+#    GONE catalogued but no longer public
+#    MACH no machine → add the repository to MACHINE in tools/build-data.mjs
 
-Open `index.html` directly in a browser to preview (no server needed), then push.
+# 3. build and preview (open index.html in a browser)
+node tools/build-data.mjs
+```
+
+A status change is a small edit: change `status`, `progress` and `progress_basis` for the entry in `content/catalog.json`, or add a correction to `content/overrides.json`. When two sources about a repository disagree, the most recent note counts.
+
+## The bars
+
+Every bar measures how close the object is to the finish line its own repository declares, and every card says what 100 % means. Ports follow a fixed ladder (5 analysis · 15 builds · 25 first picture · 35 title · 50 in-game · 65 a long stretch plays · 80 most of the game · 90 finished with rough edges · 100 finished and verified). Whole-library kits count the cartridges that run identically. Game-driven kits weigh their subsystems and their furthest port. Emulators count the library that plays. Write-ups measure how much of the object is accounted for. The full table is on the page, under "How to read the bars".
 
 ## Hosting
 
-GitHub Pages, served from the `main` branch root. The site uses only relative paths, so it works both as a project site and as a user-site root.
+GitHub Pages, served from the root of the `main` branch. Every path is relative.

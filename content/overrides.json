@@ -1,0 +1,132 @@
+{
+ "_rule": "When sources disagree, the most recent note wins. Overrides hold corrections to catalog.json and the media of each entry.",
+ "pc-moon": {
+  "status": "playable",
+  "progress": 65,
+  "progress_basis": "Comfortably playable on ndskit, in a window in real time, picture and sound matched to melonDS; mouselook and PC shooter keys are next."
+ },
+ "pc-nostalgia": {
+  "status": "playable",
+  "progress": 65,
+  "progress_basis": "Comfortably playable on ndskit: the prologue, the first dungeon and its battles and on; nobody has played it to the end yet."
+ },
+ "pc-lufiacots": {
+  "status": "playable",
+  "progress": 65,
+  "progress_basis": "Comfortably playable on ndskit: fights, drops, chests, menus, saving and loading; nobody has played it to the end yet."
+ },
+ "pc-immercenary": {
+  "progress_basis": "Begun as reverse-engineering notes before 3dokit existed, now a static recompilation: logos, films, menus, the city with sound, death, debrief and a second jump play. The speech program is not in the build yet."
+ },
+ "pc-ragnarokodysseyace": {
+  "status": "playable",
+  "progress": 65,
+  "progress_basis": "Begun as format and tooling work before ps3kit existed, now a static recompilation that plays: menus, character creation, saves, the first quests and their monsters at 30 frames."
+ },
+ "dc-lba2": {
+  "status": "playable",
+  "progress_basis": "V0.9 alpha, running on a real Dreamcast: the first island plays to completion; later islands, vehicles and the ending are not yet verified."
+ },
+ "pc-3ddotgameheroes": {
+  "status": "in-game",
+  "progress": 50,
+  "progress_basis": "Per ps3kit's ports table: through the title screen, its demo play and FMOD's music to the first field, played at 30 frames."
+ },
+ "ps3kit": {},
+ "pc-abelsmt": {
+  "status": "playable",
+  "progress": 60,
+  "progress_basis": "Per fmtownskit's ports table: the opening, the game and the ending play in a window, pixel for pixel against MAME where compared; saving and the English translation are still to do."
+ },
+ "pc-doctorhauzer": {
+  "status": "playable",
+  "progress_basis": "Per 3dokit's ports table: the opening, the menu and the real-time 3D rooms play in the window with their music; no longer play is reported."
+ },
+ "pc-escapefrommonstermanor": {
+  "status": "playable",
+  "progress_basis": "Per 3dokit's ports table: the first level plays in the window with its music; the monsters animate at twice the console's pace, the cel engine's time not yet charged."
+ },
+ "pc-theneedforspeed": {
+  "status": "playable",
+  "progress_basis": "Per 3dokit's ports table: the films, the menus and the race at the console's speed and smooth; only the first race has been played."
+ },
+ "pc-demolitionman": {
+  "status": "playable",
+  "progress_basis": "Per 3dokit's ports table: the attract loop runs through every kind of level for 100,000 fields; the first two shooting levels played with the mouse as the light gun."
+ },
+ "pc-crashnburn": {},
+ "3dokit": {},
+ "3do-omf2097": {
+  "shots": [
+   "assets/3do-omf2097/1-pilot-select.png",
+   "assets/3do-omf2097/2-versus.png",
+   "assets/3do-omf2097/3-combat.png"
+  ]
+ },
+ "coleco-ff": {
+  "shots": [
+   "assets/coleco-ff1/1-charcreation.png",
+   "assets/coleco-ff1/2-battle.png",
+   "assets/repos/coleco-ff/3-cover.jpg"
+  ]
+ },
+ "ds-lba": {
+  "shots": [
+   "assets/ds-lba1/1-behavior-select.png"
+  ]
+ },
+ "pippin-homebrew": {
+  "shots": [
+   "assets/pippin-homebrew/1-ping.png",
+   "assets/pippin-homebrew/2-frogfind.png"
+  ]
+ },
+ "fcf-quest": {
+  "shots": [
+   "assets/repos/fcf-quest/1-map.png",
+   "assets/repos/fcf-quest/2-battle.png",
+   "assets/repos/fcf-quest/3-cover.jpg"
+  ],
+  "pixel": true
+ },
+ "fcf-bufo": {
+  "shots": [
+   "assets/repos/fcf-bufo/1-screenshot.png",
+   "assets/repos/fcf-bufo/2-cover.jpg"
+  ],
+  "pixel": true
+ },
+ "wiiu-crema": {
+  "shots": [
+   "assets/repos/wiiu-crema/1-crema.jpg"
+  ]
+ },
+ "wiiu-planetblupi": {
+  "shots": [
+   "assets/repos/wiiu-planetblupi/1-blupi.png"
+  ]
+ },
+ "vis-wolf3d": {
+  "shots": [
+   "assets/repos/vis-wolf3d/1-demo.gif"
+  ],
+  "pixel": true
+ },
+ "cd32-thesperislegacy-doc": {
+  "shots": [
+   "assets/repos/cd32-thesperislegacy-doc/1-cowtree-map.jpg"
+  ]
+ },
+ "flick": {
+  "icon": "assets/repos/flick/icon.png"
+ },
+ "mobigoemu": {
+  "icon": "assets/repos/mobigoemu/icon.png"
+ },
+ "didjemu": {
+  "icon": "assets/repos/didjemu/icon.png"
+ },
+ "cdipc": {
+  "icon": "assets/repos/cdipc/icon.png"
+ }
+}

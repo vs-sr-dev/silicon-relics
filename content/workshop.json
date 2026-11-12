@@ -1,0 +1,361 @@
+{
+ "asof": "2026-08-12",
+ "platforms": {
+  "gx4000": {
+   "n": "Amstrad GX4000",
+   "mk": "Amstrad",
+   "y": 1990
+  },
+  "lynx": {
+   "n": "Atari Lynx",
+   "mk": "Atari / Epyx",
+   "y": 1989
+  },
+  "gamegear": {
+   "n": "Sega Game Gear",
+   "mk": "Sega",
+   "y": 1990
+  },
+  "gamecom": {
+   "n": "Tiger Game.com",
+   "mk": "Tiger Electronics",
+   "y": 1997
+  },
+  "playdia": {
+   "n": "Bandai Playdia",
+   "mk": "Bandai",
+   "y": 1994
+  },
+  "s32x": {
+   "n": "Sega 32X",
+   "mk": "Sega",
+   "y": 1994
+  },
+  "gba": {
+   "n": "Game Boy Advance",
+   "mk": "Nintendo",
+   "y": 2001
+  },
+  "smaky": {
+   "n": "Smaky 100",
+   "mk": "Epsitec, Lausanne",
+   "y": 1984
+  },
+  "x68000": {
+   "n": "Sharp X68000",
+   "mk": "Sharp",
+   "y": 1987
+  },
+  "original": {
+   "n": "Original work",
+   "mk": "Not a relic: a game of its own",
+   "y": null
+  }
+ },
+ "items": [
+  {
+   "id": "7800-ff1",
+   "t": "Final Fantasy",
+   "p": "a7800",
+   "v": 50,
+   "s": "ongoing",
+   "g": "The NES original rebuilt from its disassembly on MARIA, up to a playable Garland fight.",
+   "shots": [
+    "assets/7800-ff1/1-overworld.png",
+    "assets/7800-ff1/2-garland.png"
+   ]
+  },
+  {
+   "id": "gx4000-jetpack",
+   "t": "Jetpack",
+   "p": "gx4000",
+   "v": 30,
+   "s": "ongoing",
+   "g": "The 1993 DOS game rebuilt for Amstrad's console, its 100 levels taken from the original files.",
+   "shots": [
+    "assets/gx4000-jetpack/1-level-render.png"
+   ]
+  },
+  {
+   "id": "vis-dangerous-creatures",
+   "t": "Dangerous Creatures",
+   "p": "vis",
+   "v": 45,
+   "s": "ongoing",
+   "g": "Microsoft's 1994 multimedia encyclopedia rebuilt as a native VIS title."
+  },
+  {
+   "id": "vis-ff1",
+   "t": "Final Fantasy",
+   "p": "vis",
+   "v": 40,
+   "s": "ongoing",
+   "g": "FF1 on the VIS, its game logic kept one to one with the disassembly.",
+   "shots": [
+    "assets/vis-ff1/2-title.png",
+    "assets/vis-ff1/4-overworld.png",
+    "assets/vis-ff1/3-party-select.png"
+   ]
+  },
+  {
+   "id": "pippin-dangerous-creatures",
+   "t": "Dangerous Creatures",
+   "p": "pippin",
+   "v": 40,
+   "s": "ongoing",
+   "g": "The same 1994 encyclopedia, carried onto Apple and Bandai's console."
+  },
+  {
+   "id": "pippin-lba1",
+   "t": "Little Big Adventure",
+   "p": "pippin",
+   "v": 40,
+   "s": "ongoing",
+   "g": "LBA1 on the Pippin's PowerPC 603."
+  },
+  {
+   "id": "playdia-ak8000",
+   "t": "The AK8000",
+   "p": "playdia",
+   "v": 50,
+   "s": "ongoing",
+   "g": "Documenting the one Playdia chip nobody has described: the decoder behind every frame of video."
+  },
+  {
+   "id": "gamecom-bringup",
+   "t": "Game.com bring-up",
+   "p": "gamecom",
+   "v": 35,
+   "s": "ongoing",
+   "g": "A modern toolchain for Tiger's handheld, whose original SDK is lost."
+  },
+  {
+   "id": "lynx-bringup",
+   "t": "Lynx bring-up",
+   "p": "lynx",
+   "v": 10,
+   "s": "ongoing",
+   "g": "The cc65 toolchain proven end to end on Atari's handheld."
+  },
+  {
+   "id": "gg-pokered",
+   "t": "Pokémon Red",
+   "p": "gamegear",
+   "v": 65,
+   "s": "ongoing",
+   "g": "The pokered disassembly transpiled to Z80 for the Game Gear; the opening loop plays end to end."
+  },
+  {
+   "id": "wsc-bringup",
+   "t": "WonderSwan Color bring-up",
+   "p": "ws",
+   "v": 10,
+   "s": "ongoing",
+   "g": "The Wonderful Toolchain made to work on the V30MZ."
+  },
+  {
+   "id": "loopy-homebrew",
+   "t": "The Printing Console",
+   "p": "loopy",
+   "v": 55,
+   "s": "ongoing",
+   "g": "A modern homebrew stack for the only console with a built-in sticker printer."
+  },
+  {
+   "id": "jag-ff4",
+   "t": "Final Fantasy IV",
+   "p": "jaguar",
+   "v": 15,
+   "s": "ongoing",
+   "g": "The SNES disassembly transpiled for the Jaguar."
+  },
+  {
+   "id": "jag-taming",
+   "t": "Taming All Five",
+   "p": "jaguar",
+   "v": 55,
+   "s": "ongoing",
+   "g": "68000 assembly that makes the Jaguar's five processors work together, on real hardware."
+  },
+  {
+   "id": "3do-terminal",
+   "t": "Signal & Static",
+   "p": "a3do",
+   "v": 65,
+   "s": "ongoing",
+   "g": "An original interactive piece for the 3DO, and a tour of the machine's hardware."
+  },
+  {
+   "id": "32x-lba1",
+   "t": "Little Big Adventure",
+   "p": "s32x",
+   "v": 60,
+   "s": "ongoing",
+   "g": "The real LBA1 engine running its own scripts on the 32X."
+  },
+  {
+   "id": "32x-lba2",
+   "t": "Little Big Adventure 2",
+   "p": "s32x",
+   "v": 35,
+   "s": "ongoing",
+   "g": "How far the 32X pipeline built for LBA1 can stretch toward LBA2."
+  },
+  {
+   "id": "saturn-explorer",
+   "t": "Wireframe Worlds",
+   "p": "saturn",
+   "v": 65,
+   "s": "ongoing",
+   "g": "An original 3D exploration game on Jo Engine and SGL, running on a real Saturn."
+  },
+  {
+   "id": "ps1-vampire-re",
+   "t": "Vampire: Kyūketsuki Densetsu",
+   "p": "ps1",
+   "v": 15,
+   "s": "ongoing",
+   "g": "A private English translation of Artdink's PlayStation retelling of Dracula."
+  },
+  {
+   "id": "ps2-rhythm",
+   "t": "Beneath the Rhythm",
+   "p": "ps2",
+   "v": 55,
+   "s": "ongoing",
+   "g": "An original rhythm game built from the metal up, checked on PCSX2 and a real PS2."
+  },
+  {
+   "id": "dc-ff8",
+   "t": "Final Fantasy VIII",
+   "p": "dc",
+   "v": 40,
+   "s": "ongoing",
+   "g": "A C++ reimplementation on KallistiOS that runs FF8's own data."
+  },
+  {
+   "id": "dc-mi3",
+   "t": "The Curse of Monkey Island",
+   "p": "dc",
+   "v": 70,
+   "s": "ongoing",
+   "g": "SCUMM v8 on the Dreamcast, past ScummVM bug #6008."
+  },
+  {
+   "id": "dc-shmup",
+   "t": "Squeezing the Dreamcast",
+   "p": "dc",
+   "v": 50,
+   "s": "ongoing",
+   "g": "An original beat-synced shoot-'em-up that pushes the PowerVR."
+  },
+  {
+   "id": "cdi-bringup",
+   "t": "CD-i bring-up",
+   "p": "cdi",
+   "v": 25,
+   "s": "ongoing",
+   "g": "The OS-9 compiler, linker and disc mastering, working again."
+  },
+  {
+   "id": "cd32-lba1",
+   "t": "Little Big Adventure",
+   "p": "cd32",
+   "v": 35,
+   "s": "ongoing",
+   "g": "The 1994 engine in 2 MB of chip RAM on a 68020, booting from CD."
+  },
+  {
+   "id": "cd32-workbench-anthology",
+   "t": "The Workbench Anthology",
+   "p": "cd32",
+   "v": 60,
+   "s": "ongoing",
+   "g": "A bootable Workbench filled with original CD32 homebrew."
+  },
+  {
+   "id": "cd32-first-draft",
+   "t": "The First Draft",
+   "p": "cd32",
+   "v": 25,
+   "s": "ongoing",
+   "g": "The very first project: a bare-metal JRPG skeleton on AGA."
+  },
+  {
+   "id": "gba-lba1-poc",
+   "t": "Little Big Adventure (proof of concept)",
+   "p": "gba",
+   "v": 30,
+   "s": "ongoing",
+   "g": "The genuine LBA1 engine running the opening asylum on a GBA.",
+   "shots": [
+    "assets/gba-lba/2-twinsen.png",
+    "assets/gba-lba/1-bricks.png"
+   ]
+  },
+  {
+   "id": "snes-lba1-poc",
+   "t": "Little Big Adventure + SuperFX (proof of concept)",
+   "p": "snes",
+   "v": 55,
+   "s": "ongoing",
+   "g": "The real LBA1 engine on a 65816, the scene composed by a SuperFX."
+  },
+  {
+   "id": "smaky-ff1",
+   "t": "Final Fantasy",
+   "p": "smaky",
+   "v": 10,
+   "s": "ongoing",
+   "g": "FF1 remade for the Swiss school computer, in green phosphor."
+  },
+  {
+   "id": "x68000-poc",
+   "t": "First Light, First Note",
+   "p": "x68000",
+   "v": 35,
+   "s": "ongoing",
+   "g": "A current GCC toolchain for Sharp's computer, with picture and sound proven."
+  },
+  {
+   "id": "pc-silver-re",
+   "t": "Silver",
+   "p": "pc",
+   "v": 55,
+   "s": "ongoing",
+   "g": "Engine archaeology of Spiral House's 1999 action-RPG, toward co-op play."
+  },
+  {
+   "id": "pc-tle-re",
+   "t": "The Last Express",
+   "p": "pc",
+   "v": 60,
+   "s": "ongoing",
+   "g": "Jordan Mechner's real-time game, studied through its modern re-release."
+  },
+  {
+   "id": "pc-risinglands-wrap",
+   "t": "Rising Lands",
+   "p": "pc",
+   "v": 85,
+   "s": "ongoing",
+   "g": "Microïds' 1997 RTS carried forward to Windows 11 without friction."
+  },
+  {
+   "id": "pc-replay-vault",
+   "t": "The Replay Vault",
+   "p": "pc",
+   "v": 100,
+   "s": "complete",
+   "g": "Titles of an Italian childhood brought back on modern machines and replayed to the end."
+  },
+  {
+   "id": "great-work",
+   "t": "The Great Work",
+   "p": "original",
+   "v": 61,
+   "s": "ongoing",
+   "g": "An original action-RPG, the largest project here. Sealed until it is ready."
+  }
+ ]
+}

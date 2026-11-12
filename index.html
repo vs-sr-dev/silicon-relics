@@ -2,61 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Silicon Relics — Samuele Voltan</title>
-  <meta name="description" content="A living codex of retro console homebrew, reverse engineering and porting quests by Samuele Voltan — from the famous to the forgotten.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Silicon Relics — vs-sr-dev</title>
+  <meta name="description" content="A catalogue of static recompilations, ports, emulators, homebrew and format documentation for forgotten machines, 1976 to 2012. Every object is a public repository.">
   <meta property="og:title" content="Silicon Relics">
-  <meta property="og:description" content="A living codex of retro console homebrew, reverse engineering and porting quests.">
+  <meta property="og:description" content="Static recompilations, ports, emulators, homebrew and format documentation for forgotten machines. Every object is a public repository.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,5 90,35 75,95 25,95 10,35' fill='%23d4af37' stroke='%236b4f1d' stroke-width='4'/%3E%3Cpolygon points='50,22 74,40 65,80 35,80 26,40' fill='%232a1f38'/%3E%3C/svg%3E">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141b24'/%3E%3Crect x='6' y='18' width='4' height='8' fill='%23e8ebee'/%3E%3Crect x='12' y='12' width='4' height='14' fill='%232340b5'/%3E%3Crect x='18' y='6' width='4' height='20' fill='%23e8ebee'/%3E%3Crect x='24' y='15' width='3' height='11' fill='%23a9b2bd'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip" href="#rooms">Skip to the catalogue</a>
 
-  <div class="vignette" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="mast">
+      <h1>Silicon<br><span>Relics</span></h1>
+      <div class="mast-side">
+        <p id="intro"></p>
+        <p class="mast-links">
+          <a href="https://github.com/vs-sr-dev" target="_blank" rel="noopener">github.com/vs-sr-dev ↗</a>
+          <a href="#about">How to read the bars</a>
+        </p>
+      </div>
+    </header>
 
-  <div class="lang-switch" id="lang-switch">
-    <button type="button" class="lang-current" id="lang-btn"
-            aria-haspopup="listbox" aria-expanded="false"
-            aria-label="Language / Lingua / 言語"></button>
-    <ul class="lang-menu" id="lang-menu" role="listbox" hidden></ul>
+    <section class="figures" id="figures" aria-label="The catalogue in figures"></section>
+
+    <section class="timeline" aria-labelledby="tl-h">
+      <h2 id="tl-h" class="kicker">Objects per machine, by year of release</h2>
+      <div class="tl-scroll" id="tl"></div>
+      <div class="tl-legend">
+        <span><i class="lg-w"></i>Works: code that runs</span>
+        <span><i class="lg-k"></i>In the workshop</span>
+        <span><i class="lg-d"></i>Write-ups</span>
+        <span id="tl-cap"></span>
+      </div>
+    </section>
+
+    <section class="lately" aria-labelledby="lately-h">
+      <h2 id="lately-h" class="kicker">Newest on the bench</h2>
+      <div class="lately-row" id="lately"></div>
+    </section>
   </div>
 
-  <header class="hero">
-    <p class="hero-eyebrow" data-i18n="The Codex of">The Codex of</p>
-    <h1 class="hero-title">Silicon Relics</h1>
-    <p class="hero-tagline" id="tagline"></p>
-    <div class="hero-stats" id="hero-stats"></div>
-  </header>
-
-  <nav class="controls" aria-label="Codex filters">
-    <div class="controls-row">
-      <div class="control-group" id="sort-group" role="group" aria-label="Sort order">
-        <button class="chip chip-sort active" data-sort="gen" data-i18n="By Generation">By Generation</button>
-        <button class="chip chip-sort" data-sort="alpha" data-i18n="Alphabetical">Alphabetical</button>
-      </div>
-      <div class="control-group" id="type-group" role="group" aria-label="Quest type"></div>
-      <div class="control-group search-group">
-        <input type="search" id="search" placeholder="Search the codex…" data-i18n-ph="Search the codex…" aria-label="Search">
-      </div>
+  <nav class="bar" aria-label="Filter the catalogue">
+    <div class="wrap bar-in">
+      <div class="chips" id="chips" role="group" aria-label="Kind of object"></div>
+      <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search titles, machines, kits" aria-label="Search the catalogue" autocomplete="off"></label>
+      <span class="count" id="count" aria-live="polite"></span>
     </div>
   </nav>
 
-  <main id="codex" class="codex"></main>
+  <main class="wrap" id="rooms"></main>
 
-  <footer class="footer">
-    <div class="footer-rule" aria-hidden="true">⟡ ⟡ ⟡</div>
-    <p><span data-i18n="Forged by">Forged by</span> <strong>Samuele Voltan</strong> <span data-i18n="— with LLM familiars at his side.">— with LLM familiars at his side.</span></p>
-    <div class="footer-support" id="footer-support"></div>
-    <p class="footer-updated" id="footer-updated"></p>
-  </footer>
+  <div class="wrap">
+    <section class="about" id="about" aria-labelledby="about-h">
+      <h2 id="about-h">How to read the bars</h2>
+      <p>Every bar answers one question: how close is this object to the finish line its own repository declares? The finish line depends on the kind of work, so every card says what 100 % means. Open any card to see the evidence the number rests on, taken from the repository itself; where two notes disagree, the most recent one counts.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Kind</th><th>100 % means</th><th>How the number is set</th></tr></thead>
+        <tbody>
+          <tr><td>Ports — recompiled, from source, reimplemented</td><td>played from start to finish</td><td>A fixed ladder: 5 analysis · 15 builds · 25 first picture · 35 title and menus · 50 in-game · 65 a long stretch plays · 80 most of the game · 90 finished, with rough edges · 100 finished and verified</td></tr>
+          <tr><td>Whole-library toolkits</td><td>every cartridge of the set runs identically</td><td>The share of the set that runs frame for frame identical to the interpreter</td></tr>
+          <tr><td>Game-driven toolkits</td><td>every subsystem stood in for, proven by a finished port</td><td>The subsystems in and missing, and how far the best port goes. Never 100: a kit keeps growing</td></tr>
+          <tr><td>Emulators</td><td>the known library playable, with sound</td><td>Titles that start and play, less the major features still missing</td></tr>
+          <tr><td>Homebrew</td><td>finished and released</td><td>100 released · 85–95 polishing · 50–70 a playable slice</td></tr>
+          <tr><td>Tools, research, RE notes</td><td>the repository's stated goals reached</td><td>The goals its README sets, less the open items it lists</td></tr>
+          <tr><td>Write-ups</td><td>the whole object accounted for</td><td>Sectors, bytes and files attributed and formats decoded, from the write-up's own coverage figures</td></tr>
+          <tr><td>Indices and checklists</td><td>every title documented, every claim measured</td><td>The tallies the index keeps, or a cautious estimate where it keeps none</td></tr>
+        </tbody>
+      </table></div>
+      <div class="about-cols">
+        <div>
+          <h3>Reading the repository names</h3>
+          <p><code>&lt;platform&gt;-&lt;subject&gt;</code>, where the platform is the <b>target</b>: <code>psx-lba</code> is Little Big Adventure running on the PlayStation, <code>pc-victorious</code> a Wii game brought to PC. <code>-doc</code> is documentation only, <code>-re</code> a reverse-engineering devlog, and a <code>-kit</code> a game-agnostic toolkit named after the console it stands in for. In this catalogue a ported game sits in the room of the machine it comes from.</p>
+          <p><b>No repository contains game assets, ROM data or copyrighted content.</b> Every port is BYOA, bring your own assets: it needs a copy of the game you already own.</p>
+        </div>
+        <div>
+          <h3>Method and attribution</h3>
+          <p>This is a human + LLM collaboration, stated openly because the honesty is the point. I bring the domain knowledge and the direction: knowing these machines, recognising a genuine first, deciding where to dig. Claude brings the implementation across architectures I could not otherwise approach. Neither side reaches these results alone.</p>
+          <p>The workshop pieces are older work kept off GitHub for now. Their bars were last measured on <span id="ws-asof"></span>.</p>
+        </div>
+      </div>
+    </section>
 
-  <div class="lightbox" id="lightbox" hidden>
-    <img id="lightbox-img" alt="Screenshot enlarged">
+    <footer class="foot">
+      <p>Samuele Voltan · <a href="https://github.com/vs-sr-dev" target="_blank" rel="noopener">@vs-sr-dev</a> · catalogue begun <span id="since"></span>, last swept <span id="updated"></span></p>
+      <p class="kofi" id="kofi"></p>
+    </footer>
   </div>
+
+  <dialog id="card" aria-labelledby="card-title">
+    <div class="dlg" id="card-body"></div>
+  </dialog>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
