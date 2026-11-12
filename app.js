@@ -137,7 +137,7 @@
       (w.v >= 100 ? `<span class="stamp">RESTORED</span>` : "") +
       `<span class="acc">${acc}</span><span class="kind">${sealed ? "Original game · in the making" : "In the workshop · not yet published"}</span>` +
       `<h3>${esc(w.t)}</h3><p>${esc(w.g)}</p>` +
-      `<span class="rest">${bar(w.v)}<span class="row"><span>${w.s === "complete" ? "Restored" : "In progress"} · as of ${SR.workshop.asof}</span><b>${w.v}%</b></span></span>`;
+      `<span class="rest">${bar(w.v)}<span class="row"><span>${w.s === "complete" ? "Restored" : "In progress"} · as of ${w.asof || SR.workshop.asof}</span><b>${w.v}%</b></span></span>`;
     return sealed ? `<div class="label sealed">${inner}</div>`
       : `<button type="button" class="label wk" data-open="${esc(w.id)}">${inner}</button>`;
   }
@@ -216,7 +216,7 @@
     }
     body += o.s === "archived"
       ? `<div class="meter"><div class="top"><b>Archived</b><span>${esc(o.m || "")}</span></div>${o.b ? `<p>${esc(o.b)}</p>` : ""}</div>`
-      : `<div class="meter"><div class="top"><b>${o.v}%</b><span>${esc(isRepo ? (STATUS[o.s] || o.s) + " · " + (o.m || "") : "In progress · as of " + SR.workshop.asof)}</span></div>${bar(o.v)}` +
+      : `<div class="meter"><div class="top"><b>${o.v}%</b><span>${esc(isRepo ? (STATUS[o.s] || o.s) + " · " + (o.m || "") : "In progress · as of " + (o.asof || SR.workshop.asof))}</span></div>${bar(o.v)}` +
         (isRepo && o.b ? `<p>${esc(o.b)}</p>` : "") + `</div>`;
     if (shots) body += `<div class="gallery">${shots}</div>`;
     body += isRepo

@@ -117,9 +117,10 @@
    "id": "playdia-ak8000",
    "t": "The AK8000",
    "p": "playdia",
-   "v": 50,
+   "v": 80,
    "s": "ongoing",
-   "g": "Documenting the one Playdia chip nobody has described: the decoder behind every frame of video."
+   "g": "The Playdia video codec, cracked by AloysHF (PlaydiaEmu) and ported by WizzardSK; our encoder re-encodes retail video bit for bit.",
+   "asof": "2026-09-24"
   },
   {
    "id": "gamecom-bringup",
