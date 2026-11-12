@@ -29,7 +29,7 @@
   };
   const STATUS = {
     complete: "Restored", playable: "Playable", "in-game": "In-game", boots: "Boots", analysis: "Under study",
-    documented: "Catalogued", living: "Growing", ongoing: "In progress",
+    documented: "Catalogued", living: "Growing", ongoing: "In progress", archived: "Archived",
   };
   const ABBR = id => id.replace(/^[as](?=\d)/, "").toUpperCase().slice(0, 5);
   const CAP = 26; // timeline columns taller than this are cut
@@ -125,7 +125,9 @@
       `<span class="acc">${acc}</span><span class="kind">${esc(KIND[r.c])}</span>` +
       `<h3>${esc(r.t)}</h3><p>${esc(r.g)}</p>` +
       (tags.length || born ? `<span class="tags">${born ? `<span class="tag born">Born here</span>` : ""}${tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</span>` : "") +
-      `<span class="rest">${bar(r.v)}<span class="row"><span>${esc(STATUS[r.s] || r.s)} · ${esc(r.m || "")}</span><b>${r.v}%</b></span></span></button>`;
+      (r.s === "archived"
+        ? `<span class="rest"><span class="row"><span>Archived · ${esc(r.m || "")}</span></span></span></button>`
+        : `<span class="rest">${bar(r.v)}<span class="row"><span>${esc(STATUS[r.s] || r.s)} · ${esc(r.m || "")}</span><b>${r.v}%</b></span></span></button>`);
   }
   function workLabel(w, acc) {
     const sealed = w.p === "original";
@@ -212,8 +214,10 @@
       const ps = portsOf(o.r);
       if (ps.length) body += `<ul>${ps.map((p, j) => `<li><a href="#${esc(p.r)}" data-open="${esc(p.r)}">${esc(p.t)}</a> — ${esc(STATUS[p.s])}, ${p.v}%${j === 0 ? " · born here" : ""}</li>`).join("")}</ul>`;
     }
-    body += `<div class="meter"><div class="top"><b>${o.v}%</b><span>${esc(isRepo ? (STATUS[o.s] || o.s) + " · " + (o.m || "") : "In progress · as of " + SR.workshop.asof)}</span></div>${bar(o.v)}` +
-      (isRepo && o.b ? `<p>${esc(o.b)}</p>` : "") + `</div>`;
+    body += o.s === "archived"
+      ? `<div class="meter"><div class="top"><b>Archived</b><span>${esc(o.m || "")}</span></div>${o.b ? `<p>${esc(o.b)}</p>` : ""}</div>`
+      : `<div class="meter"><div class="top"><b>${o.v}%</b><span>${esc(isRepo ? (STATUS[o.s] || o.s) + " · " + (o.m || "") : "In progress · as of " + SR.workshop.asof)}</span></div>${bar(o.v)}` +
+        (isRepo && o.b ? `<p>${esc(o.b)}</p>` : "") + `</div>`;
     if (shots) body += `<div class="gallery">${shots}</div>`;
     body += isRepo
       ? `<div class="dlg-foot"><span class="meta">${esc(o.r)} · created ${o.cr.slice(0, 10)} · last push ${o.pu}</span><a class="go" href="${GH + esc(o.r)}" target="_blank" rel="noopener">Open on GitHub ↗</a></div>`

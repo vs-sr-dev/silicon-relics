@@ -128,5 +128,15 @@
  },
  "cdipc": {
   "icon": "assets/repos/cdipc/icon.png"
+ },
+ "hyperscan-homebrew": {
+  "status": "archived",
+  "progress": 0,
+  "tagline": "Early HyperScan notes from June 2026, now obsolete and archived as a record.",
+  "summary": "One of the first repositories on the account: notes written while building with an unmaintained score-elf GCC and no SDK. They were superseded once a real SDK was in use, and are kept read-only as a record of where the HyperScan work started. The current work is the flick emulator and the hs-lba port.",
+  "highlights": [],
+  "first": null,
+  "measure": "superseded by flick and hs-lba",
+  "progress_basis": "Archived in November 2026. Its README says it should not be cited as a reference and points to flick, hs-lba and the scoresdk tools."
  }
 }
