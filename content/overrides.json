@@ -79,7 +79,15 @@
   "shots": [
    "assets/pippin-homebrew/1-ping.png",
    "assets/pippin-homebrew/2-frogfind.png"
-  ]
+  ],
+  "tagline": "Putting an emulated Bandai Pippin on the Internet in June 2026: serial over DBDMA, a virtual modem, PPP",
+  "highlights": [
+   "Emulated Pippin pings 1.1.1.1 and Netscape 1.1N loads frogfind.com from the live web",
+   "Its DingusPPC serial fixes are superseded: upstream built the same path on its own (May–August 2026)",
+   "Five hypotheses for missing images falsified with tcpdump; verdict: Netscape 1.1N itself"
+  ],
+  "progress_basis": "The motivating goal (live web pages on the emulated Pippin) was reached and the image fault diagnosed. The DingusPPC changes were never submitted and upstream DingusPPC has since implemented the serial DMA path itself, so the repository now stands as a dated record of June 2026.",
+  "first": "As of June 2026, the Pippin's networking path had, as far as we could tell, never been brought up in an emulator."
  },
  "fcf-quest": {
   "shots": [
